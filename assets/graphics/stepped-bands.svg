@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1448 242" preserveAspectRatio="none">
-  <rect width="1448" height="46" fill="#F9F4EB"/>
-  <rect x="723" width="725" height="46" fill="#F8A61A"/>
-  <rect y="46" width="1448" height="46" fill="#FBF0EE"/>
-  <rect x="523" y="46" width="925" height="46" fill="#F96221"/>
-  <rect y="92" width="1448" height="48" fill="#F9E8EC"/>
-  <rect x="310" y="92" width="1138" height="48" fill="#F7282E"/>
-  <rect y="140" width="1448" height="48" fill="#F5DCE9"/>
-  <rect x="110" y="140" width="1338" height="48" fill="#CC1E61"/>
-  <rect y="188" width="1448" height="54" fill="#640B5D"/>
+  <rect width="1448" height="46" fill="#FAF6EE"/>
+  <rect x="723" width="725" height="46" fill="#E9B9C1"/>
+  <rect y="46" width="1448" height="46" fill="#F7E9EC"/>
+  <rect x="523" y="46" width="925" height="46" fill="#D2536B"/>
+  <rect y="92" width="1448" height="48" fill="#F3DCE1"/>
+  <rect x="310" y="92" width="1138" height="48" fill="#A51931"/>
+  <rect y="140" width="1448" height="48" fill="#E2E0EA"/>
+  <rect x="110" y="140" width="1338" height="48" fill="#5A557F"/>
+  <rect y="188" width="1448" height="54" fill="#2D2A4A"/>
 </svg>

@@ -4,11 +4,23 @@
   "title": "Design System: BBT Thailand Bookstore",
   "extensions": {
     "colorMeta": {
-      "brand-yellow": {
+      "th-red": {
         "role": "primary",
-        "displayName": "Brand Yellow",
-        "canonical": "#facb26",
-        "tonalRamp": ["#2b1f00", "#463400", "#664c00", "#8a6800", "#b08600", "#d8a500", "#facb26", "#fde9a8"]
+        "displayName": "Thai Red",
+        "canonical": "#a51931",
+        "tonalRamp": ["#200008", "#380410", "#530a1a", "#700f23", "#8c142a", "#a51931", "#d2536b", "#e9b9c1"]
+      },
+      "th-navy": {
+        "role": "primary",
+        "displayName": "Thai Navy",
+        "canonical": "#2d2a4a",
+        "tonalRamp": ["#0d0c17", "#171626", "#222038", "#2d2a4a", "#433f6a", "#5a557f", "#8e8aa8", "#c9c7d8"]
+      },
+      "th-white": {
+        "role": "primary",
+        "displayName": "Thai White",
+        "canonical": "#f4f5f8",
+        "tonalRamp": ["#2a2b30", "#414349", "#5b5d65", "#787a83", "#9a9ca4", "#bfc1c8", "#dedfe4", "#f4f5f8"]
       },
       "ink": {
         "role": "neutral",
@@ -28,45 +40,39 @@
         "canonical": "#fbf7ed",
         "tonalRamp": ["#2a2519", "#443d2b", "#61573f", "#807456", "#a29470", "#c5b78f", "#e4d9b9", "#fbf7ed"]
       },
-      "graphite": {
-        "role": "neutral",
-        "displayName": "Wordmark Graphite",
-        "canonical": "#333333",
-        "tonalRamp": ["#161616", "#242424", "#333333", "#4d4d4d", "#6b6b6b", "#8f8f8f", "#b8b8b8", "#e2e2e2"]
-      },
-      "band-gold": {
+      "band-rose": {
         "role": "secondary",
-        "displayName": "Ladder Gold",
-        "canonical": "#f8a61a",
-        "tonalRamp": ["#2c1a00", "#472c00", "#664000", "#8a5700", "#b06f00", "#d78a00", "#f8a61a", "#fdd694"]
+        "displayName": "Ladder Rose",
+        "canonical": "#e9b9c1",
+        "tonalRamp": ["#2c1016", "#461921", "#63242e", "#83323d", "#a5525e", "#c68490", "#e9b9c1", "#f7e2e6"]
       },
-      "band-orange": {
+      "band-red-mid": {
         "role": "secondary",
-        "displayName": "Ladder Orange",
-        "canonical": "#f96221",
-        "tonalRamp": ["#2d0d00", "#481600", "#682200", "#8c3000", "#b23f00", "#d94f0a", "#f96221", "#fdb18d"]
+        "displayName": "Ladder Red Mid",
+        "canonical": "#d2536b",
+        "tonalRamp": ["#280009", "#420613", "#5f0e1e", "#7f1a2c", "#a1303f", "#ba3f52", "#d2536b", "#efa9b6"]
       },
       "band-red": {
         "role": "secondary",
         "displayName": "Ladder Red",
-        "canonical": "#f7282e",
-        "tonalRamp": ["#2e0004", "#4a0008", "#6a000d", "#8e0413", "#b40d1b", "#d81a24", "#f7282e", "#fc9a9d"]
+        "canonical": "#a51931",
+        "tonalRamp": ["#200008", "#380410", "#530a1a", "#700f23", "#8c142a", "#a51931", "#d2536b", "#e9b9c1"]
       },
-      "band-magenta": {
+      "band-navy-mid": {
         "role": "secondary",
-        "displayName": "Ladder Magenta",
-        "canonical": "#cc1e61",
-        "tonalRamp": ["#26000f", "#3e0018", "#5a0323", "#780b30", "#98153e", "#b6194f", "#cc1e61", "#eb95b4"]
+        "displayName": "Ladder Navy Mid",
+        "canonical": "#5a557f",
+        "tonalRamp": ["#131222", "#1f1d34", "#2d2a4a", "#3d3960", "#4b4770", "#5a557f", "#8e8aa8", "#c9c7d8"]
       },
-      "band-plum": {
+      "band-navy": {
         "role": "secondary",
-        "displayName": "Ladder Plum",
-        "canonical": "#640b5d",
-        "tonalRamp": ["#180016", "#280023", "#3b0334", "#500745", "#640b5d", "#8a2280", "#b249a8", "#e0a6d9"]
+        "displayName": "Ladder Navy",
+        "canonical": "#2d2a4a",
+        "tonalRamp": ["#0d0c17", "#171626", "#222038", "#2d2a4a", "#433f6a", "#5a557f", "#8e8aa8", "#c9c7d8"]
       }
     },
     "typographyMeta": {
-      "display": { "displayName": "Display", "purpose": "Hero headline only. Stacked block lines, sentence case, one optional italic word with a hand-drawn yellow underline." },
+      "display": { "displayName": "Display", "purpose": "Hero headline only. Stacked block lines, sentence case, one optional italic word with a hand-drawn Thai Red underline." },
       "headline": { "displayName": "Headline", "purpose": "Section titles. Tighter tracking than the hero so it reads a rank below." },
       "title": { "displayName": "Title", "purpose": "Book titles in product cards. Text serif, not display — the cover is the star." },
       "body": { "displayName": "Body", "purpose": "Lead paragraphs and running copy at 72% ink, capped at 54ch." },
@@ -76,7 +82,7 @@
       { "name": "shelf-rest", "value": "9px 11px 12px rgb(47 35 16 / 22%)", "purpose": "A book cover at rest in the grid, lit from upper-left." },
       { "name": "shelf-lift", "value": "11px 16px 18px rgb(47 35 16 / 26%)", "purpose": "The same cover on hover, paired with translateY(-5px) and rotation to 0." },
       { "name": "hero-slab", "value": "0 18px 32px rgb(36 25 14 / 17%)", "purpose": "The larger, softer shadow beneath the two oversized hero book boards." },
-      { "name": "inner-board", "value": "0 15px 20px rgb(0 0 0 / 27%)", "purpose": "The printed cover image inside a hero book board, giving the board real front thickness." }
+      { "name": "inner-board", "value": "0 15px 20px rgb(36 25 14 / 27%)", "purpose": "The printed cover image inside a hero book board, giving the board real front thickness." }
     ],
     "motion": [
       { "name": "ease-standard", "value": "ease", "purpose": "The only easing in the system." },
@@ -100,9 +106,9 @@
       "name": "Primary CTA",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "The one dominant call to action per surface. Outlined text cell plus a solid ink arrow cell that turns brand yellow on hover.",
+      "description": "The one dominant call to action per surface. Outlined text cell plus a solid ink arrow cell that turns Thai Red on hover.",
       "html": "<a class=\"ds-cta\" href=\"#\"><span>Shop Thai Books</span><span class=\"ds-cta-arrow\" aria-hidden=\"true\">→</span></a>",
-      "css": ".ds-cta { display: inline-grid; grid-template-columns: auto 46px; border: 1px solid #11110f; background: rgb(255 255 255 / 38%); color: #11110f; font-family: 'Source Serif 4', Georgia, serif; font-size: 13.5px; font-weight: 600; text-decoration: none; border-radius: 0; } .ds-cta > span:first-child { display: grid; place-items: center; min-height: 46px; padding-inline: 26px; } .ds-cta-arrow { display: grid; place-items: center; color: #fbf7ed; background: #11110f; font-size: 19px; transition: color .2s ease, background .2s ease; } .ds-cta:hover .ds-cta-arrow, .ds-cta:focus-visible .ds-cta-arrow { color: #11110f; background: #facb26; } .ds-cta:focus-visible { outline: 2px solid #11110f; outline-offset: 3px; }"
+      "css": ".ds-cta { display: inline-grid; grid-template-columns: auto 46px; border: 1px solid #2d2a4a; background: rgb(255 255 255 / 38%); color: #11110f; font-family: 'Source Serif 4', Georgia, serif; font-size: 13.5px; font-weight: 600; text-decoration: none; border-radius: 0; } .ds-cta > span:first-child { display: grid; place-items: center; min-height: 46px; padding-inline: 26px; } .ds-cta-arrow { display: grid; place-items: center; color: #fbf7ed; background: #2d2a4a; font-size: 19px; transition: color .2s ease, background .2s ease; } .ds-cta:hover .ds-cta-arrow, .ds-cta:focus-visible .ds-cta-arrow { color: #f4f5f8; background: #a51931; } .ds-cta:focus-visible { outline: 2px solid #11110f; outline-offset: 3px; }"
     },
     {
       "name": "Section Action Link",
@@ -124,9 +130,9 @@
       "name": "Icon Control — Cart",
       "kind": "custom",
       "refersTo": "icon-control",
-      "description": "Solid ink circle with a stroked SVG and a brand-yellow count badge. One of only two circles in the system.",
+      "description": "Solid ink circle with a stroked SVG and a Thai Red count badge. One of only two circles in the system.",
       "html": "<a class=\"ds-cart\" href=\"#\" aria-label=\"Cart, 2 items\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M6.8 8.2h10.4l.8 12H6l.8-12Z\"></path><path d=\"M9 9V6a3 3 0 0 1 6 0v3\"></path></svg><span class=\"ds-cart-count\">2</span></a>",
-      "css": ".ds-cart { position: relative; display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; color: #fbf7ed; background: #11110f; } .ds-cart svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; } .ds-cart-count { position: absolute; top: -3px; right: -4px; display: grid; place-items: center; width: 17px; height: 17px; border: 2px solid #fbf7ed; border-radius: 50%; color: #11110f; background: #facb26; font-family: 'Source Serif 4', Georgia, serif; font-size: 8px; font-weight: 700; } .ds-cart:focus-visible { outline: 2px solid #11110f; outline-offset: 3px; }"
+      "css": ".ds-cart { position: relative; display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; color: #fbf7ed; background: #2d2a4a; } .ds-cart svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; } .ds-cart-count { position: absolute; top: -3px; right: -4px; display: grid; place-items: center; width: 17px; height: 17px; border: 2px solid #fbf7ed; border-radius: 50%; color: #f4f5f8; background: #a51931; font-family: 'Source Serif 4', Georgia, serif; font-size: 8px; font-weight: 700; } .ds-cart:focus-visible { outline: 2px solid #11110f; outline-offset: 3px; }"
     },
     {
       "name": "Icon Control — Search",
@@ -156,9 +162,9 @@
       "name": "Trust Badge",
       "kind": "chip",
       "refersTo": "badge-count",
-      "description": "A 30-point starburst in brand yellow carrying two short uppercase trust claims split by a hairline. One of two sanctioned shape exceptions.",
+      "description": "A 30-point starburst in Thai Red carrying two short uppercase trust claims split by a hairline. One of two sanctioned shape exceptions.",
       "html": "<div class=\"ds-badge\" aria-label=\"Thai editions and worldwide delivery\"><span>Thai<br>Editions</span><i aria-hidden=\"true\"></i><span>Worldwide<br>Delivery</span></div>",
-      "css": ".ds-badge { display: grid; place-items: center; width: 124px; height: 124px; padding: 24px 12px; color: #11110f; background: #facb26; clip-path: polygon(50% 0%,57% 11%,67% 4%,72% 17%,84% 12%,84% 26%,98% 27%,90% 39%,100% 47%,88% 55%,96% 66%,82% 68%,82% 83%,69% 78%,64% 92%,54% 82%,45% 95%,39% 82%,28% 91%,24% 77%,10% 81%,14% 66%,0 63%,11% 52%,1% 44%,14% 36%,6% 24%,21% 23%,20% 9%,34% 15%,41% 2%); font-family: 'Source Serif 4', Georgia, serif; font-size: 11px; font-weight: 700; line-height: 1.15; text-align: center; text-transform: uppercase; transform: rotate(-6deg); } .ds-badge i { width: 45%; height: 1px; background: rgb(17 16 15 / 44%); }"
+      "css": ".ds-badge { display: grid; place-items: center; width: 124px; height: 124px; padding: 24px 12px; color: #f4f5f8; background: #a51931; clip-path: polygon(50% 0%,57% 11%,67% 4%,72% 17%,84% 12%,84% 26%,98% 27%,90% 39%,100% 47%,88% 55%,96% 66%,82% 68%,82% 83%,69% 78%,64% 92%,54% 82%,45% 95%,39% 82%,28% 91%,24% 77%,10% 81%,14% 66%,0 63%,11% 52%,1% 44%,14% 36%,6% 24%,21% 23%,20% 9%,34% 15%,41% 2%); font-family: 'Source Serif 4', Georgia, serif; font-size: 11px; font-weight: 700; line-height: 1.15; text-align: center; text-transform: uppercase; transform: rotate(-6deg); } .ds-badge i { width: 45%; height: 1px; background: rgb(17 16 15 / 44%); }"
     },
     {
       "name": "Stepped Ladder — Section Anchor",
@@ -166,7 +172,7 @@
       "refersTo": "card-book",
       "description": "The brand signature at section scale: five bars stepping wider as the color deepens, anchored bottom-left. Decorative and non-interactive.",
       "html": "<div class=\"ds-ladder\" aria-hidden=\"true\"><span></span><span></span><span></span><span></span><span></span></div>",
-      "css": ".ds-ladder { position: relative; width: 282px; height: 192px; pointer-events: none; } .ds-ladder span { position: absolute; left: 0; height: 39px; } .ds-ladder span:nth-child(1) { top: 0; width: 42px; background: #f8a61a; } .ds-ladder span:nth-child(2) { top: 38px; width: 86px; background: #f96221; } .ds-ladder span:nth-child(3) { top: 76px; width: 130px; background: #f7282e; } .ds-ladder span:nth-child(4) { top: 114px; width: 178px; background: #cc1e61; } .ds-ladder span:nth-child(5) { top: 152px; width: 224px; height: 40px; background: #640b5d; }"
+      "css": ".ds-ladder { position: relative; width: 282px; height: 192px; pointer-events: none; } .ds-ladder span { position: absolute; left: 0; height: 39px; } .ds-ladder span:nth-child(1) { top: 0; width: 42px; background: #e9b9c1; } .ds-ladder span:nth-child(2) { top: 38px; width: 86px; background: #d2536b; } .ds-ladder span:nth-child(3) { top: 76px; width: 130px; background: #a51931; } .ds-ladder span:nth-child(4) { top: 114px; width: 178px; background: #5a557f; } .ds-ladder span:nth-child(5) { top: 152px; width: 224px; height: 40px; background: #2d2a4a; }"
     },
     {
       "name": "Numeral Detail",
@@ -191,7 +197,7 @@
     ],
     "rules": [
       { "name": "The Ladder-Is-One-Object Rule", "body": "The five ladder colors are a single graphic, not a palette. Never pull one step out to color a button, a heading, a link, or an icon. If a design needs the ladder, it uses all five bars in sequence.", "section": "colors" },
-      { "name": "The One Accent Rule", "body": "Brand Yellow is the only color that may carry interface meaning, and it appears on well under 10% of any screen. Its rarity is what makes it read as the brand.", "section": "colors" },
+      { "name": "The One Accent Rule", "body": "Thai Red is the only color that may carry interface meaning, and it appears on well under 10% of any screen. Its rarity is what makes it read as the brand.", "section": "colors" },
       { "name": "The Paper-Only Rule", "body": "There is exactly one background color in the system. A section that wants separation earns it with a rule, whitespace, or the ladder — never with a tinted panel.", "section": "colors" },
       { "name": "The No-Sans Rule", "body": "There is no sans-serif in this system. If something feels like it needs a sans, it needs a smaller serif at a wider tracking.", "section": "typography" },
       { "name": "The Headline-Stays-Cased Rule", "body": "Display and Headline are always sentence case. Uppercase belongs to the Label role and nowhere else.", "section": "typography" },

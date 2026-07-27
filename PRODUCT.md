@@ -22,7 +22,7 @@ An independent online bookstore selling physical Bhaktivedanta Book Trust books,
 
 ## Positioning
 
-An independent reseller specializing in BBT titles, with Thai editions given the strongest visibility while English, Nepali, Hindi, and Russian editions stay easy to reach. This is not the official BBT Thailand organization, and the site must never imply that it is. Permission to use the BBT name and the supplied logo is confirmed.
+An independent reseller specializing in BBT titles, with Thai editions given the strongest visibility while English, Nepali, Hindi, and Russian editions stay easy to reach. This is not the official BBT Thailand organization, and the site must never imply that it is. Permission to use the BBT name and the supplied logo is confirmed. The logo is used recolored to the Thai flag palette rather than in its supplied yellow; permission for that specific alteration has not been separately confirmed and should be.
 
 ## Operating Context
 
@@ -67,10 +67,13 @@ Explicitly undecided (do not invent):
 
 ## Brand Commitments
 
-- The supplied BBT logo is used in its original colors: `assets/brand/logo.png` (495 × 159 PNG). Sampled colors: yellow mark `#facb26`, graphite wordmark `#333333`. A larger or vector version is still outstanding.
-  - Note: `docs/BBT-Thailand-Website-Idea.md` §10 describes the mark as red. The actual supplied asset is yellow. The asset wins.
-- The site is not required to make the logo's yellow its dominant color.
-- The stepped color-band motif (six horizontal steps rising left to right, deep plum → magenta → coral-red → orange → golden yellow) is an approved brand element. It must anchor the bottom of the homepage hero and may be reused sparingly elsewhere.
+- The site's color identity is the Thailand flag: Thai Red `#a51931`, Thai Navy `#2d2a4a`, Thai White `#f4f5f8`, over the existing Warm Paper `#fbf7ed` and Deep Ink `#11110f` base. Thai Red is the single accent that carries interface meaning; Thai Navy carries inverted surfaces. This signals a Thailand-based store at a glance and must not drift back toward the former yellow. The full rules live in `DESIGN.md`.
+- Every color in `css/hero.css` is defined as a token in the `:root` block. No color literal may appear anywhere else in the stylesheet, so a palette change stays a one-file edit.
+- The two hero book-cover gradients (`--jacket-*`) are artwork depicting printed book jackets, not brand color. They are exempt from the palette and must never be reused for interface elements.
+- The BBT logo is recolored to the Thai flag palette: `assets/brand/logo.png` (495 × 159 PNG), mark in Thai Red `#a51931`, wordmark in Thai Navy `#2d2a4a`. The monogram stays a transparent cutout, so it reads as Warm Paper on the page. A larger or vector version is still outstanding.
+  - The untouched supplied asset is kept at `assets/brand/logo-original-yellow.png` (yellow mark `#facb26`, graphite wordmark `#333333`) in case the recolor needs to be reverted.
+  - Note: `docs/BBT-Thailand-Website-Idea.md` §10 describes the mark as red, which the recolor now matches.
+- The stepped color-band motif (horizontal steps rising left to right, Thai navy → navy mid → Thai red → red mid → rose) is an approved brand element. It must anchor the bottom of the homepage hero and may be reused sparingly elsewhere.
 - The site must not reproduce the reference site's logo, wording, community avatars, or brand assets.
 
 ## Evidence on Hand
