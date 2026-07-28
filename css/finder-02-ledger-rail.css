@@ -1,0 +1,801 @@
+/* ---------------------------------------------------------------------------
+   VARIATION 02 — LEDGER RAIL
+
+   THESIS: The shop sidebar, rebuilt as a stationer's ledger — and the language
+   control lifted out of it onto a shelf seen edge-on. Filters are ruled account
+   lines with a tally in the right column; language is five upright spines. It
+   refuses the boxed, checkbox-and-chevron filter panel every storefront ships.
+   OWN-WORLD: One ivory ground, hairline account rules and hairline-drawn
+   spines, a Thai Red tick marking the open line and a Thai Red foot band on the
+   pulled spine, tabular numerals in every tally, zero radius.
+   STORY: The visitor recognises a bookshelf, pulls Thai out of the row, then
+   reads the catalogue as one running list and strikes out what they do not
+   want, reordering by price when they are comparing.
+   FIRST VIEWPORT: Headline top-left with the five-spine rack at eye level to
+   its right on a shelf rule; below, a 268px ledger rail of topics with the
+   tally, sort control and chip row across the top of a three-column table.
+   FORM: Ledger and shelf elevation — extension of the incumbent world, no new
+   tokens introduced.
+--------------------------------------------------------------------------- */
+
+/* The headline and the shelf share the first band: the rack has to sit at eye
+   level, not below the fold, or the metaphor never registers. */
+.ledger__top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: clamp(30px, 4vw, 70px);
+  margin-bottom: clamp(42px, 4.8vw, 72px);
+}
+
+.finder--ledger .finder__lead {
+  max-width: 34ch;
+}
+
+/* --- The rack: language, as a shelf seen edge-on -------------------------- */
+
+.rack {
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(7px, .8vw, 12px);
+  padding-bottom: 14px;
+  /* The shelf the spines stand on. */
+  border-bottom: 2px solid var(--rule);
+}
+
+.spine {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* The name sits in the middle of the board, the way a title is printed on a
+     real spine; the tally is pinned to the foot. */
+  justify-content: center;
+  width: clamp(50px, 4.6vw, 64px);
+  height: clamp(210px, 22.6vw, 286px);
+  padding: 16px 0 14px;
+  border: 1px solid var(--rule);
+  color: inherit;
+  background: none;
+  cursor: pointer;
+  transition: transform .28s ease, box-shadow .28s ease, border-color .2s ease;
+}
+
+/* Counted among the buttons, not among all children — the group's label is an
+   sr-only heading and must not shift the numbering. Uneven heights, the way a
+   real shelf never lines up. */
+.spine:nth-of-type(2) { height: clamp(224px, 24vw, 300px); }
+.spine:nth-of-type(3) { height: clamp(198px, 21.4vw, 270px); }
+.spine:nth-of-type(4) { height: clamp(216px, 23.2vw, 290px); }
+.spine:nth-of-type(5) { height: clamp(192px, 20.6vw, 262px); }
+
+.spine--thai {
+  width: clamp(74px, 6.6vw, 94px);
+  height: clamp(238px, 26vw, 324px);
+}
+
+.spine__name {
+  font-family: var(--display);
+  font-size: clamp(19px, 1.7vw, 25px);
+  font-weight: 400;
+  letter-spacing: -.02em;
+  line-height: 1;
+  white-space: nowrap;
+  /* Read bottom-to-top, the way English-language spines are actually set. */
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.spine--thai .spine__name {
+  font-size: clamp(28px, 2.6vw, 40px);
+}
+
+.spine__count {
+  position: absolute;
+  right: 0;
+  bottom: 14px;
+  left: 0;
+  text-align: center;
+  color: var(--ink-faint);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  letter-spacing: .08em;
+  transition: color .2s ease;
+}
+
+/* The foot band: a spine label, and the only filled shape in the rack. */
+.spine::after {
+  position: absolute;
+  right: -1px;
+  bottom: -1px;
+  left: -1px;
+  height: 6px;
+  background: var(--accent);
+  content: "";
+  transform: scaleY(0);
+  transform-origin: bottom center;
+  transition: transform .24s ease;
+}
+
+.spine:hover,
+.spine:focus-visible {
+  transform: translateY(-9px);
+}
+
+.spine.is-active {
+  border-color: var(--accent-strong);
+  /* Pulled out of the row — these are books, so they earn the book shadow. */
+  box-shadow: var(--shadow-cover);
+  transform: translateY(-16px);
+}
+
+.spine.is-active::after {
+  transform: scaleY(1);
+}
+
+.spine.is-active .spine__name {
+  color: var(--accent-strong);
+  font-weight: 500;
+}
+
+.spine.is-active .spine__count {
+  color: var(--accent);
+}
+
+.spine.is-empty .spine__name,
+.spine.is-empty .spine__count {
+  color: var(--ink-faint);
+}
+
+.ledger {
+  display: grid;
+  grid-template-columns: minmax(220px, 268px) minmax(0, 1fr);
+  gap: clamp(32px, 4vw, 66px);
+  align-items: start;
+}
+
+/* --- The rail ------------------------------------------------------------- */
+
+.ledger__rail {
+  position: sticky;
+  top: 28px;
+}
+
+.ledger__group + .ledger__group {
+  margin-top: clamp(30px, 3.4vw, 46px);
+}
+
+.ledger__label {
+  margin: 0 0 4px;
+  padding-bottom: 9px;
+  border-bottom: 1px solid var(--rule);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.ledger__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ledger__opt {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  width: 100%;
+  padding: 13px 0 12px 18px;
+  border: 0;
+  border-bottom: 1px solid var(--hairline-soft);
+  color: inherit;
+  background: none;
+  font-family: var(--serif);
+  font-size: clamp(15px, 1.15vw, 17px);
+  font-weight: 400;
+  line-height: 1.25;
+  text-align: left;
+  cursor: pointer;
+  transition: color .2s ease;
+}
+
+.ledger__list li:last-child .ledger__opt {
+  border-bottom: 0;
+}
+
+/* The open account line: a red tick in the margin, the way a ledger is marked
+   off by hand. */
+.ledger__opt::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 9px;
+  height: 1px;
+  background: var(--accent);
+  content: "";
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform .22s ease;
+}
+
+.ledger__opt:hover,
+.ledger__opt:focus-visible {
+  color: var(--accent-strong);
+}
+
+/* The name steps aside for the tick. Transform, not padding — animating
+   padding would re-lay-out the whole rail on every hover. */
+.ledger__opt:hover .ledger__opt-name,
+.ledger__opt:focus-visible .ledger__opt-name,
+.ledger__opt.is-active .ledger__opt-name {
+  transform: translateX(4px);
+}
+
+.ledger__opt:hover::before,
+.ledger__opt:focus-visible::before {
+  transform: scaleX(1);
+}
+
+.ledger__opt.is-active {
+  color: var(--accent-strong);
+  font-weight: 600;
+}
+
+.ledger__opt.is-active::before {
+  width: 13px;
+  height: 2px;
+  transform: scaleX(1);
+}
+
+.ledger__opt-name {
+  min-width: 0;
+  transition: transform .2s ease;
+}
+
+/* The tally column: fixed width and tabular figures so the numbers line up
+   down the rail like a real ledger. */
+.ledger__opt-count {
+  flex: 0 0 auto;
+  min-width: 2ch;
+  color: var(--ink-faint);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .04em;
+  text-align: right;
+  transition: color .2s ease;
+}
+
+.ledger__opt.is-active .ledger__opt-count {
+  color: var(--accent);
+}
+
+.ledger__opt.is-empty {
+  color: var(--ink-faint);
+}
+
+.ledger__opt.is-empty .ledger__opt-count {
+  opacity: .5;
+}
+
+.ledger__foot {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: clamp(34px, 4vw, 54px);
+}
+
+.ledger__foot span {
+  display: block;
+  width: 100%;
+  height: 13px;
+}
+
+.ledger__foot span:nth-child(1) { background: var(--ladder-navy); }
+.ledger__foot span:nth-child(2) { background: var(--ladder-navy-mid); }
+.ledger__foot span:nth-child(3) { background: var(--ladder-red); }
+.ledger__foot span:nth-child(4) { background: var(--ladder-red-mid); }
+.ledger__foot span:nth-child(5) { background: var(--ladder-rose); }
+
+/* --- Bar, sort, chips ----------------------------------------------------- */
+
+.ledger__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px 26px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.ledger__sort {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.ledger__sort select {
+  padding: 0 0 3px;
+  border: 0;
+  border-bottom: 1px solid var(--rule);
+  border-radius: 0;
+  color: inherit;
+  background: none;
+  font-family: var(--serif);
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+  cursor: pointer;
+  appearance: none;
+  transition: border-color .2s ease;
+}
+
+.ledger__sort select:hover,
+.ledger__sort select:focus-visible {
+  border-bottom-color: var(--accent);
+}
+
+.ledger__applied {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+  min-height: 30px;
+  padding: 18px 0 4px;
+}
+
+.ledger__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 5px 11px 6px;
+  border: 1px solid var(--rule);
+  color: inherit;
+  background: none;
+  font-family: var(--serif);
+  font-size: 13px;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: color .2s ease, border-color .2s ease;
+}
+
+.chip i {
+  font-size: 15px;
+  font-style: normal;
+  line-height: 1;
+}
+
+.chip:hover,
+.chip:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.ledger__clear {
+  padding: 0 0 2px;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  color: var(--ink-faint);
+  background: none;
+  font-family: var(--serif);
+  font-size: 13px;
+  cursor: pointer;
+  transition: color .2s ease;
+}
+
+.ledger__clear:hover,
+.ledger__clear:focus-visible {
+  color: var(--accent);
+}
+
+/* --- The table ------------------------------------------------------------ */
+
+.ledger__shelf {
+  overflow: hidden;
+  border-top: 1px solid var(--rule);
+  margin-top: 10px;
+}
+
+.ledger__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0 -1px -1px 0;
+}
+
+.row {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto auto;
+  min-width: 0;
+  min-height: 396px;
+  padding: 24px clamp(18px, 1.8vw, 28px) 20px;
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.row__cover {
+  display: grid;
+  min-height: 0;
+  place-items: end center;
+}
+
+.row__cover img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: clamp(196px, 22vh, 244px);
+  max-height: calc(100% - 10px);
+  object-fit: contain;
+  box-shadow: var(--shadow-cover);
+  transition: transform .28s ease, box-shadow .28s ease;
+}
+
+.row.is-tilt-left img { transform: rotate(-2.2deg); }
+.row.is-tilt-right img { transform: rotate(1.8deg); }
+
+.row:hover img,
+.row:focus-within img {
+  box-shadow: var(--shadow-cover-hover);
+  transform: rotate(0) translateY(-5px);
+}
+
+.row__body {
+  padding-top: 20px;
+}
+
+.row__meta {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 9px;
+  color: var(--ink-faint);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.row__meta i {
+  display: block;
+  flex: 0 0 auto;
+  width: 12px;
+  height: 1px;
+  background: currentColor;
+}
+
+/* Two lines reserved for the title and two for the note, so the price rule
+   lands on the same baseline across a row of the ruled table. */
+.row__title {
+  min-height: 2.3em;
+  margin: 0 0 5px;
+  font-family: var(--serif);
+  font-size: clamp(17px, 1.2vw, 21px);
+  font-weight: 400;
+  letter-spacing: -.02em;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.row__title a {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0 1px;
+  transition: background-size .25s ease;
+}
+
+.row__title a:hover,
+.row__title a:focus-visible {
+  background-size: 100% 1px;
+}
+
+.row__note {
+  min-height: 2.7em;
+  margin: 0;
+  color: var(--ink-faint);
+  font-size: 13px;
+  font-style: italic;
+  line-height: 1.35;
+}
+
+.row__line {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 16px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--hairline-soft);
+  font-size: clamp(15px, 1.1vw, 18px);
+  line-height: 1.2;
+}
+
+.row__status {
+  color: var(--ink-muted);
+  font-size: 13px;
+}
+
+.row[data-status="pending"] .row__price {
+  display: none;
+}
+
+.row[data-status="pending"] .row__status {
+  color: var(--ink-faint);
+  font-style: italic;
+}
+
+.row[data-status="preorder"] .row__status {
+  color: var(--accent);
+}
+
+/* --- Pages ---------------------------------------------------------------- */
+
+/* Nine to a page: three full rows of the three-column table, so a page always
+   ends on a straight edge instead of a ragged half row. */
+.pager {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 18px clamp(16px, 2vw, 32px);
+  padding-top: clamp(26px, 3vw, 40px);
+}
+
+.pager__step {
+  display: inline-flex;
+  align-items: center;
+  /* Shrink to the words. A grid item stretches by default, which would drag
+     the underline rule the full width of the column. */
+  justify-self: start;
+  gap: 11px;
+  padding: 0 0 3px;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  color: var(--ink-muted);
+  background: none;
+  font-family: var(--serif);
+  font-size: 13px;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: color .2s ease, gap .2s ease;
+}
+
+.pager__step--next {
+  justify-self: end;
+}
+
+.pager__step i {
+  display: block;
+  flex: 0 0 auto;
+  width: 18px;
+  height: 1px;
+  background: currentColor;
+}
+
+.pager__step:hover:not(:disabled),
+.pager__step:focus-visible:not(:disabled) {
+  gap: 17px;
+  color: var(--accent);
+}
+
+/* A step with nowhere to go drops its rule as well as its colour, so the row
+   reads as one live control and one spent one. */
+.pager__step:disabled {
+  border-bottom-color: transparent;
+  color: var(--ink-faint);
+  cursor: default;
+}
+
+.pager__numbers {
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(10px, 1.4vw, 18px);
+}
+
+.pager__num {
+  position: relative;
+  padding: 0 2px 7px;
+  border: 0;
+  color: var(--ink-muted);
+  background: none;
+  font-family: var(--display);
+  font-size: clamp(17px, 1.4vw, 21px);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.02em;
+  line-height: 1;
+  cursor: pointer;
+  transition: color .2s ease;
+}
+
+/* The same pen stroke that marks an open ledger line, drawn under the page in
+   hand. */
+.pager__num::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: var(--accent);
+  content: "";
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform .24s ease;
+}
+
+.pager__num:hover::after,
+.pager__num:focus-visible::after,
+.pager__num.is-current::after {
+  transform: scaleX(1);
+}
+
+.pager__num.is-current {
+  color: var(--accent-strong);
+}
+
+.pager__range {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--ink-faint);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* --- Responsive ----------------------------------------------------------- */
+
+@media (max-width: 1180px) {
+  .ledger__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 980px) {
+  .ledger__top {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: 34px;
+  }
+
+  .finder--ledger .finder__lead {
+    max-width: 46ch;
+  }
+
+  /* The shelf spans the column instead of standing at a fixed width. */
+  .rack {
+    justify-content: space-between;
+  }
+
+  .spine {
+    flex: 1 1 0;
+    width: auto;
+  }
+
+  .spine--thai {
+    flex: 1.5 1 0;
+    width: auto;
+  }
+
+  .ledger {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 34px;
+  }
+
+  /* The rail lies down above the list as two ruled columns rather than a
+     sticky sidebar that would eat half a small screen. */
+  .ledger__rail {
+    position: static;
+  }
+
+  .ledger__list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: clamp(24px, 4vw, 44px);
+  }
+
+  /* Six lines over two columns: the last line of each column closes the block,
+     so the second-from-last drops its rule alongside the last. */
+  .ledger__list li:nth-last-child(2) .ledger__opt {
+    border-bottom: 0;
+  }
+
+  .ledger__foot {
+    margin-top: 30px;
+  }
+
+  .ledger__foot span {
+    width: clamp(30px, 6vw, 46px);
+  }
+}
+
+@media (max-width: 580px) {
+  .ledger__list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Back to one column, so that line is mid-list again and keeps its rule. */
+  .ledger__list li:nth-last-child(2) .ledger__opt {
+    border-bottom: 1px solid var(--hairline-soft);
+  }
+
+  .spine,
+  .spine:nth-of-type(2),
+  .spine:nth-of-type(3),
+  .spine:nth-of-type(4),
+  .spine:nth-of-type(5) {
+    height: 186px;
+    padding: 12px 0 11px;
+  }
+
+  .spine--thai {
+    height: 208px;
+  }
+
+  .spine__name {
+    font-size: 17px;
+  }
+
+  .spine--thai .spine__name {
+    font-size: 25px;
+  }
+
+  .ledger__bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .ledger__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Numbers first and centred, the two steps sharing the line below: at this
+     width a single row would squeeze the numerals into the middle third. */
+  .pager {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pager__numbers {
+    grid-row: 1;
+    grid-column: 1 / -1;
+    justify-content: center;
+  }
+
+  .pager__step {
+    grid-row: 2;
+  }
+
+  .pager__step--next {
+    grid-column: 2;
+  }
+
+  .pager__range {
+    grid-row: 3;
+  }
+
+  .row {
+    min-height: 0;
+    padding: 24px 0 22px;
+  }
+
+  .row__cover img {
+    height: 230px;
+  }
+}

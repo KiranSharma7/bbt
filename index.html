@@ -7,8 +7,83 @@
   <meta name="description" content="Essential works of bhakti, self-knowledge, and spiritual wisdom, curated in Thailand.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/finder-common.css">
+  <link rel="stylesheet" href="css/finder-02-ledger-rail.css">
+  <link rel="stylesheet" href="css/worldwide-delivery.css">
+  <link rel="stylesheet" href="css/open-book-cta.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <style>
+    .section-heading__thai {
+      margin: .55rem 0 0;
+      color: var(--accent);
+      font-family: "Noto Serif Thai", serif;
+      font-size: clamp(15px, 1.15vw, 18px);
+      font-weight: 500;
+      letter-spacing: .02em;
+      line-height: 1.5;
+    }
+
+    .delivery__origin {
+      display: grid;
+      gap: 2px;
+    }
+
+    .delivery__origin strong {
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+
+    .delivery__origin small {
+      color: var(--ink-faint);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .site-footer__colophon {
+      margin: 0;
+      color: var(--ink-faint);
+      font-size: 12px;
+      line-height: 1.4;
+      text-align: right;
+    }
+
+    .site-footer__colophon span {
+      color: var(--ink);
+      font-family: "Noto Serif Thai", serif;
+      font-size: 12px;
+    }
+
+    .site-footer__legal {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 24px;
+      margin-top: clamp(16px, 1.6vw, 24px);
+    }
+
+    .site-footer__legal .site-footer__copyright {
+      margin: 0;
+    }
+
+    @media (max-width: 580px) {
+      .site-footer__legal {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .site-footer__colophon {
+        text-align: left;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="site-atmosphere" aria-hidden="true"></div>
@@ -90,6 +165,7 @@
       <header class="section-heading">
         <div class="section-heading__copy">
           <h1 id="featured-title">Featured Books in Thai</h1>
+          <p class="section-heading__thai" lang="th">หนังสือภาษาไทย</p>
           <p class="dek">Essential works of bhakti, self-knowledge, and spiritual wisdom.</p>
         </div>
 
@@ -234,92 +310,373 @@
       </ol>
     </section>
 
-    <section class="wayfinder" aria-labelledby="wayfinder-title">
-      <div class="wayfinder__intro">
-        <h2 class="wayfinder__title" id="wayfinder-title">
-          <span>Find Your</span>
-          <em>Way In</em>
-        </h2>
+    <section
+      class="finder finder--ledger"
+      aria-labelledby="wayfinder-title"
+      data-finder
+      data-finder-tilt
+      data-finder-page-size="9"
+      data-finder-cover-path="assets/books/">
 
-        <figure class="wayfinder-book wayfinder-book--top" aria-hidden="true">
-          <img src="assets/books/en-tqk.jpeg" alt="">
-        </figure>
+      <div class="ledger__top">
+        <header class="finder__head">
+          <h2 class="finder__title" id="wayfinder-title">
+            <span>Find Your</span>
+            <em>Way In</em>
+          </h2>
+          <p class="finder__lead">
+            Five languages stand on the shelf. Pull one out, then narrow the
+            list down the side.
+          </p>
+        </header>
+
+        <div class="rack" role="group" aria-labelledby="wayfinder-lang" data-filter-group="language">
+          <h3 class="rack__label sr-only" id="wayfinder-lang">Explore by language</h3>
+
+          <button class="spine spine--thai" type="button" data-filter-value="thai" aria-pressed="true">
+            <span class="spine__name">Thai</span>
+            <span class="spine__count" data-filter-count>0</span>
+          </button>
+          <button class="spine" type="button" data-filter-value="english" aria-pressed="false">
+            <span class="spine__name">English</span>
+            <span class="spine__count" data-filter-count>0</span>
+          </button>
+          <button class="spine" type="button" data-filter-value="nepali" aria-pressed="false">
+            <span class="spine__name">Nepali</span>
+            <span class="spine__count" data-filter-count>0</span>
+          </button>
+          <button class="spine" type="button" data-filter-value="hindi" aria-pressed="false">
+            <span class="spine__name">Hindi</span>
+            <span class="spine__count" data-filter-count>0</span>
+          </button>
+          <button class="spine" type="button" data-filter-value="russian" aria-pressed="false">
+            <span class="spine__name">Russian</span>
+            <span class="spine__count" data-filter-count>0</span>
+          </button>
+        </div>
       </div>
 
-      <div class="wayfinder__group wayfinder__group--languages">
-        <h3 class="wayfinder__label">Explore by Language</h3>
+      <div class="ledger">
+        <aside class="ledger__rail" aria-label="Filters">
+          <div class="ledger__group" role="group" aria-labelledby="wayfinder-topic" data-filter-group="topic">
+            <h3 class="ledger__label" id="wayfinder-topic">Topic</h3>
+            <ul class="ledger__list">
+              <li>
+                <button class="ledger__opt" type="button" data-filter-value="self" aria-pressed="false">
+                  <span class="ledger__opt-name">Self &amp; Consciousness</span>
+                  <span class="ledger__opt-count" data-filter-count>0</span>
+                </button>
+              </li>
+              <li>
+                <button class="ledger__opt" type="button" data-filter-value="yoga" aria-pressed="false">
+                  <span class="ledger__opt-name">Yoga &amp; Meditation</span>
+                  <span class="ledger__opt-count" data-filter-count>0</span>
+                </button>
+              </li>
+              <li>
+                <button class="ledger__opt" type="button" data-filter-value="karma" aria-pressed="false">
+                  <span class="ledger__opt-name">Karma &amp; Reincarnation</span>
+                  <span class="ledger__opt-count" data-filter-count>0</span>
+                </button>
+              </li>
+              <li>
+                <button class="ledger__opt" type="button" data-filter-value="stories" aria-pressed="false">
+                  <span class="ledger__opt-name">Sacred Stories</span>
+                  <span class="ledger__opt-count" data-filter-count>0</span>
+                </button>
+              </li>
+              <li>
+                <button class="ledger__opt" type="button" data-filter-value="wisdom" aria-pressed="false">
+                  <span class="ledger__opt-name">Spiritual Wisdom</span>
+                  <span class="ledger__opt-count" data-filter-count>0</span>
+                </button>
+              </li>
+              <li>
+                <button class="ledger__opt" type="button" data-filter-value="questions" aria-pressed="false">
+                  <span class="ledger__opt-name">Life's Big Questions</span>
+                  <span class="ledger__opt-count" data-filter-count>0</span>
+                </button>
+              </li>
+            </ul>
+          </div>
 
-        <nav class="language-grid" aria-label="Browse books by language">
-          <a class="language-link language-link--thai" href="#">
-            <span>Thai</span>
-            <span aria-hidden="true">&rarr;</span>
-          </a>
-          <a class="language-link" href="#">
-            <span>English</span>
-            <span aria-hidden="true">&rarr;</span>
-          </a>
-          <a class="language-link" href="#">
-            <span>Nepali</span>
-            <span aria-hidden="true">&rarr;</span>
-          </a>
-          <a class="language-link" href="#">
-            <span>Hindi</span>
-            <span aria-hidden="true">&rarr;</span>
-          </a>
-          <a class="language-link" href="#">
-            <span>Russian</span>
-            <span aria-hidden="true">&rarr;</span>
-          </a>
-        </nav>
+          <div class="ledger__foot" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </aside>
+
+        <div class="ledger__main">
+          <div class="ledger__bar">
+            <p class="finder__tally">
+              <b data-finder-count aria-live="polite">0</b>
+              <span><span data-finder-noun>books</span> in this list</span>
+            </p>
+
+            <label class="ledger__sort">
+              <span>Order by</span>
+              <select data-finder-sort>
+                <option value="default">Thai first</option>
+                <option value="title">Title, A–Z</option>
+                <option value="price-asc">Price, low to high</option>
+                <option value="price-desc">Price, high to low</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="ledger__applied">
+            <div class="ledger__chips" data-finder-chips hidden></div>
+            <button class="ledger__clear" type="button" data-finder-clear hidden>Clear all</button>
+          </div>
+
+          <div class="ledger__shelf">
+            <div class="ledger__grid" data-finder-results></div>
+          </div>
+
+          <nav class="pager" aria-label="Result pages" data-finder-pagination hidden>
+            <button class="pager__step" type="button" data-finder-prev>
+              <i aria-hidden="true"></i>
+              <span>Previous</span>
+            </button>
+
+            <div class="pager__numbers" data-finder-pages></div>
+
+            <button class="pager__step pager__step--next" type="button" data-finder-next>
+              <span>Next</span>
+              <i aria-hidden="true"></i>
+            </button>
+
+            <p class="pager__range" data-finder-range aria-live="polite"></p>
+          </nav>
+
+          <div class="finder__empty" data-finder-empty hidden>
+            <p>No titles under that heading.</p>
+            <p>This language and topic have no books in the catalogue yet. Remove one of the two filters to widen the list.</p>
+            <button type="button" data-finder-clear data-finder-clear-always>Show every book</button>
+          </div>
+        </div>
       </div>
 
-      <div class="wayfinder__group wayfinder__group--topics">
-        <h3 class="wayfinder__label">Browse by Topic</h3>
+      <template data-finder-page-template>
+        <button class="pager__num" type="button">
+          <span data-page-label></span>
+        </button>
+      </template>
 
-        <nav class="topic-grid" aria-label="Browse books by topic">
-          <a class="topic-link" href="#">
-            <span>Self &amp;<br>Consciousness</span>
-            <span aria-hidden="true">&rarr;</span>
-          </a>
-          <a class="topic-link" href="#">
-            <span>Yoga &amp;<br>Meditation</span>
-            <span aria-hidden="true">&rarr;</span>
-          </a>
-          <a class="topic-link" href="#">
-            <span>Karma &amp;<br>Reincarnation</span>
-            <span aria-hidden="true">&rarr;</span>
-          </a>
-          <a class="topic-link" href="#">
-            <span>Sacred<br>Stories</span>
-            <span aria-hidden="true">&rarr;</span>
-          </a>
-          <a class="topic-link" href="#">
-            <span>Spiritual<br>Wisdom</span>
-            <span aria-hidden="true">&rarr;</span>
-          </a>
-          <a class="topic-link" href="#">
-            <span>Life's Big<br>Questions</span>
-            <span aria-hidden="true">&rarr;</span>
-          </a>
-        </nav>
+      <template data-finder-chip-template>
+        <button class="chip" type="button">
+          <span data-chip-label></span>
+          <i aria-hidden="true">&times;</i>
+        </button>
+      </template>
 
-        <figure class="wayfinder-book wayfinder-book--left" aria-hidden="true">
-          <img src="assets/books/en-pqpa.jpeg" alt="">
-        </figure>
+      <template data-finder-template>
+        <article class="row">
+          <a class="row__cover" href="#" tabindex="-1" aria-hidden="true">
+            <img data-field="cover" alt="">
+          </a>
+          <div class="row__body">
+            <p class="row__meta">
+              <span data-field="language"></span>
+              <i aria-hidden="true"></i>
+              <span data-field="topic"></span>
+            </p>
+            <h4 class="row__title"><a href="#" data-field="title"></a></h4>
+            <p class="row__note" data-field="note"></p>
+          </div>
+          <p class="row__line">
+            <span class="row__price" data-field="price"></span>
+            <span class="row__status" data-field="status"></span>
+          </p>
+        </article>
+      </template>
+    </section>
 
-        <figure class="wayfinder-book wayfinder-book--right" aria-hidden="true">
-          <img src="assets/books/en-iso.jpeg" alt="">
-        </figure>
-      </div>
+    <section class="delivery" aria-labelledby="delivery-title">
+      <div class="delivery__inner">
+        <div class="delivery__copy">
+          <h2 class="delivery__title" id="delivery-title">
+            <span>Books travel</span>
+            <span>farther than</span>
+            <span>borders.</span>
+          </h2>
 
-      <div class="wayfinder-ladder" aria-hidden="true">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
+          <p class="delivery__lead">
+            Order BBT editions from Thailand for delivery worldwide.
+          </p>
+
+          <p class="delivery__mark">
+            <img src="assets/graphics/worldwide-delivery/delivery-mark.svg" alt="" width="24" height="24">
+            <span class="delivery__origin">
+              <strong>Thailand</strong>
+              <small>Dispatched worldwide</small>
+            </span>
+          </p>
+
+          <a class="delivery__cta" href="#wayfinder-title">
+            <span>Explore the collection</span>
+            <span class="delivery__cta-arrow" aria-hidden="true">
+              <svg viewBox="0 0 44 12"><path d="M1 6h40M35 1l6 5-6 5"></path></svg>
+            </span>
+          </a>
+        </div>
+
+        <div class="delivery__panel">
+          <div class="delivery__stage">
+            <img
+              class="delivery__map"
+              src="assets/graphics/worldwide-delivery/engraved-world-map-ink.webp"
+              alt=""
+              width="1774"
+              height="887"
+              loading="lazy">
+            <img
+              class="delivery__routes"
+              src="assets/graphics/worldwide-delivery/routes-overlay.svg"
+              alt="Delivery routes leaving Thailand for three continents"
+              width="1774"
+              height="887"
+              loading="lazy">
+
+            <figure class="delivery-book delivery-book--americas">
+              <img
+                src="assets/graphics/worldwide-delivery/book-perfect-questions.png"
+                alt="Perfect Questions, Perfect Answers"
+                loading="lazy">
+            </figure>
+
+            <figure class="delivery-book delivery-book--europe">
+              <img
+                src="assets/graphics/worldwide-delivery/book-self-realization.png"
+                alt="The Science of Self-Realization"
+                loading="lazy">
+            </figure>
+
+            <figure class="delivery-book delivery-book--pacific">
+              <img
+                src="assets/graphics/worldwide-delivery/book-light-of-bhagavata.png"
+                alt="Light of the Bhagavata"
+                loading="lazy">
+            </figure>
+          </div>
+        </div>
+
+        <p class="delivery__swatches" aria-hidden="true">
+          <img src="assets/graphics/worldwide-delivery/palette-swatches.svg" alt="" width="148" height="24">
+        </p>
       </div>
     </section>
+
+    <section class="open-book-cta" aria-labelledby="open-book-cta-title">
+      <img
+        class="open-book-cta__frame"
+        src="assets/graphics/open-book-cta/open-book-frame.svg"
+        alt=""
+        aria-hidden="true">
+      <img
+        class="open-book-cta__book open-book-cta__book--left"
+        src="assets/graphics/worldwide-delivery/book-light-of-bhagavata.png"
+        alt="Light of the Bhagavata"
+        loading="lazy">
+
+      <div class="open-book-cta__content">
+        <h2 class="open-book-cta__title" id="open-book-cta-title">
+          Open a book. Find a way in.
+        </h2>
+
+        <img
+          class="open-book-cta__rule"
+          src="assets/graphics/open-book-cta/center-rule.svg"
+          alt=""
+          aria-hidden="true">
+
+        <p class="open-book-cta__lead">
+          Explore authentic BBT editions from Thailand in five languages.
+        </p>
+
+        <div class="open-book-cta__actions">
+          <a class="open-book-cta__button" href="#featured-title">
+            <span>Shop Thai Books</span>
+            <span class="open-book-cta__button-arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="open-book-cta__button" href="#wayfinder-title">
+            <span>Browse all books</span>
+            <span class="open-book-cta__button-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+
+      <img
+        class="open-book-cta__book open-book-cta__book--right"
+        src="assets/graphics/open-book-cta/book-bhagavad-gita-open-door.png"
+        alt="Bhagavad-gita As It Is"
+        loading="lazy">
+    </section>
+
   </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div class="site-footer__main">
+        <div class="site-footer__identity">
+          <p class="site-footer__monogram" aria-hidden="true">BBT</p>
+          <p class="site-footer__name">Bhaktivedanta Book Trust</p>
+          <p class="site-footer__description">
+            Independent bookstore<br>
+            specializing in BBT editions.
+          </p>
+        </div>
+
+        <nav class="site-footer__nav" aria-label="Footer navigation">
+          <div class="site-footer__column">
+            <h2>Shop</h2>
+            <ul>
+              <li><a href="#featured-title">Thai Books</a></li>
+              <li><a href="#wayfinder-title">All Books</a></li>
+              <li><a href="#wayfinder-lang">Languages</a></li>
+            </ul>
+          </div>
+
+          <div class="site-footer__column">
+            <h2>Discover</h2>
+            <ul>
+              <li><a href="#bhakti-title">New to Bhakti</a></li>
+              <li><a href="#">About BBT</a></li>
+            </ul>
+          </div>
+
+          <div class="site-footer__column">
+            <h2>Order</h2>
+            <ul>
+              <li><a href="#" aria-label="View shopping cart">Cart</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <div class="site-footer__foot">
+        <ol class="site-footer__palette" aria-label="BBT color palette">
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+          <li>4</li>
+          <li>5</li>
+        </ol>
+
+        <div class="site-footer__legal">
+          <p class="site-footer__copyright">
+            &copy; 2026 The Bhaktivedanta Book Trust. All rights reserved.
+          </p>
+          <p class="site-footer__colophon">
+            <span lang="th">จัดพิมพ์และจัดส่งจากประเทศไทย</span>
+            <span aria-hidden="true"> · </span>
+            Published and dispatched from Thailand
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/catalog.js"></script>
+  <script src="js/finder.js"></script>
 </body>
 </html>

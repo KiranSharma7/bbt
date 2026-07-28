@@ -1,0 +1,271 @@
+.delivery {
+  position: relative;
+
+  /* mirrors the --shell-width formula in hero.css so the atlas can bleed
+     out to the viewport edge without breaking the page gutter */
+  --delivery-bleed: max(calc(clamp(40px, 9vw, 180px) / 2), calc((100vw - 1180px) / 2));
+  --delivery-rule: var(--hairline-soft);
+
+  width: var(--shell-width);
+  margin-inline: auto;
+  padding: clamp(52px, 5.5vw, 86px) 0 clamp(64px, 7vw, 110px);
+}
+
+.delivery__inner {
+  display: grid;
+  grid-template-columns: minmax(0, .78fr) minmax(0, 1.22fr);
+  grid-template-rows: 1fr auto;
+  align-items: stretch;
+  column-gap: clamp(40px, 6vw, 104px);
+}
+
+.delivery__copy {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  align-self: center;
+}
+
+.delivery__title {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(46px, 5vw, 74px);
+  font-weight: 400;
+  letter-spacing: -.02em;
+  line-height: 1.04;
+}
+
+.delivery__title span {
+  display: block;
+}
+
+.delivery__lead {
+  max-width: 40ch;
+  margin: 26px 0 0;
+  padding-top: 26px;
+  border-top: 1px solid var(--delivery-rule);
+  color: var(--ink-muted);
+  font-size: clamp(16px, 1.25vw, 18px);
+  line-height: 1.7;
+}
+
+.delivery__mark {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0 0;
+  color: var(--ink-muted);
+  font-size: 13.5px;
+}
+
+.delivery__mark img {
+  display: block;
+  flex: 0 0 auto;
+  width: clamp(15px, 1.15vw, 18px);
+  height: auto;
+}
+
+.delivery__cta {
+  display: inline-grid;
+  grid-template-columns: auto 46px;
+  border: 1px solid var(--surface-invert);
+  margin-top: 32px;
+  background: var(--surface-wash);
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+.delivery__cta > span:first-child {
+  display: grid;
+  min-height: 46px;
+  padding-inline: 26px;
+  place-items: center;
+}
+
+.delivery__cta-arrow {
+  display: grid;
+  color: var(--on-accent);
+  background: var(--surface-invert);
+  place-items: center;
+  transition: color .2s ease, background .2s ease;
+}
+
+.delivery__cta-arrow svg {
+  width: 22px;
+  height: auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.3;
+  transition: transform .22s ease;
+}
+
+.delivery__cta:hover .delivery__cta-arrow,
+.delivery__cta:focus-visible .delivery__cta-arrow {
+  color: var(--on-accent);
+  background: var(--accent);
+}
+
+.delivery__cta:hover .delivery__cta-arrow svg,
+.delivery__cta:focus-visible .delivery__cta-arrow svg {
+  transform: translateX(3px);
+}
+
+.delivery__panel {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  align-self: stretch;
+  padding: 46px 0 0;
+  border-left: 1px solid var(--delivery-rule);
+}
+
+.delivery__stage {
+  position: relative;
+  aspect-ratio: 1774 / 887;
+}
+
+.delivery__map,
+.delivery__routes {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* the -ink build carries the engraving on transparency, so it sits on the
+   page paper with no plate edge and no blend mode */
+.delivery__map {
+  z-index: 0;
+  opacity: .78;
+}
+
+.delivery__routes {
+  z-index: 1;
+}
+
+.delivery-book {
+  position: absolute;
+  z-index: 2;
+  margin: 0;
+  transform: translate(-50%, -50%);
+}
+
+.delivery-book img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Positions mirror the reference plate: cream over Eurasia, navy over
+   North America, and the illustrated volume below the Thailand hub. */
+.delivery-book--americas {
+  top: 24%;
+  left: 28.6%;
+  width: 12.8%;
+  transform: translate(-50%, -50%) rotate(-7deg);
+}
+
+.delivery-book--europe {
+  top: 39.2%;
+  left: 77.2%;
+  width: 15%;
+  transform: translate(-50%, -50%) rotate(10deg);
+}
+
+.delivery-book--pacific {
+  top: 101%;
+  left: 49.2%;
+  width: 16.8%;
+  transform: translate(-50%, -50%) rotate(7deg);
+}
+
+.delivery__swatches {
+  z-index: 3;
+  grid-column: 2;
+  grid-row: 2;
+  align-self: end;
+  justify-self: end;
+  margin: 0;
+}
+
+.delivery__swatches img {
+  display: block;
+  width: clamp(112px, 9vw, 152px);
+  height: auto;
+}
+
+@media (max-width: 980px) {
+  .delivery {
+    width: min(100% - 48px, 720px);
+    padding: 64px 0 76px;
+  }
+
+  .delivery__inner {
+    display: block;
+  }
+
+  .delivery__panel {
+    margin: clamp(38px, 6vw, 60px) 0 0;
+    padding: 0;
+    border-left: 0;
+  }
+
+  .delivery-book--americas {
+    top: 24%;
+    left: 28.6%;
+    width: 15.5%;
+  }
+
+  .delivery-book--europe {
+    top: 39.2%;
+    left: 77.2%;
+    width: 16.4%;
+  }
+
+  .delivery-book--pacific {
+    top: 101%;
+    left: 49.2%;
+    width: 19%;
+  }
+
+  .delivery__swatches {
+    margin: clamp(28px, 4vw, 40px) 0 0;
+    text-align: right;
+  }
+
+  .delivery__swatches img {
+    display: inline-block;
+  }
+}
+
+@media (max-width: 580px) {
+  .delivery {
+    width: min(100% - 40px, 680px);
+  }
+
+  .delivery__title {
+    font-size: clamp(40px, 11.5vw, 56px);
+  }
+
+  .delivery__lead {
+    max-width: 42ch;
+  }
+
+  /* let the atlas run to both edges so the books stay legible */
+  .delivery__panel {
+    margin-inline: calc(var(--delivery-bleed) * -1);
+  }
+
+  .delivery-book--americas {
+    width: 18.5%;
+  }
+
+  .delivery-book--europe {
+    width: 19.5%;
+  }
+
+  .delivery-book--pacific {
+    width: 22.5%;
+  }
+}

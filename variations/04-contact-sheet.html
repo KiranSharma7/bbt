@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Find Your Way In — 04 Contact Sheet — BBT Thailand</title>
+  <meta name="description" content="Variation 04: a dense numbered contact sheet of covers with a single search-first toolbar.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/hero.css">
+  <link rel="stylesheet" href="../css/finder-common.css">
+  <link rel="stylesheet" href="../css/finder-04-contact-sheet.css">
+  <link rel="stylesheet" href="../css/finder-preview.css">
+</head>
+<body>
+  <div class="site-atmosphere" aria-hidden="true"></div>
+
+  <nav class="preview-bar" aria-label="Variation switcher">
+    <span class="preview-bar__name">Find Your Way In · <b>04 Contact Sheet</b></span>
+    <a href="01-ruled-counter.html">01</a>
+    <a href="02-ledger-rail.html">02</a>
+    <a href="03-language-spine.html">03</a>
+    <a href="04-contact-sheet.html" aria-current="page">04</a>
+    <a href="05-split-board.html">05</a>
+    <a href="index.html">All</a>
+  </nav>
+
+  <main>
+    <section
+      class="finder finder--sheet"
+      aria-labelledby="finder-title"
+      data-finder
+      data-finder-cover-path="../assets/books/">
+
+      <header class="finder__head">
+        <div>
+          <h2 class="finder__title" id="finder-title">
+            <span>Find Your</span>
+            <em>Way In</em>
+          </h2>
+          <p class="finder__lead">
+            Every edition on one sheet. Type a title, or narrow the sheet by
+            language and subject.
+          </p>
+        </div>
+
+        <p class="finder__tally sheet__tally">
+          <b data-finder-count aria-live="polite">0</b>
+          <span><span data-finder-noun>books</span> showing</span>
+        </p>
+      </header>
+
+      <div class="toolbar">
+        <div class="toolbar__search">
+          <label class="sr-only" for="sheet-search">Search titles</label>
+          <input
+            id="sheet-search"
+            type="search"
+            placeholder="Search a title or subject…"
+            autocomplete="off"
+            data-finder-search>
+          <span class="toolbar__search-mark" aria-hidden="true"></span>
+        </div>
+
+        <div class="toolbar__set" role="group" aria-labelledby="sheet-lang" data-filter-group="language">
+          <h3 class="toolbar__legend" id="sheet-lang">Language</h3>
+          <div class="toolbar__pills">
+            <button class="pill" type="button" data-filter-value="thai" aria-pressed="true">
+              Thai <i data-filter-count>0</i>
+            </button>
+            <button class="pill" type="button" data-filter-value="english" aria-pressed="false">
+              English <i data-filter-count>0</i>
+            </button>
+            <button class="pill" type="button" data-filter-value="nepali" aria-pressed="false">
+              Nepali <i data-filter-count>0</i>
+            </button>
+            <button class="pill" type="button" data-filter-value="hindi" aria-pressed="false">
+              Hindi <i data-filter-count>0</i>
+            </button>
+            <button class="pill" type="button" data-filter-value="russian" aria-pressed="false">
+              Russian <i data-filter-count>0</i>
+            </button>
+          </div>
+        </div>
+
+        <div class="toolbar__set" role="group" aria-labelledby="sheet-topic" data-filter-group="topic">
+          <h3 class="toolbar__legend" id="sheet-topic">Topic</h3>
+          <div class="toolbar__pills">
+            <button class="pill" type="button" data-filter-value="self" aria-pressed="false">
+              Self &amp; Consciousness <i data-filter-count>0</i>
+            </button>
+            <button class="pill" type="button" data-filter-value="yoga" aria-pressed="false">
+              Yoga &amp; Meditation <i data-filter-count>0</i>
+            </button>
+            <button class="pill" type="button" data-filter-value="karma" aria-pressed="false">
+              Karma &amp; Reincarnation <i data-filter-count>0</i>
+            </button>
+            <button class="pill" type="button" data-filter-value="stories" aria-pressed="false">
+              Sacred Stories <i data-filter-count>0</i>
+            </button>
+            <button class="pill" type="button" data-filter-value="wisdom" aria-pressed="false">
+              Spiritual Wisdom <i data-filter-count>0</i>
+            </button>
+            <button class="pill" type="button" data-filter-value="questions" aria-pressed="false">
+              Life's Big Questions <i data-filter-count>0</i>
+            </button>
+          </div>
+        </div>
+
+        <button class="toolbar__clear" type="button" data-finder-clear hidden>Reset the sheet</button>
+      </div>
+
+      <div class="sheet" data-finder-results></div>
+
+      <div class="finder__empty" data-finder-empty hidden>
+        <p>Nothing on the sheet.</p>
+        <p>No edition matches that search and those filters together. Clear the search box, or reset the sheet to start again.</p>
+        <button type="button" data-finder-clear data-finder-clear-always>Reset the sheet</button>
+      </div>
+
+      <template data-finder-template>
+        <article class="frame">
+          <a class="frame__hit" href="#">
+            <span class="frame__index" data-field="index" aria-hidden="true"></span>
+            <span class="frame__plate" aria-hidden="true">
+              <img data-field="cover" alt="">
+            </span>
+            <span class="frame__caption">
+              <span class="frame__title" data-field="title"></span>
+              <span class="frame__line">
+                <span class="frame__price" data-field="price"></span>
+                <span class="frame__status" data-field="status"></span>
+              </span>
+            </span>
+          </a>
+        </article>
+      </template>
+
+      <div class="sheet__foot">
+        <p class="finder__disclosure">
+          Preview data. Thai prices and availability are confirmed; other-language
+          titles, prices and stock are placeholders. Every cover shown is an
+          English-edition scan standing in until Thai cover artwork is supplied.
+        </p>
+
+        <div class="sheet__ladder" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <p class="preview-note">
+    <strong>Variation 04 — Contact Sheet.</strong>
+    The densest of the five, and the only one with search. Covers are printed
+    like frames on a photographer's contact sheet, numbered in the corner, with
+    the caption sitting quietly underneath until you hover. Best for the
+    returning devotee who already knows the title they want; weakest for the
+    newcomer, because it asks them to recognise covers rather than guiding them.
+  </p>
+
+  <script src="../js/catalog.js"></script>
+  <script src="../js/finder.js"></script>
+</body>
+</html>

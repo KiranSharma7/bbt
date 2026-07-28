@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Find Your Way In — 05 Split Board — BBT Thailand</title>
+  <meta name="description" content="Variation 05: the filter promotes one book to a full display beside a running list of the rest.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/hero.css">
+  <link rel="stylesheet" href="../css/finder-common.css">
+  <link rel="stylesheet" href="../css/finder-05-split-board.css">
+  <link rel="stylesheet" href="../css/finder-preview.css">
+</head>
+<body>
+  <div class="site-atmosphere" aria-hidden="true"></div>
+
+  <nav class="preview-bar" aria-label="Variation switcher">
+    <span class="preview-bar__name">Find Your Way In · <b>05 Split Board</b></span>
+    <a href="01-ruled-counter.html">01</a>
+    <a href="02-ledger-rail.html">02</a>
+    <a href="03-language-spine.html">03</a>
+    <a href="04-contact-sheet.html">04</a>
+    <a href="05-split-board.html" aria-current="page">05</a>
+    <a href="index.html">All</a>
+  </nav>
+
+  <main>
+    <section
+      class="finder finder--board"
+      aria-labelledby="finder-title"
+      data-finder
+      data-finder-lead
+      data-finder-cover-path="../assets/books/">
+
+      <header class="finder__head">
+        <h2 class="finder__title" id="finder-title">
+          <span>Find Your</span>
+          <em>Way In</em>
+        </h2>
+        <p class="finder__lead">
+          Tell us the language and the subject, and we will put one book on the
+          table for you — the rest of the shelf stays beside it.
+        </p>
+      </header>
+
+      <div class="board__controls">
+        <div class="board__set" role="group" aria-labelledby="board-lang" data-filter-group="language">
+          <h3 class="board__legend" id="board-lang">In</h3>
+          <div class="board__opts">
+            <button class="mark" type="button" data-filter-value="thai" aria-pressed="true">
+              <span>Thai</span><i data-filter-count>0</i>
+            </button>
+            <button class="mark" type="button" data-filter-value="english" aria-pressed="false">
+              <span>English</span><i data-filter-count>0</i>
+            </button>
+            <button class="mark" type="button" data-filter-value="nepali" aria-pressed="false">
+              <span>Nepali</span><i data-filter-count>0</i>
+            </button>
+            <button class="mark" type="button" data-filter-value="hindi" aria-pressed="false">
+              <span>Hindi</span><i data-filter-count>0</i>
+            </button>
+            <button class="mark" type="button" data-filter-value="russian" aria-pressed="false">
+              <span>Russian</span><i data-filter-count>0</i>
+            </button>
+          </div>
+        </div>
+
+        <div class="board__set" role="group" aria-labelledby="board-topic" data-filter-group="topic">
+          <h3 class="board__legend" id="board-topic">About</h3>
+          <div class="board__opts">
+            <button class="mark" type="button" data-filter-value="self" aria-pressed="false">
+              <span>Self &amp; Consciousness</span><i data-filter-count>0</i>
+            </button>
+            <button class="mark" type="button" data-filter-value="yoga" aria-pressed="false">
+              <span>Yoga &amp; Meditation</span><i data-filter-count>0</i>
+            </button>
+            <button class="mark" type="button" data-filter-value="karma" aria-pressed="false">
+              <span>Karma &amp; Reincarnation</span><i data-filter-count>0</i>
+            </button>
+            <button class="mark" type="button" data-filter-value="stories" aria-pressed="false">
+              <span>Sacred Stories</span><i data-filter-count>0</i>
+            </button>
+            <button class="mark" type="button" data-filter-value="wisdom" aria-pressed="false">
+              <span>Spiritual Wisdom</span><i data-filter-count>0</i>
+            </button>
+            <button class="mark" type="button" data-filter-value="questions" aria-pressed="false">
+              <span>Life's Big Questions</span><i data-filter-count>0</i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <p class="finder__tally board__tally">
+        <b data-finder-count aria-live="polite">0</b>
+        <span><span data-finder-noun>books</span> match</span>
+      </p>
+
+      <div class="board" data-finder-results></div>
+
+      <div class="finder__empty" data-finder-empty hidden>
+        <p>Nothing to put on the table.</p>
+        <p>We have no book in that language on that subject yet. Change one of the two and we will find you something.</p>
+        <button type="button" data-finder-clear data-finder-clear-always>Start again</button>
+      </div>
+
+      <template data-finder-template>
+        <article class="slate">
+          <a class="slate__cover" href="#" tabindex="-1" aria-hidden="true">
+            <img data-field="cover" alt="">
+          </a>
+          <div class="slate__body">
+            <p class="slate__meta">
+              <span data-field="language"></span>
+              <i aria-hidden="true"></i>
+              <span data-field="topic"></span>
+            </p>
+            <h4 class="slate__title"><a href="#" data-field="title"></a></h4>
+            <p class="slate__note" data-field="note"></p>
+          </div>
+          <p class="slate__line">
+            <span class="slate__price" data-field="price"></span>
+            <span class="slate__status" data-field="status"></span>
+          </p>
+          <span class="slate__cta">
+            <span>Discover this book</span>
+            <span class="slate__cta-arrow" aria-hidden="true">&rarr;</span>
+          </span>
+        </article>
+      </template>
+
+      <p class="finder__disclosure">
+        Preview data. Thai prices and availability are confirmed; other-language
+        titles, prices and stock are placeholders. Every cover shown is an
+        English-edition scan standing in until Thai cover artwork is supplied.
+      </p>
+
+      <div class="board__ladder" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </section>
+  </main>
+
+  <p class="preview-note">
+    <strong>Variation 05 — Split Board.</strong>
+    The only variation that answers rather than lists. Whatever the filter
+    selects, the first book is promoted to a full display on the left — cover,
+    subtitle, price and a real call to action — while the remaining matches stay
+    as a compact ruled list on the right. Strongest for a newcomer who wants to
+    be told where to start; it does mean the promoted book is chosen by sort
+    order, so a real build should let the shop pin a recommendation per
+    combination.
+  </p>
+
+  <script src="../js/catalog.js"></script>
+  <script src="../js/finder.js"></script>
+</body>
+</html>

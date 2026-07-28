@@ -1,0 +1,529 @@
+/* ---------------------------------------------------------------------------
+   VARIATION 05 — SPLIT BOARD
+
+   THESIS: A filter that answers instead of listing. The first match is promoted
+   to a full display on the left while the rest stay as a ruled list — refusing
+   the uniform grid where every result is given identical weight and the visitor
+   is left to choose alone.
+   OWN-WORLD: Ivory ground split by one full-height hairline, an oversized cover
+   resting on the left page, a compact ruled index on the right, the house
+   split-button CTA, Thai Red on the active mark and the pre-order line.
+   STORY: The visitor states a language and a subject and is handed one book,
+   with everything else still visible so the answer never feels like a dead end.
+   FIRST VIEWPORT: Headline top-left, both filter rows beneath it, then the
+   board — promoted book left at full height, running list right.
+   FORM: Bookseller's table — extension of the incumbent world, no new tokens.
+--------------------------------------------------------------------------- */
+
+.finder--board .finder__head {
+  display: grid;
+  grid-template-columns: minmax(0, auto) minmax(0, 1fr);
+  align-items: end;
+  gap: clamp(24px, 4vw, 72px);
+  margin-bottom: clamp(38px, 4.4vw, 64px);
+}
+
+.finder--board .finder__lead {
+  margin-bottom: 6px;
+}
+
+/* --- Controls ------------------------------------------------------------- */
+
+.board__controls {
+  border-top: 1px solid var(--rule);
+}
+
+.board__set {
+  display: grid;
+  grid-template-columns: clamp(58px, 6vw, 84px) minmax(0, 1fr);
+  align-items: baseline;
+  gap: clamp(14px, 1.8vw, 26px);
+  padding: clamp(16px, 1.8vw, 24px) 0;
+  border-bottom: 1px solid var(--hairline-soft);
+}
+
+.board__legend {
+  margin: 0;
+  color: var(--ink-faint);
+  font-family: var(--display);
+  font-size: clamp(18px, 1.7vw, 25px);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -.02em;
+  line-height: 1.2;
+}
+
+.board__opts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px clamp(18px, 2.2vw, 34px);
+}
+
+/* A mark, not a pill: the word itself is the control, struck through with the
+   house pen stroke when it is on. */
+.mark {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 7px;
+  padding: 2px 0 6px;
+  border: 0;
+  color: var(--ink-muted);
+  background: none;
+  font-family: var(--display);
+  font-size: clamp(18px, 1.7vw, 25px);
+  font-weight: 400;
+  letter-spacing: -.03em;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: color .2s ease;
+}
+
+/* Set as a superior figure, or at the baseline a two-digit tally reads as
+   punctuation hanging off the word. */
+.mark i {
+  align-self: flex-start;
+  margin-top: .12em;
+  color: var(--ink-faint);
+  font-size: 10px;
+  font-style: normal;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  letter-spacing: .08em;
+  transition: color .2s ease;
+}
+
+.mark::after {
+  position: absolute;
+  right: 0;
+  bottom: 1px;
+  left: 0;
+  height: .09em;
+  border-radius: 50%;
+  background: var(--accent);
+  content: "";
+  transform: rotate(-1.4deg) scaleX(0);
+  transform-origin: left center;
+  transition: transform .24s ease;
+}
+
+.mark:hover,
+.mark:focus-visible {
+  color: var(--ink);
+}
+
+.mark:hover::after,
+.mark:focus-visible::after,
+.mark.is-active::after {
+  transform: rotate(-1.4deg) scaleX(1);
+}
+
+.mark.is-active {
+  color: var(--accent-strong);
+  font-weight: 500;
+}
+
+.mark.is-active i {
+  color: var(--accent);
+}
+
+.mark.is-empty {
+  color: var(--ink-faint);
+}
+
+.board__tally {
+  padding: clamp(24px, 2.8vw, 38px) 0 clamp(20px, 2.2vw, 30px);
+}
+
+/* --- The board ------------------------------------------------------------ */
+
+.board {
+  display: grid;
+  grid-template-columns: minmax(0, 1.04fr) minmax(0, 1fr);
+  gap: 0 clamp(30px, 3.6vw, 62px);
+  align-items: start;
+  border-top: 1px solid var(--rule);
+  padding-top: clamp(28px, 3vw, 44px);
+}
+
+/* Every non-promoted match runs down the right column; the promoted one holds
+   the left for as many rows as the list needs. */
+.slate {
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: 62px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(14px, 1.6vw, 22px);
+  padding: 15px 0;
+  border-bottom: 1px solid var(--hairline-soft);
+}
+
+.board > .slate:last-child {
+  border-bottom: 0;
+}
+
+.slate__cover {
+  display: block;
+}
+
+.slate__cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+  box-shadow: var(--shadow-cover);
+  transform: rotate(-1.6deg);
+  transition: transform .28s ease, box-shadow .28s ease;
+}
+
+.slate:hover img,
+.slate:focus-within img {
+  box-shadow: var(--shadow-cover-hover);
+  transform: rotate(0) translateY(-4px);
+}
+
+.slate__meta {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 5px;
+  color: var(--ink-faint);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.slate__meta i {
+  display: block;
+  flex: 0 0 auto;
+  width: 12px;
+  height: 1px;
+  background: currentColor;
+}
+
+.slate__title {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(16px, 1.15vw, 19px);
+  font-weight: 400;
+  letter-spacing: -.02em;
+  line-height: 1.2;
+}
+
+.slate__title a {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0 1px;
+  transition: background-size .25s ease;
+}
+
+.slate__title a:hover,
+.slate__title a:focus-visible {
+  background-size: 100% 1px;
+}
+
+/* In the list the note and the button are suppressed — the promoted book is
+   the only one that gets to argue for itself. */
+.slate__note,
+.slate__cta {
+  display: none;
+}
+
+.slate__line {
+  grid-column: 3;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.2;
+  text-align: right;
+}
+
+.slate__status {
+  color: var(--ink-faint);
+  font-size: 11px;
+  letter-spacing: .04em;
+}
+
+.slate[data-status="pending"] .slate__price {
+  display: none;
+}
+
+.slate[data-status="pending"] .slate__status {
+  font-style: italic;
+}
+
+.slate[data-status="preorder"] .slate__status {
+  color: var(--accent);
+}
+
+/* --- The promoted book ---------------------------------------------------- */
+
+.slate.is-lead {
+  grid-column: 1;
+  /* The span only has to exceed the longest possible result list. */
+  grid-row: 1 / span 40;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
+  align-items: start;
+  gap: 0;
+  padding: 0 clamp(24px, 3vw, 52px) clamp(30px, 3.4vw, 50px) 0;
+  border-right: 1px solid var(--rule);
+  border-bottom: 0;
+}
+
+/* A single match has no list to sit beside, so it takes the whole board. */
+.slate.is-lead:only-child {
+  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(28px, 4vw, 52px);
+  padding-right: 0;
+  border-right: 0;
+}
+
+.slate.is-lead .slate__cover {
+  justify-self: center;
+  width: min(100%, 300px);
+  margin-bottom: clamp(24px, 2.8vw, 40px);
+  padding-top: 6px;
+}
+
+/* Two columns need explicit placement, or the four children wrap into a 2×2. */
+.slate.is-lead:only-child .slate__cover {
+  grid-row: 1 / span 3;
+  grid-column: 1;
+  align-self: center;
+  justify-self: start;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.slate.is-lead:only-child .slate__body,
+.slate.is-lead:only-child .slate__cta {
+  grid-column: 2;
+}
+
+.slate.is-lead .slate__cover img {
+  box-shadow: var(--shadow-slab);
+  transform: rotate(-2.4deg);
+}
+
+.slate.is-lead:hover .slate__cover img,
+.slate.is-lead:focus-within .slate__cover img {
+  transform: rotate(0) translateY(-6px);
+}
+
+.slate.is-lead .slate__meta {
+  margin-bottom: 12px;
+}
+
+.slate.is-lead .slate__title {
+  font-family: var(--display);
+  font-size: clamp(30px, 3vw, 46px);
+  letter-spacing: -.035em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+.slate.is-lead .slate__note {
+  display: block;
+  max-width: 34ch;
+  margin: 14px 0 0;
+  color: var(--ink-muted);
+  font-size: clamp(15px, 1.2vw, 18px);
+  font-style: italic;
+  line-height: 1.55;
+}
+
+.slate.is-lead .slate__line {
+  grid-column: 1;
+  grid-row: auto;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 15px;
+  margin-top: 20px;
+  font-size: clamp(20px, 1.8vw, 27px);
+  text-align: left;
+}
+
+.slate.is-lead:only-child .slate__line {
+  grid-column: 2;
+}
+
+.slate.is-lead .slate__status {
+  font-size: 13px;
+}
+
+/* The house split button, arrow cell and all. */
+.slate.is-lead .slate__cta {
+  display: inline-grid;
+  grid-template-columns: auto 46px;
+  width: max-content;
+  margin-top: 26px;
+  border: 1px solid var(--surface-invert);
+  background: var(--surface-wash);
+  /* DESIGN.md button-primary: 13.5px / 600. Kept exactly. */
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+.slate.is-lead .slate__cta > span:first-child {
+  display: grid;
+  min-height: 46px;
+  padding-inline: 26px;
+  place-items: center;
+}
+
+.slate__cta-arrow {
+  display: grid;
+  color: var(--on-accent);
+  background: var(--surface-invert);
+  font-size: 19px;
+  place-items: center;
+  transition: color .2s ease, background .2s ease;
+}
+
+.slate.is-lead:hover .slate__cta-arrow,
+.slate.is-lead:focus-within .slate__cta-arrow {
+  background: var(--accent);
+}
+
+/* --- Ladder --------------------------------------------------------------- */
+
+.board__ladder {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: clamp(34px, 3.6vw, 52px);
+}
+
+.board__ladder span {
+  display: block;
+  width: clamp(30px, 3.2vw, 46px);
+  height: 15px;
+}
+
+.board__ladder span:nth-child(1) { background: var(--ladder-navy); }
+.board__ladder span:nth-child(2) { background: var(--ladder-navy-mid); }
+.board__ladder span:nth-child(3) { background: var(--ladder-red); }
+.board__ladder span:nth-child(4) { background: var(--ladder-red-mid); }
+.board__ladder span:nth-child(5) { background: var(--ladder-rose); }
+
+/* --- Responsive ----------------------------------------------------------- */
+
+@media (max-width: 980px) {
+  .finder--board .finder__head {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: 20px;
+  }
+
+  .board__set {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  /* The split collapses: the promoted book takes the full width and the list
+     runs beneath it rather than squeezing into a half column. */
+  .board {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .slate,
+  .slate.is-lead {
+    grid-column: 1;
+  }
+
+  .slate.is-lead,
+  .slate.is-lead:only-child {
+    grid-row: auto;
+    grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(24px, 4vw, 44px);
+    padding: 0 0 clamp(28px, 4vw, 44px);
+    border-right: 0;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 10px;
+  }
+
+  .slate.is-lead .slate__cover,
+  .slate.is-lead:only-child .slate__cover {
+    grid-row: 1 / span 3;
+    grid-column: 1;
+    align-self: center;
+    justify-self: start;
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  .slate.is-lead .slate__body,
+  .slate.is-lead .slate__line,
+  .slate.is-lead .slate__cta {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 580px) {
+  .board__opts {
+    gap: 4px 20px;
+  }
+
+  .slate {
+    grid-template-columns: 54px minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .slate__line {
+    grid-column: 2;
+    grid-row: auto;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 12px;
+    margin-top: 6px;
+    text-align: left;
+  }
+
+  /* Single column: every explicit placement inherited from the tablet block
+     has to be released, or the four children spill into a phantom column. */
+  .slate.is-lead,
+  .slate.is-lead:only-child {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .slate.is-lead .slate__cover,
+  .slate.is-lead:only-child .slate__cover {
+    grid-row: auto;
+    grid-column: 1;
+    justify-self: start;
+    width: min(100%, 230px);
+    margin-bottom: 24px;
+  }
+
+  .slate.is-lead .slate__body,
+  .slate.is-lead .slate__line,
+  .slate.is-lead .slate__cta,
+  .slate.is-lead:only-child .slate__body,
+  .slate.is-lead:only-child .slate__line,
+  .slate.is-lead:only-child .slate__cta {
+    grid-column: 1;
+  }
+
+  .slate.is-lead .slate__line {
+    margin-top: 16px;
+  }
+
+  .slate.is-lead .slate__cta {
+    margin-top: 22px;
+  }
+
+  .board__ladder span {
+    width: 28px;
+    height: 11px;
+  }
+}

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1774 887" fill="none">
+  <g stroke="#a51931" stroke-width="3" stroke-linecap="round">
+    <path d="M617 618C760 480 790 365 608 318"/>
+    <path d="M617 618C790 470 1010 408 1219 413"/>
+    <path d="M617 618C735 575 860 580 900 692"/>
+  </g>
+  <g transform="translate(617 618)" fill="#a51931">
+    <path d="M0-17 6-6 17 0 6 6 0 17-6 6-17 0-6-6Z"/>
+    <path d="M0-7 3-3 7 0 3 3 0 7-3 3-7 0-3-3Z" fill="#fbf7ed"/>
+  </g>
+</svg>

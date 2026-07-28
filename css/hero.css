@@ -970,15 +970,15 @@ h1 {
 
 .wayfinder-book--left {
   bottom: clamp(-92px, -6vw, -54px);
-  left: clamp(-72px, -4vw, -38px);
-  width: clamp(106px, 10vw, 148px);
+  left: clamp(-112px, -7.8vw, -86px);
+  width: clamp(96px, 8vw, 112px);
   transform: rotate(-7deg);
 }
 
 .wayfinder-book--right {
-  right: clamp(-64px, -3.5vw, -34px);
+  right: clamp(-112px, -7.8vw, -86px);
   bottom: clamp(-58px, -3.5vw, -28px);
-  width: clamp(96px, 9vw, 136px);
+  width: clamp(94px, 7.8vw, 110px);
   transform: rotate(6deg);
 }
 
@@ -1274,7 +1274,7 @@ h1 {
   }
 
   .wayfinder__intro {
-    min-height: 210px;
+    min-height: 184px;
   }
 
   .wayfinder__title {
@@ -1282,9 +1282,7 @@ h1 {
   }
 
   .wayfinder-book--top {
-    top: 76px;
-    right: 6px;
-    width: 104px;
+    display: none;
   }
 
   .wayfinder__label {

@@ -318,7 +318,6 @@ published until the shipping policy is confirmed.
 
 ## 13. Final Call to Action
 
-Reuse the stepped color-band motif more subtly than in the hero.
 
 ### Heading
 
