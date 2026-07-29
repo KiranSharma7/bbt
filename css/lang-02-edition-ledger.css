@@ -1,0 +1,184 @@
+/* ---------------------------------------------------------------------------
+   Variation 02 — Edition Ledger
+
+   The five editions are printed as a ruled list, the way a book prints its
+   own edition history in the front matter. Each line carries its native
+   script, its price and its state, so the whole edition picture is readable
+   without clicking anything — the incumbent tab row hid all of that behind a
+   tap. Thai is set at display size; the other four sit a rank below.
+
+   Footprint: taller, but still inside the right-hand purchase column.
+--------------------------------------------------------------------------- */
+
+.edition-ledger {
+  --ledger-bleed: 16px;
+
+  min-width: 0;
+  margin: clamp(4px, 1vw, 12px) 0 0;
+  padding: 0;
+  border: 0;
+}
+
+/* Negative inline margin pulls the rows past the text column, so a selected
+   row prints as a band rather than as a boxed-in list item. */
+.ledger {
+  margin-inline: calc(var(--ledger-bleed) * -1);
+  border-top: 1px solid var(--product-rule);
+}
+
+/* One line per edition. Name, native script, price and state all share a
+   single baseline, which is what keeps five editions inside the space a
+   five-tab row used to want. */
+.ledger__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  column-gap: 18px;
+  width: 100%;
+  padding: 8px var(--ledger-bleed);
+  border: 0;
+  border-bottom: 1px solid var(--product-rule-soft);
+  color: var(--ink-muted);
+  background: transparent;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: color .2s ease, background .2s ease;
+}
+
+.ledger__row:last-child {
+  border-bottom: 1px solid var(--product-rule);
+}
+
+.ledger__label,
+.ledger__figures {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  min-width: 0;
+}
+
+.ledger__figures {
+  justify-content: end;
+}
+
+.ledger__name {
+  font-family: var(--display);
+  font-size: 19px;
+  font-weight: 400;
+  letter-spacing: -.02em;
+  line-height: 1.15;
+}
+
+/* The lead edition is set a full step larger. This is the whole hierarchy:
+   no colour, no badge, no bold — just a larger cut of the same face, which
+   is how the rest of the page shows rank. */
+.ledger__row--lead .ledger__name {
+  font-size: clamp(24px, 2vw, 29px);
+  letter-spacing: -.03em;
+}
+
+.ledger__script {
+  color: var(--ink-muted);
+  font-size: 13px;
+  line-height: 1.2;
+  white-space: nowrap;
+  transition: color .2s ease;
+}
+
+.ledger__row--lead .ledger__script {
+  font-size: 14px;
+}
+
+.ledger__price {
+  font-family: var(--display);
+  font-size: 17px;
+  line-height: 1.15;
+  color: var(--ink-muted);
+  transition: color .2s ease;
+}
+
+.ledger__row--lead .ledger__price {
+  color: var(--accent);
+  font-size: clamp(19px, 1.5vw, 22px);
+}
+
+.ledger__state {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--ink-muted);
+  transition: color .2s ease;
+}
+
+.ledger__row:hover,
+.ledger__row:focus-visible {
+  color: var(--ink);
+  background: var(--ink-tint-06);
+}
+
+.ledger__row.is-active {
+  color: var(--on-accent);
+  background: var(--surface-invert);
+  border-bottom-color: var(--surface-invert);
+}
+
+.ledger__row.is-active .ledger__script,
+.ledger__row.is-active .ledger__state {
+  color: var(--on-invert-soft);
+}
+
+.ledger__row.is-active .ledger__price {
+  color: var(--on-accent);
+}
+
+@media (max-width: 980px) {
+  .edition-ledger {
+    --ledger-bleed: 14px;
+  }
+}
+
+@media (max-width: 580px) {
+  .edition-ledger {
+    --ledger-bleed: 10px;
+  }
+
+  .ledger__row {
+    padding-block: 9px;
+    column-gap: 14px;
+  }
+
+  .ledger__name {
+    font-size: 19px;
+  }
+
+  .ledger__row--lead .ledger__name {
+    font-size: 26px;
+  }
+
+  .ledger__script {
+    font-size: 12px;
+  }
+
+  .ledger__price {
+    font-size: 16px;
+  }
+
+  .ledger__row--lead .ledger__price {
+    font-size: 20px;
+  }
+
+  .ledger__state {
+    font-size: 9px;
+    letter-spacing: .09em;
+  }
+}
+
+@media (max-width: 390px) {
+  .ledger__state {
+    letter-spacing: .06em;
+  }
+}

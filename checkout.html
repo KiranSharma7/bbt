@@ -1,0 +1,425 @@
+<!--
+THESIS: One question at a time, hung from a single ruled spine.
+OWN-WORLD: Warm ivory paper, hairline rules, serif type, Thai-flag accents, circles only for markers.
+STORY: Answer one step, watch it fold up, move to the next, and see plainly which steps are not yet decided.
+FIRST VIEWPORT: A vertical hairline with numbered circular markers; the contact step open, the rest waiting as titles.
+FORM: Approved "Ruled Steps" composition, extending the established Bright Reading Room world.
+
+NOT LIVE. Nothing on this page takes money, reserves stock, or contacts a
+server. Payment methods and the gateway are undecided (PRODUCT.md), so step 4
+is a marked placeholder and the submit answers plainly that no order was
+placed. Carriers and rates are undecided, so no delivery price, no arrival
+date, and no order total appear anywhere.
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Checkout — BBT Thailand</title>
+  <meta name="description" content="Guest checkout for BBT editions, one step at a time, dispatched from Thailand worldwide.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/cart-common.css">
+  <link rel="stylesheet" href="css/checkout-common.css">
+  <link rel="stylesheet" href="css/checkout.css">
+  <link rel="stylesheet" href="css/footer.css">
+</head>
+<body>
+  <div class="site-atmosphere" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Bhaktivedanta Book Trust home">
+      <img src="assets/brand/logo.png" alt="The Bhaktivedanta Book Trust">
+    </a>
+
+    <nav class="primary-nav" aria-label="Primary navigation">
+      <a class="primary-nav__featured" href="index.html#featured-title">Thai Books</a>
+      <a href="index.html#wayfinder-title">All Books</a>
+      <a href="index.html#wayfinder-title">Find Your Book</a>
+      <a href="index.html">About BBT</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="search-control" href="index.html#wayfinder-title" aria-label="Search books">
+        <span aria-hidden="true"></span>
+      </a>
+      <a class="cart-control" href="cart.html" aria-label="Cart, 0 items">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6.8 8.2h10.4l.8 12H6l.8-12Z"></path>
+          <path d="M9 9V6a3 3 0 0 1 6 0v3"></path>
+        </svg>
+        <span class="cart-control__count" data-cart-count>0</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="checkout-page">
+    <nav class="cart-crumb" aria-label="Breadcrumb">
+      <a href="cart.html">Cart</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Checkout</span>
+    </nav>
+
+    <!-- No visible headline by design: the numbered spine opens the page. The
+         heading is kept for screen readers and the document outline. -->
+    <h1 class="sr-only">Checkout</h1>
+
+    <!-- Empty cart -------------------------------------------------------- -->
+    <section class="cart-empty" data-checkout-empty hidden aria-labelledby="empty-title">
+      <h2 class="cart-empty__title" id="empty-title">There is nothing to order</h2>
+      <p class="cart-empty__lead">
+        Add a book to the cart first, then come back to this page.
+      </p>
+      <a class="cart-link" href="index.html#featured-title">
+        Browse Thai books <span aria-hidden="true">&rarr;</span>
+      </a>
+    </section>
+
+    <!-- Steps ------------------------------------------------------------- -->
+    <div data-checkout-body>
+      <div class="ruled-steps">
+
+        <form class="ruled-steps__flow" data-checkout-form novalidate>
+
+          <!-- 1 --------------------------------------------------------- -->
+          <section class="step" data-step aria-labelledby="s1">
+            <div class="step__head">
+              <span class="step__num" aria-hidden="true">1</span>
+              <h2 class="step__title" id="s1">Contact</h2>
+              <button class="step__edit" type="button" data-step-edit hidden>Edit</button>
+            </div>
+            <p class="step__hint">Used only to confirm this order.</p>
+
+            <div class="step__panel" data-step-panel>
+              <div class="field-grid">
+                <label class="field field--wide">
+                  <span class="field__label">Email <i aria-hidden="true">*</i></span>
+                  <input type="email" name="email" autocomplete="email" required
+                         placeholder="you@example.com">
+                </label>
+              </div>
+
+              <button class="step__next" type="button" data-step-next>
+                <span>Continue to address</span>
+                <span aria-hidden="true">&rarr;</span>
+              </button>
+            </div>
+          </section>
+
+          <!-- 2 --------------------------------------------------------- -->
+          <section class="step" data-step aria-labelledby="s2">
+            <div class="step__head">
+              <span class="step__num" aria-hidden="true">2</span>
+              <h2 class="step__title" id="s2">Delivery address</h2>
+              <button class="step__edit" type="button" data-step-edit hidden>Edit</button>
+            </div>
+            <p class="step__hint">Books are dispatched from Thailand and sent worldwide.</p>
+
+            <div class="step__panel" data-step-panel hidden>
+              <div class="field-grid">
+                <label class="field field--wide">
+                  <span class="field__label">Country or region <i aria-hidden="true">*</i></span>
+                  <select name="country" autocomplete="country-name" required>
+                    <option value="th" selected>Thailand</option>
+                    <option value="au">Australia</option>
+                    <option value="ca">Canada</option>
+                    <option value="de">Germany</option>
+                    <option value="in">India</option>
+                    <option value="my">Malaysia</option>
+                    <option value="np">Nepal</option>
+                    <option value="nl">Netherlands</option>
+                    <option value="ru">Russia</option>
+                    <option value="sg">Singapore</option>
+                    <option value="gb">United Kingdom</option>
+                    <option value="us">United States</option>
+                    <option value="other">Somewhere else</option>
+                  </select>
+                  <span class="field__note">
+                    A short list while delivery zones are being arranged. The
+                    full list follows once carriers are settled.
+                  </span>
+                </label>
+
+                <label class="field field--wide">
+                  <span class="field__label">Full name <i aria-hidden="true">*</i></span>
+                  <input type="text" name="name" autocomplete="name" required>
+                </label>
+
+                <label class="field field--wide">
+                  <span class="field__label">Address <i aria-hidden="true">*</i></span>
+                  <input type="text" name="address1" autocomplete="address-line1" required
+                         placeholder="House number and street">
+                </label>
+
+                <label class="field field--wide">
+                  <span class="field__label">Apartment, building, floor</span>
+                  <input type="text" name="address2" autocomplete="address-line2">
+                </label>
+
+                <label class="field">
+                  <span class="field__label">City or district <i aria-hidden="true">*</i></span>
+                  <input type="text" name="city" autocomplete="address-level2" required>
+                </label>
+
+                <label class="field">
+                  <span class="field__label">Province or state</span>
+                  <input type="text" name="province" autocomplete="address-level1">
+                </label>
+
+                <label class="field">
+                  <span class="field__label">Postcode <i aria-hidden="true">*</i></span>
+                  <input type="text" name="postcode" autocomplete="postal-code" required
+                         inputmode="numeric">
+                </label>
+
+                <label class="field">
+                  <span class="field__label">Phone <i aria-hidden="true">*</i></span>
+                  <input type="tel" name="phone" autocomplete="tel" required>
+                  <span class="field__note">Couriers ask for a number on delivery.</span>
+                </label>
+              </div>
+
+              <button class="step__next" type="button" data-step-next>
+                <span>Continue to delivery</span>
+                <span aria-hidden="true">&rarr;</span>
+              </button>
+            </div>
+          </section>
+
+          <!-- 3 --------------------------------------------------------- -->
+          <section class="step" data-step aria-labelledby="s3">
+            <div class="step__head">
+              <span class="step__num" aria-hidden="true">3</span>
+              <h2 class="step__title" id="s3">Delivery</h2>
+              <button class="step__edit" type="button" data-step-edit hidden>Edit</button>
+            </div>
+            <p class="step__hint">Worldwide, dispatched from Thailand.</p>
+
+            <div class="step__panel" data-step-panel hidden>
+              <div class="open-block">
+                <span class="open-block__label">Not yet decided</span>
+                <p>
+                  Carriers, delivery zones, rates and times are still being
+                  arranged. Rather than show a guess, this step stays open: the
+                  cost of delivery is confirmed with you by email before
+                  anything is charged.
+                </p>
+                <p>
+                  Every order is tracked, and every book is a physical book —
+                  there is nothing to download.
+                </p>
+              </div>
+
+              <button class="step__next" type="button" data-step-next>
+                <span>Continue to payment</span>
+                <span aria-hidden="true">&rarr;</span>
+              </button>
+            </div>
+          </section>
+
+          <!-- 4 --------------------------------------------------------- -->
+          <section class="step" data-step aria-labelledby="s4">
+            <div class="step__head">
+              <span class="step__num" aria-hidden="true">4</span>
+              <h2 class="step__title" id="s4">Payment</h2>
+              <button class="step__edit" type="button" data-step-edit hidden>Edit</button>
+            </div>
+            <p class="step__hint">Nothing is charged on this page.</p>
+
+            <div class="step__panel" data-step-panel hidden>
+              <div class="open-block">
+                <span class="open-block__label">Not yet enabled</span>
+                <p>
+                  The payment provider has not been chosen, so no payment is
+                  taken on this page and no card details are asked for.
+                </p>
+                <p>
+                  This step is a placeholder in the design. It will hold the
+                  real payment methods once the provider is confirmed.
+                </p>
+              </div>
+
+              <button class="step__next" type="button" data-step-next>
+                <span>Continue to review</span>
+                <span aria-hidden="true">&rarr;</span>
+              </button>
+            </div>
+          </section>
+
+          <!-- 5 --------------------------------------------------------- -->
+          <section class="step" data-step aria-labelledby="s5">
+            <div class="step__head">
+              <span class="step__num" aria-hidden="true">5</span>
+              <h2 class="step__title" id="s5">Review and place</h2>
+              <button class="step__edit" type="button" data-step-edit hidden>Edit</button>
+            </div>
+            <p class="step__hint">Last look before anything is sent.</p>
+
+            <div class="step__panel" data-step-panel hidden>
+              <label class="consent">
+                <input type="checkbox" name="save">
+                <span class="consent__text">
+                  Save this address so I do not have to type it again.
+                </span>
+                <span class="consent__note">
+                  Optional. You are ordering as a guest either way — no
+                  password, no account needed to buy.
+                </span>
+              </label>
+
+              <div class="field-grid field-grid--spaced">
+                <label class="field field--wide">
+                  <span class="field__label">Anything we should know</span>
+                  <textarea name="notes" rows="3"
+                            placeholder="A note about the delivery, or a question about the order."></textarea>
+                </label>
+              </div>
+
+              <div class="ruled-steps__foot">
+                <p class="cart-preorder" data-cart-preorder hidden>
+                  <span>
+                    One title in this order is a pre-order. It is printed and
+                    dispatched separately from the books already in stock. How a
+                    mixed order is charged and sent has not been settled yet.
+                  </span>
+                </p>
+
+                <dl class="summary__rows">
+                  <div class="summary__row summary__row--payable">
+                    <dt>To pay</dt>
+                    <dd data-cart-payable>฿0 + shipping</dd>
+                  </div>
+                </dl>
+
+                <button class="cart-action" type="submit">
+                  <span>Place the order</span>
+                  <span class="cart-action__arrow" aria-hidden="true">&rarr;</span>
+                </button>
+
+                <div class="checkout-notice" data-checkout-notice hidden role="status">
+                  <span class="checkout-notice__label">Preview only</span>
+                  <p>
+                    No order was placed and no payment was taken. This page is a
+                    design preview.
+                  </p>
+                  <p>
+                    Once a payment provider is chosen, this is where the order
+                    is confirmed and an email receipt is sent.
+                  </p>
+                </div>
+
+                <p class="ruled-steps__back">
+                  <a class="cart-link" href="cart.html">
+                    <span aria-hidden="true">&larr;</span> Back to the cart
+                  </a>
+                </p>
+              </div>
+            </div>
+          </section>
+        </form>
+
+        <!-- Aside: the order ---------------------------------------------- -->
+        <section class="ruled-steps__order" aria-labelledby="order-title">
+          <h2 class="summary__title" id="order-title">Your order</h2>
+
+          <ul class="sum-lines" data-checkout-lines data-cart-cover-path="assets/books/"></ul>
+
+          <dl class="summary__rows">
+            <div class="summary__row">
+              <dt>Subtotal</dt>
+              <dd data-cart-subtotal>฿0</dd>
+            </div>
+            <div class="summary__row">
+              <dt>Delivery</dt>
+              <dd class="is-open">Not yet confirmed</dd>
+            </div>
+            <div class="summary__row summary__row--payable">
+              <dt>To pay</dt>
+              <dd data-cart-payable>฿0 + shipping</dd>
+            </div>
+          </dl>
+
+          <p class="summary__caveat">
+            Delivery is worldwide. Rates and carriers are still being arranged,
+            so the shipping part of this figure is confirmed with you by email
+            before anything is charged.
+          </p>
+
+          <p class="order-edit">
+            <a class="cart-link cart-link--quiet" href="cart.html">Edit the cart</a>
+          </p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div class="site-footer__main">
+        <div class="site-footer__identity">
+          <p class="site-footer__monogram" aria-hidden="true">BBT</p>
+          <p class="site-footer__name">Bhaktivedanta Book Trust</p>
+          <p class="site-footer__description">
+            Independent bookstore<br>
+            specializing in BBT editions.
+          </p>
+        </div>
+
+        <nav class="site-footer__nav" aria-label="Footer navigation">
+          <div class="site-footer__column">
+            <h2>Shop</h2>
+            <ul>
+              <li><a href="index.html#featured-title">Thai Books</a></li>
+              <li><a href="index.html#wayfinder-title">All Books</a></li>
+              <li><a href="index.html#wayfinder-lang">Languages</a></li>
+            </ul>
+          </div>
+
+          <div class="site-footer__column">
+            <h2>Discover</h2>
+            <ul>
+              <li><a href="index.html#bhakti-title">New to Bhakti</a></li>
+              <li><a href="index.html">About BBT</a></li>
+            </ul>
+          </div>
+
+          <div class="site-footer__column">
+            <h2>Order</h2>
+            <ul>
+              <li><a href="cart.html" aria-label="View shopping cart">Cart</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <div class="site-footer__foot">
+        <ol class="site-footer__palette" aria-label="BBT color palette">
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+          <li>4</li>
+          <li>5</li>
+        </ol>
+
+        <div class="site-footer__legal">
+          <p class="site-footer__copyright">
+            &copy; 2026 The Bhaktivedanta Book Trust. All rights reserved.
+          </p>
+          <p class="site-footer__colophon">
+            <span lang="th">จัดพิมพ์และจัดส่งจากประเทศไทย</span>
+            <span aria-hidden="true"> · </span>
+            Published and dispatched from Thailand
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/catalog.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/checkout.js"></script>
+</body>
+</html>

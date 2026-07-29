@@ -1,0 +1,74 @@
+/* ---------------------------------------------------------------------------
+   Shop / catalog page — shared shell for all layout variations.
+
+   Owns only what must not drift between the three shop variations: the page
+   shell width, the header clearance, the page heading, and how the finder
+   engine's dynamic .book cards borrow the homepage's ruled 4-column table
+   (css/hero.css .books-grid / .book) instead of the row-list card used on the
+   homepage's "Find Your Way In" section. Sidebar chrome differences between
+   variations live in their own shop-0N-*.css file.
+
+   Inherits the committed world from css/hero.css and the finder engine
+   contract from css/finder-common.css. No colour literal appears here —
+   every value is a :root token from hero.css.
+--------------------------------------------------------------------------- */
+
+.shop-shell {
+  --shop-shell-width: min(100% - clamp(40px, 6vw, 140px), 1320px);
+}
+
+.shop-main {
+  position: relative;
+  z-index: 1;
+  padding: 116px 0 0;
+}
+
+.shop-main .finder {
+  width: var(--shop-shell-width);
+}
+
+/* The page heading replaces the homepage's oversized display headline with a
+   quieter title: this page is a destination, not an introduction. */
+.shop-head {
+  margin-bottom: clamp(38px, 4.4vw, 64px);
+}
+
+.shop-head .finder__title {
+  font-size: clamp(38px, 3.6vw, 58px);
+}
+
+/* --- Reuse the homepage's book table inside the narrower main column ------ */
+
+.ledger__main .books-grid {
+  grid-template-rows: none;
+  grid-auto-rows: minmax(340px, 1fr);
+}
+
+.book.is-tilt-left .book__cover img { transform: rotate(-2.2deg); }
+.book.is-tilt-right .book__cover img { transform: rotate(1.8deg); }
+
+.book[data-status="pending"] [data-field="price"],
+.book[data-status="pending"] .book__details i {
+  display: none;
+}
+
+.book[data-status="pending"] [data-field="status"] {
+  color: var(--ink-faint);
+  font-style: italic;
+}
+
+.book[data-status="preorder"] [data-field="status"] {
+  color: var(--accent);
+}
+
+@media (max-width: 980px) {
+  .shop-main {
+    padding-top: 96px;
+  }
+}
+
+@media (max-width: 580px) {
+  .shop-main {
+    padding-top: 88px;
+  }
+}

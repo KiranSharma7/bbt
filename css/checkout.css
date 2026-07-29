@@ -1,0 +1,227 @@
+/* ---------------------------------------------------------------------------
+   Checkout variation 03 — "The Ruled Steps"
+
+   One step open at a time, numbered down a single vertical hairline so the
+   whole flow reads as one ruled spine. A finished step folds up to its own
+   answer with a quiet Edit control beside it; the steps still to come stay
+   visible as titles, so the length of the journey is never hidden.
+
+   Asks the least of the reader at any one moment, and is the only variation
+   that gives the undecided payment step a place that does not look broken.
+   Costs an extra click per step, which is the trade.
+--------------------------------------------------------------------------- */
+
+.ruled-steps {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 340px);
+  gap: 0 clamp(34px, 4.6vw, 76px);
+  align-items: start;
+  padding-top: clamp(22px, 2.6vw, 34px);
+}
+
+/* --- The spine ------------------------------------------------------------ */
+
+.ruled-steps__flow {
+  position: relative;
+  min-width: 0;
+  padding-left: clamp(30px, 3.4vw, 46px);
+}
+
+/* The single rule that every step hangs from. It stops short at both ends so
+   it reads as a drawn line rather than a border on a container. */
+.ruled-steps__flow::before {
+  position: absolute;
+  top: 14px;
+  bottom: 14px;
+  left: 0;
+  width: 1px;
+  background: var(--cart-rule);
+  content: "";
+}
+
+.ruled-steps .step {
+  position: relative;
+  padding: clamp(20px, 2.4vw, 30px) 0;
+  border-bottom: 0;
+}
+
+/* The step marker sits on the spine, circular because it is an icon control's
+   sibling in spirit — the only curve allowed in the system. */
+.ruled-steps .step__head {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.ruled-steps .step__num {
+  position: absolute;
+  top: clamp(20px, 2.4vw, 30px);
+  left: calc(-1 * clamp(30px, 3.4vw, 46px) - 12px);
+  display: grid;
+  width: 25px;
+  height: 25px;
+  border: 1px solid var(--cart-rule-strong);
+  border-radius: 50%;
+  color: var(--ink-muted);
+  background: var(--paper);
+  font-size: 12px;
+  place-items: center;
+  transition: color .2s ease, background .2s ease, border-color .2s ease;
+}
+
+/* The number has left the head grid for the spine, so the hint no longer needs
+   to clear a number column. */
+.ruled-steps .step__hint {
+  padding-left: 0;
+}
+
+.ruled-steps .step.is-open .step__num {
+  color: var(--on-accent);
+  border-color: var(--accent-strong);
+  background: var(--accent-strong);
+}
+
+.ruled-steps .step.is-done .step__num {
+  color: var(--on-accent);
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+/* Steps not yet reached recede; they are still readable, just not competing. */
+.ruled-steps .step:not(.is-open):not(.is-done) .step__title {
+  color: var(--ink-faint);
+}
+
+.ruled-steps .step:not(.is-open) .step__hint {
+  display: none;
+}
+
+.ruled-steps .step.is-done .step__title {
+  color: var(--ink-muted);
+  font-size: 18px;
+}
+
+/* --- Edit control --------------------------------------------------------- */
+
+.step__edit {
+  align-self: center;
+  padding: 0 0 2px;
+  border: 0;
+  border-bottom: 1px solid var(--cart-rule);
+  color: var(--ink-faint);
+  background: none;
+  font-family: var(--serif);
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color .2s ease, border-color .2s ease;
+}
+
+.step__edit:hover,
+.step__edit:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* --- Step foot ------------------------------------------------------------ */
+
+.step__next {
+  display: inline-grid;
+  grid-template-columns: 1fr 50px;
+  min-width: 244px;
+  min-height: 46px;
+  margin-top: clamp(20px, 2.2vw, 26px);
+  padding: 0;
+  border: 1px solid var(--accent-strong);
+  color: var(--accent-strong);
+  background: var(--surface-wash);
+  font-family: var(--serif);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.step__next > span {
+  display: grid;
+  place-items: center;
+}
+
+.step__next span:last-child {
+  color: var(--on-accent);
+  background: var(--accent-strong);
+  font-size: 21px;
+  font-weight: 400;
+  letter-spacing: 0;
+  transition: background .2s ease;
+}
+
+.step__next:hover span:last-child,
+.step__next:focus-visible span:last-child {
+  background: var(--accent);
+}
+
+/* --- Final step ----------------------------------------------------------- */
+
+.ruled-steps__foot {
+  padding-top: clamp(22px, 2.6vw, 32px);
+}
+
+.ruled-steps__foot .cart-action {
+  margin-top: clamp(18px, 2vw, 24px);
+}
+
+.ruled-steps__back {
+  margin-top: clamp(20px, 2.2vw, 26px);
+}
+
+/* --- Aside: the order ----------------------------------------------------- */
+
+.ruled-steps__order {
+  position: sticky;
+  top: clamp(20px, 3vw, 40px);
+  padding-left: clamp(22px, 2.6vw, 38px);
+  border-left: 1px solid var(--cart-rule-strong);
+}
+
+.ruled-steps__order .sum-lines {
+  border-top: 1px solid var(--cart-rule);
+}
+
+.ruled-steps__order .summary__rows {
+  padding-top: 8px;
+}
+
+/* --- Responsive ----------------------------------------------------------- */
+
+@media (max-width: 980px) {
+  .ruled-steps {
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(30px, 4vw, 44px);
+  }
+
+  .ruled-steps__order {
+    position: static;
+    order: -1;
+    padding-left: 0;
+    padding-bottom: clamp(24px, 3vw, 32px);
+    border-left: 0;
+    border-bottom: 2px solid var(--cart-rule-strong);
+  }
+}
+
+@media (max-width: 580px) {
+  .ruled-steps__flow {
+    padding-left: 26px;
+  }
+
+  .ruled-steps .step__num {
+    left: -38px;
+  }
+
+  .step__next {
+    display: grid;
+    min-width: 0;
+    width: 100%;
+  }
+}

@@ -1,0 +1,105 @@
+<!--
+THESIS: The checkout spine resolves into one large editorial confirmation instead of a generic success card.
+OWN-WORLD: Warm paper, ink hairlines, Thai red and navy, sharp controls, serif type, and one five-step color anchor.
+STORY: The reader sees the completed journey, verifies the books and destination, then returns to browsing or reviews the captured details.
+FIRST VIEWPORT: A five-marker spine occupies the left rail; the confirmation headline, ruled order summary, total, and actions fill the right.
+FORM: The approved “Completed Spine” reference, translated into the established Bright Reading Room system.
+
+PREVIEW ONLY. The current checkout does not contact a server or take payment.
+This surface confirms the locally captured design preview and says so plainly.
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Order preview complete — BBT Thailand</title>
+  <meta name="description" content="A summary of the BBT Thailand checkout preview.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/thank-you.css">
+</head>
+<body>
+  <div class="site-atmosphere" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Bhaktivedanta Book Trust home">
+      <img src="assets/brand/logo.png" alt="The Bhaktivedanta Book Trust">
+    </a>
+
+    <nav class="primary-nav" aria-label="Primary navigation">
+      <a class="primary-nav__featured" href="index.html#featured-title">Thai Books</a>
+      <a href="shop.html">All Books</a>
+      <a href="index.html#wayfinder-title">Find Your Book</a>
+      <a href="index.html">About BBT</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="search-control" href="shop.html" aria-label="Search books"></a>
+      <a class="cart-control" href="cart.html" aria-label="Cart, 0 items">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6.8 8.2h10.4l.8 12H6l.8-12Z"></path>
+          <path d="M9 9V6a3 3 0 0 1 6 0v3"></path>
+        </svg>
+        <span class="cart-control__count" data-cart-count>0</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="completion-page">
+    <aside class="completion-spine" aria-label="Checkout progress">
+      <ol>
+        <li><span>1</span><b>Contact</b></li>
+        <li><span>2</span><b>Delivery address</b></li>
+        <li><span>3</span><b>Delivery</b></li>
+        <li><span>4</span><b>Payment</b></li>
+        <li class="is-current"><span>5</span><b>Preview complete</b></li>
+      </ol>
+    </aside>
+
+    <section class="completion-main" aria-labelledby="completion-title">
+      <header class="completion-hero">
+        <h1 id="completion-title">
+          The order is
+          <em>complete.</em>
+        </h1>
+        <p class="completion-lead">Thank you. Your books will be prepared with care.</p>
+        <p class="completion-reference">
+          Preview reference <strong data-order-reference>BBT-1048</strong>
+        </p>
+      </header>
+
+      <section class="completion-order" aria-labelledby="order-summary-title">
+        <h2 class="sr-only" id="order-summary-title">Order summary</h2>
+
+        <ul class="completion-lines" data-order-lines></ul>
+
+        <div class="completion-facts">
+          <dl class="completion-total">
+            <dt>Subtotal</dt>
+            <dd data-order-total>฿0</dd>
+          </dl>
+
+          <div class="completion-destination">
+            <p>Sending to</p>
+            <strong data-order-destination>Address not provided</strong>
+          </div>
+        </div>
+      </section>
+
+      <div class="completion-actions">
+        <a class="completion-primary" href="shop.html">
+          <span>Continue browsing</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/catalog.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/thank-you.js"></script>
+</body>
+</html>

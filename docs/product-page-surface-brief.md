@@ -1,0 +1,6 @@
+- Scope and mode: `product.html`, Persuade. A focused retail product page inside the established Bright Reading Room world.
+- Audience and job: returning devotees confirm the exact edition quickly; newcomers get one short, useful description. The primary action is purchasing the confirmed Thai edition.
+- Direction: approved Editorial Split reference. The physical cover dominates the left side; edition, language, price, quantity, and purchase action form a clean right-hand reading column.
+- Content constraints: language editions use a simple switch. No reviews, wishlist, samples, multi-volume controls, or invented operational claims. English covers used for Thai products must be disclosed.
+- Cover interaction: the language switch swaps among five generated concept covers derived from the supplied Thai reference; each remains labeled as concept artwork until official edition assets are confirmed.
+- Unresolved: non-Thai prices and availability, final official cover art, ISBN, pagination, binding, dimensions, weight, checkout, and fulfillment policies.

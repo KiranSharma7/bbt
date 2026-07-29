@@ -139,30 +139,6 @@
   color: var(--accent);
 }
 
-/* --- Honest data disclosure ---------------------------------------------- */
-
-.finder__disclosure {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  max-width: 74ch;
-  margin: clamp(38px, 4vw, 60px) 0 0;
-  padding-top: 18px;
-  border-top: 1px solid var(--hairline-soft);
-  color: var(--ink-faint);
-  font-size: 13px;
-  line-height: 1.65;
-}
-
-.finder__disclosure::before {
-  flex: 0 0 auto;
-  width: 22px;
-  height: 1px;
-  margin-top: 10px;
-  background: var(--accent);
-  content: "";
-}
-
 /* --- Focus ---------------------------------------------------------------- */
 
 .finder :focus-visible {

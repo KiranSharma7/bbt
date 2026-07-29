@@ -1,0 +1,810 @@
+.product-page {
+  --product-rule: rgb(36 35 31 / 42%);
+  --product-rule-soft: rgb(36 35 31 / 18%);
+  --product-shadow: 18px 24px 28px rgb(47 35 16 / 25%);
+  --product-shadow-hover: 22px 31px 34px rgb(47 35 16 / 29%);
+
+  /* Secondary text on the Thai Navy surface the edition ledger inverts to.
+     The system's --on-accent-faint (44% white) is a decoration tint and only
+     reaches 3.9:1 on navy; at 70% it clears 4.5:1 while still reading a rank
+     below the label beside it. */
+  --on-invert-soft: rgb(255 255 255 / 70%);
+}
+
+.product-page .site-atmosphere {
+  background-image: linear-gradient(var(--paper-wash), var(--paper-wash));
+  opacity: .45;
+}
+
+.product-main {
+  position: relative;
+  z-index: 1;
+  width: var(--shell-width);
+  margin-inline: auto;
+  padding: 116px 0 clamp(76px, 8vw, 124px);
+}
+
+.product-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 58px;
+  border-top: 1px solid var(--product-rule);
+  color: var(--ink-muted);
+  font-size: 14px;
+}
+
+.product-breadcrumb a {
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0 1px;
+  transition: color .2s ease, background-size .25s ease;
+}
+
+.product-breadcrumb a:hover,
+.product-breadcrumb a:focus-visible {
+  color: var(--accent);
+  background-size: 100% 1px;
+}
+
+.product-breadcrumb span:last-child {
+  color: var(--accent);
+}
+
+.product-intro {
+  display: grid;
+  grid-template-columns: minmax(420px, .97fr) minmax(430px, 1.03fr);
+  gap: clamp(58px, 8vw, 126px);
+  min-height: calc(100svh - 174px);
+  padding: clamp(14px, 2vw, 28px) 0 clamp(58px, 5.5vw, 86px);
+}
+
+.product-visual {
+  position: relative;
+  display: grid;
+  align-content: start;
+  justify-items: center;
+  min-width: 0;
+  padding-top: 10px;
+}
+
+.product-book {
+  position: relative;
+  width: min(72%, 378px);
+  margin: 0;
+  transform: rotate(-3deg);
+  transform-origin: 50% 85%;
+  transition: transform .28s ease, opacity .18s ease;
+}
+
+.product-book:hover {
+  transform: translateY(-5px) rotate(0);
+}
+
+.product-book.is-changing {
+  opacity: .18;
+}
+
+.product-book img {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: auto;
+  box-shadow: var(--product-shadow);
+  transition: box-shadow .28s ease;
+}
+
+.product-book:hover img {
+  box-shadow: var(--product-shadow-hover);
+}
+
+.product-ladder {
+  display: grid;
+  grid-template-columns: repeat(5, 24px);
+  gap: 5px;
+  margin-top: 46px;
+}
+
+.product-ladder span {
+  height: 12px;
+}
+
+.product-ladder span:nth-child(1) { background: var(--ladder-navy); }
+.product-ladder span:nth-child(2) { background: var(--ladder-navy-mid); }
+.product-ladder span:nth-child(3) { background: var(--ladder-red); }
+.product-ladder span:nth-child(4) { background: var(--ladder-red-mid); }
+.product-ladder span:nth-child(5) { background: var(--ladder-rose); }
+
+.product-purchase {
+  align-self: start;
+  padding-top: clamp(0px, 1vw, 16px);
+}
+
+.product-heading {
+  padding-bottom: clamp(22px, 2vw, 30px);
+  border-bottom: 1px solid var(--product-rule);
+}
+
+.product-heading h1,
+.product-heading p,
+.product-offer p {
+  margin: 0;
+}
+
+.product-heading h1 {
+  max-width: 10ch;
+  font-family: var(--display);
+  font-size: clamp(52px, 5.1vw, 76px);
+  font-weight: 400;
+  letter-spacing: -.035em;
+  line-height: .98;
+  text-wrap: balance;
+}
+
+.product-author {
+  margin-top: clamp(14px, 1.35vw, 20px) !important;
+  font-size: clamp(17px, 1.45vw, 21px);
+  line-height: 1.3;
+}
+
+.product-offer {
+  padding: clamp(20px, 2.2vw, 30px) 0 clamp(20px, 2.1vw, 28px);
+}
+
+.product-price {
+  color: var(--accent);
+  font-family: var(--display);
+  font-size: clamp(38px, 3.25vw, 50px);
+  letter-spacing: -.025em;
+  line-height: 1;
+}
+
+.product-price.is-pending {
+  font-size: clamp(28px, 2.5vw, 38px);
+}
+
+.product-status {
+  margin-top: 7px !important;
+  color: var(--ink-muted);
+  font-size: 16px;
+}
+
+.product-status.is-pending {
+  color: var(--ink-muted);
+}
+
+.quantity-field > span {
+  margin-bottom: 9px;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* ---------------------------------------------------------------------------
+   Edition ledger
+
+   The five editions are printed as a ruled list, the way a book prints its
+   own edition history in the front matter. Each line carries its native
+   script, its price and its state, so the whole edition picture is readable
+   without clicking anything. Thai is set at display size; the other four sit
+   a rank below.
+--------------------------------------------------------------------------- */
+
+/* The Label role from the system: the only place uppercase is allowed. */
+.ledger-legend {
+  margin: 0 0 clamp(14px, 1.6vw, 21px);
+  color: var(--ink-muted);
+  font-family: var(--serif);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+/* Playfair and Source Serif cover Latin, Thai (via Noto Serif Thai) and
+   Cyrillic, but not Devanagari — Noto Serif Devanagari fills that gap so
+   हिन्दी and नेपाली never fall back to a sans-serif or to tofu. */
+.ledger-native {
+  font-family: "Noto Serif Thai", "Noto Serif Devanagari", var(--serif);
+  font-feature-settings: normal;
+}
+
+.edition-ledger {
+  --ledger-bleed: 16px;
+
+  min-width: 0;
+  margin: clamp(8px, 1.3vw, 16px) 0 0;
+  padding: 0;
+  border: 0;
+}
+
+/* Negative inline margin pulls the rows past the text column, so a selected
+   row prints as a band rather than as a boxed-in list item. */
+.ledger {
+  margin-inline: calc(var(--ledger-bleed) * -1);
+  border-top: 1px solid var(--product-rule);
+}
+
+/* One line per edition. Name, native script, price and state all share a
+   single baseline, which is what keeps five editions inside the space a
+   five-tab row used to want. */
+.ledger__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  column-gap: 18px;
+  width: 100%;
+  padding: 12px var(--ledger-bleed);
+  border: 0;
+  border-bottom: 1px solid var(--product-rule-soft);
+  color: var(--ink-muted);
+  background: transparent;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: color .2s ease, background .2s ease;
+}
+
+.ledger__row:last-child {
+  border-bottom: 1px solid var(--product-rule);
+}
+
+.ledger__label,
+.ledger__figures {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  min-width: 0;
+}
+
+.ledger__figures {
+  justify-content: end;
+}
+
+.ledger__name {
+  font-family: var(--display);
+  font-size: 19px;
+  font-weight: 400;
+  letter-spacing: -.02em;
+  line-height: 1.15;
+}
+
+/* The lead edition is set a full step larger. This is the whole hierarchy:
+   no colour, no badge, no bold — just a larger cut of the same face, which
+   is how the rest of the page shows rank. */
+.ledger__row--lead .ledger__name {
+  font-size: clamp(24px, 2vw, 29px);
+  letter-spacing: -.03em;
+}
+
+.ledger__script {
+  color: var(--ink-muted);
+  font-size: 13px;
+  line-height: 1.2;
+  white-space: nowrap;
+  transition: color .2s ease;
+}
+
+.ledger__row--lead .ledger__script {
+  font-size: 14px;
+}
+
+.ledger__price {
+  font-family: var(--display);
+  font-size: 17px;
+  line-height: 1.15;
+  color: var(--ink-muted);
+  transition: color .2s ease;
+}
+
+.ledger__row--lead .ledger__price {
+  color: var(--accent);
+  font-size: clamp(19px, 1.5vw, 22px);
+}
+
+.ledger__state {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--ink-muted);
+  transition: color .2s ease;
+}
+
+.ledger__row:hover,
+.ledger__row:focus-visible {
+  color: var(--ink);
+  background: var(--ink-tint-06);
+}
+
+.ledger__row.is-active {
+  color: var(--on-accent);
+  background: var(--surface-invert);
+  border-bottom-color: var(--surface-invert);
+}
+
+.ledger__row.is-active .ledger__script,
+.ledger__row.is-active .ledger__state {
+  color: var(--on-invert-soft);
+}
+
+.ledger__row.is-active .ledger__price {
+  color: var(--on-accent);
+}
+
+.purchase-actions {
+  display: grid;
+  grid-template-columns: 132px minmax(0, 1fr);
+  align-items: end;
+  gap: 18px;
+  margin-top: clamp(22px, 2.4vw, 32px);
+}
+
+.quantity-field {
+  display: grid;
+  justify-items: start;
+}
+
+.quantity-control {
+  display: grid;
+  grid-template-columns: repeat(3, 44px);
+  height: 42px;
+  border: 1px solid var(--product-rule);
+}
+
+.quantity-control button,
+.quantity-control output {
+  display: grid;
+  min-width: 0;
+  border: 0;
+  color: var(--ink);
+  background: transparent;
+  font: inherit;
+  place-items: center;
+}
+
+.quantity-control button {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.quantity-control button + output,
+.quantity-control output + button {
+  border-left: 1px solid var(--product-rule);
+}
+
+.quantity-control button:hover,
+.quantity-control button:focus-visible {
+  color: var(--on-accent);
+  background: var(--accent-strong);
+}
+
+.add-to-cart {
+  display: grid;
+  grid-template-columns: 1fr 72px;
+  width: 100%;
+  min-height: 54px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--accent-strong);
+  color: var(--accent-strong);
+  background: var(--surface-wash);
+  font-family: var(--serif);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.add-to-cart > span {
+  display: grid;
+  place-items: center;
+}
+
+.add-to-cart__arrow {
+  color: var(--on-accent);
+  background: var(--accent-strong);
+  font-size: 29px;
+  font-weight: 400;
+  letter-spacing: 0;
+  transition: background .2s ease;
+}
+
+.add-to-cart:hover .add-to-cart__arrow,
+.add-to-cart:focus-visible .add-to-cart__arrow {
+  background: var(--accent);
+}
+
+.add-to-cart:disabled {
+  color: var(--ink-faint);
+  border-color: var(--product-rule);
+  background: transparent;
+  cursor: not-allowed;
+}
+
+.add-to-cart:disabled .add-to-cart__arrow {
+  background: var(--ink-faint);
+}
+
+.product-information {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  border-top: 1px solid var(--product-rule);
+  border-bottom: 1px solid var(--product-rule);
+}
+
+.product-description,
+.product-details {
+  padding: clamp(32px, 3.5vw, 48px) clamp(0px, 3vw, 42px);
+}
+
+.product-description {
+  padding-left: 0;
+  border-right: 1px solid var(--product-rule);
+}
+
+.product-details {
+  padding-right: 0;
+}
+
+.product-description h2,
+.product-details h2,
+.related-books__heading h2 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.product-description p {
+  max-width: 55ch;
+  margin: 22px 0 0;
+  color: var(--ink-muted);
+  font-size: clamp(16px, 1.28vw, 18px);
+  line-height: 1.65;
+}
+
+.product-details dl {
+  margin: 18px 0 0;
+}
+
+.product-details dl > div {
+  display: grid;
+  grid-template-columns: minmax(120px, .8fr) minmax(0, 1.2fr);
+  gap: 22px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--product-rule-soft);
+}
+
+.product-details dl > div:last-child {
+  border-bottom: 0;
+}
+
+.product-details dt,
+.product-details dd {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+.product-details dd {
+  color: var(--ink-muted);
+}
+
+.related-books {
+  padding-top: clamp(48px, 5vw, 76px);
+}
+
+.related-books__heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 30px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--product-rule);
+}
+
+.related-books__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.related-book {
+  display: grid;
+  grid-template-columns: minmax(125px, .82fr) minmax(0, 1fr);
+  gap: clamp(20px, 2.3vw, 34px);
+  min-height: 380px;
+  padding: clamp(30px, 3vw, 44px);
+  border-right: 1px solid var(--product-rule);
+}
+
+.related-book:first-child {
+  padding-left: 0;
+}
+
+.related-book:last-child {
+  padding-right: 0;
+  border-right: 0;
+}
+
+.related-book__cover {
+  align-self: start;
+}
+
+.related-book__cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+  box-shadow: var(--shadow-cover);
+  transform: rotate(-2deg);
+  transition: box-shadow .28s ease, transform .28s ease;
+}
+
+.related-book:nth-child(even) .related-book__cover img {
+  transform: rotate(1.8deg);
+}
+
+.related-book__cover:hover img,
+.related-book__cover:focus-visible img {
+  box-shadow: var(--shadow-cover-hover);
+  transform: translateY(-5px) rotate(0);
+}
+
+.related-book__copy {
+  align-self: center;
+}
+
+.related-book__copy p,
+.related-book__copy h3 {
+  margin: 0;
+}
+
+.related-book__language {
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .09em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.related-book h3 {
+  margin-top: 10px;
+  font-size: clamp(18px, 1.45vw, 22px);
+  font-weight: 400;
+  letter-spacing: -.02em;
+  line-height: 1.12;
+}
+
+.related-book h3 a {
+  background-image: linear-gradient(var(--ink), var(--ink));
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0 1px;
+  transition: background-size .25s ease;
+}
+
+.related-book h3 a:hover,
+.related-book h3 a:focus-visible {
+  background-size: 100% 1px;
+}
+
+.related-book__author {
+  margin-top: 15px !important;
+  color: var(--ink-muted);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.related-book__price {
+  margin-top: 22px !important;
+  color: var(--accent);
+  font-family: var(--display);
+  font-size: 24px;
+}
+
+.product-page .site-footer {
+  border-top: 1px solid var(--product-rule);
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+@media (max-width: 1100px) {
+  .product-intro {
+    grid-template-columns: minmax(360px, .9fr) minmax(410px, 1.1fr);
+    gap: 54px;
+  }
+
+  .product-heading h1 {
+    font-size: clamp(48px, 5.7vw, 66px);
+  }
+
+  .related-book {
+    grid-template-columns: minmax(100px, .72fr) minmax(0, 1fr);
+    padding-inline: 26px;
+  }
+}
+
+@media (max-width: 980px) {
+  .product-main {
+    width: min(100% - 48px, 720px);
+  }
+
+  /* The bleed tracks the shell gutter, so a selected row always lands on the
+     page margin rather than short of it. */
+  .edition-ledger {
+    --ledger-bleed: 14px;
+  }
+
+  .product-intro {
+    grid-template-columns: 1fr;
+    gap: 52px;
+    min-height: auto;
+    padding-top: 26px;
+  }
+
+  .product-heading h1 {
+    max-width: 12ch;
+    font-size: clamp(54px, 9vw, 72px);
+  }
+
+  .product-book {
+    width: min(66%, 370px);
+  }
+
+  .product-information {
+    grid-template-columns: 1fr;
+  }
+
+  .product-description,
+  .product-details {
+    padding: 36px 0;
+  }
+
+  .product-description {
+    border-right: 0;
+    border-bottom: 1px solid var(--product-rule);
+  }
+
+  .related-books__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .related-book {
+    grid-template-columns: minmax(150px, .55fr) minmax(0, 1fr);
+    min-height: 330px;
+    padding: 34px 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--product-rule);
+  }
+
+  .related-book:last-child {
+    border-bottom: 0;
+  }
+}
+
+@media (max-width: 580px) {
+  .product-main {
+    width: min(100% - 40px, 680px);
+    padding-top: 116px;
+  }
+
+  .product-breadcrumb {
+    min-height: 54px;
+    font-size: 13px;
+  }
+
+  .product-intro {
+    gap: 44px;
+    padding-bottom: 54px;
+  }
+
+  .product-heading h1 {
+    font-size: clamp(46px, 14vw, 62px);
+  }
+
+  .product-author {
+    font-size: 17px;
+  }
+
+  .edition-ledger {
+    --ledger-bleed: 10px;
+  }
+
+  .ledger__row {
+    padding-block: 12px;
+    column-gap: 14px;
+  }
+
+  .ledger__name {
+    font-size: 19px;
+  }
+
+  .ledger__row--lead .ledger__name {
+    font-size: 26px;
+  }
+
+  .ledger__script {
+    font-size: 12px;
+  }
+
+  .ledger__price {
+    font-size: 16px;
+  }
+
+  .ledger__row--lead .ledger__price {
+    font-size: 20px;
+  }
+
+  .ledger__state {
+    font-size: 9px;
+    letter-spacing: .09em;
+  }
+
+  .add-to-cart {
+    grid-template-columns: 1fr 58px;
+  }
+
+  .purchase-actions {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .product-book {
+    width: min(64%, 245px);
+  }
+
+  .product-details dl > div {
+    grid-template-columns: minmax(110px, .9fr) minmax(0, 1.1fr);
+  }
+
+  .related-book {
+    grid-template-columns: 120px minmax(0, 1fr);
+    gap: 24px;
+    min-height: 0;
+  }
+
+}
+
+@media (max-width: 390px) {
+  .product-heading h1 {
+    font-size: 43px;
+  }
+
+  .product-breadcrumb {
+    gap: 8px;
+  }
+
+  /* "To be confirmed" is the longest state and the tightest line on the page;
+     the last of the tracking comes off before it is allowed to wrap. */
+  .ledger__state {
+    letter-spacing: .06em;
+  }
+
+  .related-book {
+    grid-template-columns: 96px minmax(0, 1fr);
+    gap: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-page *,
+  .product-page *::before,
+  .product-page *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}

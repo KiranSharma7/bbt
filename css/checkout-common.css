@@ -1,0 +1,369 @@
+/* ---------------------------------------------------------------------------
+   Checkout — shared foundation for all three variations.
+
+   Owns the form vocabulary, the summary lines, the payment placeholder, and
+   the honest post-submit notice. Everything structural — how the steps are
+   arranged and where the summary sits — lives in checkout-0N-*.css.
+
+   Fields are printed forms, not app inputs: a 1px hairline box on the ivory
+   ground, zero radius, serif text, the Label role above. No filled panels
+   anywhere, so the Paper-Only Rule holds through the whole flow.
+
+   Inherits css/hero.css and css/cart-common.css. No colour literal appears
+   here — every value resolves to a :root token.
+--------------------------------------------------------------------------- */
+
+.checkout-page {
+  --cart-rule: var(--hairline-soft);
+  --cart-rule-strong: var(--rule);
+
+  position: relative;
+  z-index: 1;
+  width: var(--shell-width);
+  margin-inline: auto;
+  padding: clamp(30px, 3.6vw, 52px) 0 clamp(64px, 7vw, 108px);
+}
+
+/* --- Steps ---------------------------------------------------------------- */
+
+.step {
+  padding: clamp(26px, 3vw, 40px) 0;
+  border-bottom: 1px solid var(--cart-rule);
+}
+
+.step:last-of-type {
+  border-bottom: 0;
+}
+
+.step__head {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  gap: 0 clamp(14px, 1.6vw, 22px);
+  align-items: baseline;
+}
+
+.step__num {
+  color: var(--ink-faint);
+  font-family: var(--display);
+  font-size: 17px;
+  font-variant-numeric: tabular-nums;
+}
+
+.step__title {
+  margin: 0;
+  font-size: clamp(20px, 1.5vw, 25px);
+  font-weight: 400;
+  letter-spacing: -.02em;
+}
+
+/* The hint sits outside .step__head, so it is indented by hand to line up
+   under the title rather than under the step number. */
+.step__hint {
+  max-width: 52ch;
+  margin: 7px 0 0;
+  padding-left: calc(34px + clamp(14px, 1.6vw, 22px));
+  color: var(--ink-muted);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.step__panel {
+  padding: clamp(18px, 2.2vw, 28px) 0 0;
+}
+
+/* --- Fields --------------------------------------------------------------- */
+
+.field-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(16px, 1.8vw, 24px);
+}
+
+.field {
+  display: block;
+  min-width: 0;
+}
+
+.field-grid--spaced {
+  margin-top: clamp(18px, 2vw, 24px);
+}
+
+.field--wide {
+  grid-column: 1 / -1;
+}
+
+.field__label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--ink-faint);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.field__label i {
+  color: var(--accent);
+  font-style: normal;
+}
+
+.field input,
+.field select,
+.field textarea {
+  display: block;
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid var(--cart-rule);
+  border-radius: 0;
+  color: var(--ink);
+  background: var(--surface-wash);
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.4;
+  transition: border-color .2s ease, background .2s ease;
+  appearance: none;
+}
+
+.field textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.field select {
+  /* Zero radius holds, so the chevron is drawn rather than borrowed from the
+     platform control. */
+  background-image:
+    linear-gradient(45deg, transparent 50%, currentColor 50%),
+    linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position:
+    calc(100% - 19px) calc(50% + 1px),
+    calc(100% - 13px) calc(50% + 1px);
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  padding-right: 40px;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: 0;
+  border-color: var(--accent-strong);
+  background: var(--paper);
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: var(--ink-faint);
+}
+
+.field__note {
+  margin: 8px 0 0;
+  color: var(--ink-faint);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* --- Open decisions -------------------------------------------------------
+   Anything not yet decided is marked, not softened. A dashed hairline reads
+   as "to be drawn in" without introducing a panel fill. */
+
+.open-block {
+  padding: clamp(18px, 2vw, 26px);
+  border: 1px dashed var(--cart-rule-strong);
+}
+
+.open-block__label {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.open-block p {
+  max-width: 58ch;
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.open-block p + p {
+  margin-top: 10px;
+}
+
+/* --- Summary lines -------------------------------------------------------- */
+
+.sum-lines {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sum-line {
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1fr) auto;
+  gap: 0 15px;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--cart-rule);
+}
+
+.sum-line__cover {
+  position: relative;
+  display: block;
+  height: 70px;
+}
+
+.sum-line__cover img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  box-shadow: var(--shadow-cover);
+  transform: rotate(-2.2deg);
+}
+
+.sum-line:nth-child(even) .sum-line__cover img {
+  transform: rotate(1.8deg);
+}
+
+/* The count badge is a circle, matching the header cart badge exactly. */
+.sum-line__qty {
+  position: absolute;
+  top: -7px;
+  right: -9px;
+  display: grid;
+  width: 21px;
+  height: 21px;
+  border: 2px solid var(--paper);
+  border-radius: 50%;
+  color: var(--on-accent);
+  background: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  place-items: center;
+}
+
+.sum-line__title {
+  display: block;
+  font-size: 16px;
+  letter-spacing: -.01em;
+  line-height: 1.2;
+}
+
+.sum-line__meta {
+  display: block;
+  margin-top: 5px;
+  color: var(--ink-faint);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.sum-line.is-preorder .sum-line__meta {
+  color: var(--accent);
+}
+
+.sum-line__value {
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* --- Honest submit notice ------------------------------------------------- */
+
+.checkout-notice {
+  margin: clamp(20px, 2.4vw, 30px) 0 0;
+  padding: clamp(20px, 2.4vw, 30px);
+  border: 1px solid var(--accent);
+}
+
+.checkout-notice:focus {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 3px;
+}
+
+.checkout-notice__label {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.checkout-notice p {
+  max-width: 58ch;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.checkout-notice p + p {
+  margin-top: 10px;
+  color: var(--ink-muted);
+  font-size: 14px;
+}
+
+/* --- Consent -------------------------------------------------------------- */
+
+.consent {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  gap: 0 13px;
+  align-items: start;
+  margin-top: clamp(20px, 2.2vw, 28px);
+  cursor: pointer;
+}
+
+.consent input {
+  width: 18px;
+  height: 18px;
+  margin: 3px 0 0;
+  accent-color: var(--accent);
+}
+
+.consent__text {
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.consent__note {
+  grid-column: 2;
+  margin: 5px 0 0;
+  color: var(--ink-faint);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* --- Edit-the-cart link under a summary ----------------------------------- */
+
+.order-edit {
+  margin: clamp(18px, 2vw, 24px) 0 0;
+}
+
+/* --- Responsive ----------------------------------------------------------- */
+
+@media (max-width: 580px) {
+  .field-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .step__head {
+    grid-template-columns: 26px minmax(0, 1fr) auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .checkout-page *,
+  .checkout-page *::before,
+  .checkout-page *::after {
+    transition-duration: .01ms !important;
+  }
+}

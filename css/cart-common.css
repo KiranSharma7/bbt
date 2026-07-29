@@ -1,0 +1,474 @@
+/* ---------------------------------------------------------------------------
+   Cart and checkout — shared foundation.
+
+   Loaded by cart.html and by every checkout surface. Owns what must not drift
+   between them: the page shell, the header correction, the headline, the line
+   primitives, the quantity control, the summary type, the actions, the
+   pre-order note, and the empty state.
+
+   Layout lives elsewhere — css/cart.css arranges the cart, and the
+   css/checkout-*.css files arrange the checkout. This file styles the markup
+   emitted by js/cart-view.js without deciding where any of it sits.
+
+   Inherits the committed world from css/hero.css: ivory paper, hairline rules,
+   zero radius, warm book shadows, two serifs, Thai Red as the only accent.
+   No colour literal appears here — every value resolves to a :root token.
+--------------------------------------------------------------------------- */
+
+/* The site header is absolutely positioned in hero.css so it can float over
+   the homepage hero. There is no hero on a cart or checkout page, so it
+   returns to the flow and the page simply starts underneath it. This file only
+   loads on those pages, so the override cannot reach the homepage. */
+.site-header {
+  position: static;
+  left: auto;
+  width: var(--shell-width);
+  margin-inline: auto;
+  transform: none;
+}
+
+.cart-page {
+  --cart-rule: var(--hairline-soft);
+  --cart-rule-strong: var(--rule);
+
+  position: relative;
+  z-index: 1;
+  width: var(--shell-width);
+  margin-inline: auto;
+  padding: clamp(30px, 3.6vw, 52px) 0 clamp(64px, 7vw, 108px);
+}
+
+/* --- Breadcrumb ---------------------------------------------------------- */
+
+.cart-crumb {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  margin: 0 0 clamp(22px, 2.6vw, 38px);
+  color: var(--ink-faint);
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.cart-crumb a {
+  color: var(--ink-muted);
+  text-decoration: none;
+  border-bottom: 1px solid var(--cart-rule);
+  transition: color .2s ease, border-color .2s ease;
+}
+
+.cart-crumb a:hover,
+.cart-crumb a:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* Neither page carries a visible headline — the covers open the cart and the
+   numbered spine opens the checkout. Both keep an sr-only <h1> so heading
+   navigation still works, which needs no styling beyond .sr-only below. */
+
+/* --- Line primitives ------------------------------------------------------
+   Shared type and behaviour only. Each variation supplies the grid. */
+
+.cart-lines {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cart-line {
+  position: relative;
+}
+
+.cart-line__index {
+  color: var(--ink-faint);
+  font-family: var(--display);
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+}
+
+.cart-line__cover img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: none;
+  box-shadow: var(--shadow-cover);
+  transform: rotate(-2.2deg);
+  transition: transform .28s ease, box-shadow .28s ease;
+}
+
+.cart-line:nth-child(even) .cart-line__cover img {
+  transform: rotate(1.8deg);
+}
+
+.cart-line__cover img:hover {
+  box-shadow: var(--shadow-cover-hover);
+  transform: rotate(0deg) translateY(-5px);
+}
+
+.cart-line__id {
+  display: block;
+  min-width: 0;
+}
+
+.cart-line__edition,
+.cart-line__status,
+.cart-line__label {
+  display: block;
+  color: var(--ink-faint);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.cart-line__title {
+  display: block;
+  margin-top: 7px;
+  font-size: clamp(19px, 1.35vw, 24px);
+  letter-spacing: -.02em;
+  line-height: 1.14;
+}
+
+.cart-line__note {
+  display: block;
+  margin-top: 6px;
+  color: var(--ink-muted);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.cart-line__status {
+  margin-top: 11px;
+}
+
+.cart-line.is-preorder .cart-line__status {
+  color: var(--accent);
+}
+
+.cart-line__unit,
+.cart-line__qty,
+.cart-line__sum {
+  display: block;
+}
+
+.cart-line__value {
+  display: block;
+  margin-top: 7px;
+  font-size: clamp(17px, 1.25vw, 20px);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.cart-line__sum .cart-line__value {
+  font-weight: 600;
+}
+
+/* --- Quantity control ---------------------------------------------------- */
+
+.qty-control {
+  display: inline-grid;
+  grid-template-columns: repeat(3, 38px);
+  height: 38px;
+  margin-top: 7px;
+  border: 1px solid var(--cart-rule);
+}
+
+.qty-control button,
+.qty-control output {
+  display: grid;
+  min-width: 0;
+  border: 0;
+  color: var(--ink);
+  background: transparent;
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+  place-items: center;
+}
+
+.qty-control button {
+  font-size: 18px;
+  cursor: pointer;
+  transition: color .2s ease, background .2s ease;
+}
+
+.qty-control button + output,
+.qty-control output + button {
+  border-left: 1px solid var(--cart-rule);
+}
+
+.qty-control button:hover,
+.qty-control button:focus-visible {
+  color: var(--on-accent);
+  background: var(--accent-strong);
+}
+
+.qty-control button:disabled {
+  color: var(--ink-faint);
+  background: transparent;
+  cursor: not-allowed;
+}
+
+/* --- Remove --------------------------------------------------------------- */
+
+.cart-line__remove {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  color: var(--ink-faint);
+  background: transparent;
+  font-family: var(--serif);
+  font-size: 19px;
+  line-height: 1;
+  cursor: pointer;
+  place-items: center;
+  transition: color .2s ease, border-color .2s ease;
+}
+
+.cart-line__remove:hover,
+.cart-line__remove:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* --- Summary type --------------------------------------------------------- */
+
+.summary__title {
+  margin: 0 0 clamp(16px, 1.8vw, 24px);
+  color: var(--ink-faint);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.summary__rows {
+  margin: 0;
+}
+
+.summary__row {
+  display: flex;
+  gap: 18px;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--cart-rule);
+  font-size: 16px;
+}
+
+.summary__row dt {
+  color: var(--ink-muted);
+}
+
+.summary__row dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+/* Shipping and returns are not confirmed (PRODUCT.md). The value reads as an
+   open question, never as a promise or a placeholder number. */
+.summary__row dd.is-open {
+  color: var(--ink-faint);
+  font-size: 14px;
+  font-style: italic;
+}
+
+.summary__row--payable {
+  align-items: baseline;
+  padding-top: 18px;
+  border-bottom: 0;
+}
+
+.summary__row--payable dt {
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.summary__row--payable dd {
+  font-family: var(--display);
+  font-size: clamp(24px, 2vw, 32px);
+  letter-spacing: -.02em;
+}
+
+.summary__caveat {
+  margin: 10px 0 0;
+  color: var(--ink-faint);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+/* --- Actions -------------------------------------------------------------- */
+
+.cart-action {
+  display: grid;
+  grid-template-columns: 1fr 62px;
+  width: 100%;
+  min-height: 54px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--accent-strong);
+  color: var(--accent-strong);
+  background: var(--surface-wash);
+  font-family: var(--serif);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .13em;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.cart-action > span {
+  display: grid;
+  place-items: center;
+}
+
+.cart-action__arrow {
+  color: var(--on-accent);
+  background: var(--accent-strong);
+  font-size: 26px;
+  font-weight: 400;
+  letter-spacing: 0;
+  transition: background .2s ease;
+}
+
+.cart-action:hover .cart-action__arrow,
+.cart-action:focus-visible .cart-action__arrow {
+  background: var(--accent);
+}
+
+.cart-link {
+  display: inline-flex;
+  gap: 11px;
+  align-items: center;
+  padding-bottom: 3px;
+  border-bottom: 1px solid var(--cart-rule);
+  color: var(--ink);
+  font-size: 15px;
+  text-decoration: none;
+  background: none;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  font-family: var(--serif);
+  cursor: pointer;
+  transition: color .2s ease, border-color .2s ease, gap .2s ease;
+}
+
+.cart-link:hover,
+.cart-link:focus-visible {
+  gap: 17px;
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.cart-link--quiet {
+  color: var(--ink-faint);
+  font-size: 13px;
+}
+
+/* --- Pre-order note ------------------------------------------------------- */
+
+.cart-preorder {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin: clamp(16px, 1.8vw, 24px) 0 0;
+  padding-left: 14px;
+  border-left: 2px solid var(--accent);
+  color: var(--ink-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* --- Empty state ---------------------------------------------------------- */
+
+.cart-empty {
+  padding: clamp(56px, 8vw, 118px) 0;
+  border-bottom: 1px solid var(--cart-rule-strong);
+  text-align: center;
+}
+
+.cart-empty__mark {
+  margin: 0 auto clamp(20px, 2.4vw, 32px);
+  width: 54px;
+  height: 54px;
+  color: var(--ink-faint);
+}
+
+.cart-empty__mark svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+}
+
+.cart-empty__title {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(28px, 2.4vw, 40px);
+  font-weight: 400;
+  letter-spacing: -.03em;
+}
+
+.cart-empty__lead {
+  max-width: 40ch;
+  margin: 12px auto clamp(24px, 2.6vw, 34px);
+  color: var(--ink-muted);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* --- Ladder anchor -------------------------------------------------------- */
+
+.cart-ladder {
+  display: grid;
+  gap: 0;
+  width: 224px;
+  margin-top: clamp(38px, 4.4vw, 62px);
+}
+
+.cart-ladder span {
+  display: block;
+  height: 22px;
+}
+
+.cart-ladder span:nth-child(1) { width: 42px;  background: var(--ladder-rose); }
+.cart-ladder span:nth-child(2) { width: 86px;  background: var(--ladder-red-mid); }
+.cart-ladder span:nth-child(3) { width: 130px; background: var(--ladder-red); }
+.cart-ladder span:nth-child(4) { width: 178px; background: var(--ladder-navy-mid); }
+.cart-ladder span:nth-child(5) { width: 224px; background: var(--ladder-navy); }
+
+/* --- Utility -------------------------------------------------------------- */
+
+.sr-only {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  white-space: nowrap;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cart-page *,
+  .cart-page *::before,
+  .cart-page *::after {
+    transition-duration: .01ms !important;
+  }
+}

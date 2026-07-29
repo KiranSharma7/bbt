@@ -46,43 +46,6 @@
       line-height: 1.35;
     }
 
-    .site-footer__colophon {
-      margin: 0;
-      color: var(--ink-faint);
-      font-size: 12px;
-      line-height: 1.4;
-      text-align: right;
-    }
-
-    .site-footer__colophon span {
-      color: var(--ink);
-      font-family: "Noto Serif Thai", serif;
-      font-size: 12px;
-    }
-
-    .site-footer__legal {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 24px;
-      margin-top: clamp(16px, 1.6vw, 24px);
-    }
-
-    .site-footer__legal .site-footer__copyright {
-      margin: 0;
-    }
-
-    @media (max-width: 580px) {
-      .site-footer__legal {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 6px;
-      }
-
-      .site-footer__colophon {
-        text-align: left;
-      }
-    }
   </style>
 </head>
 <body>
@@ -94,7 +57,7 @@
     </a>
 
     <nav class="primary-nav" aria-label="Primary navigation">
-      <a href="#">Shop</a>
+      <a href="shop.html">Shop</a>
       <a class="primary-nav__featured" href="#featured-title">Thai Books</a>
       <a href="#">Languages</a>
       <a href="#">About BBT</a>
@@ -104,12 +67,12 @@
       <a class="search-control" href="#" aria-label="Search">
         <span aria-hidden="true"></span>
       </a>
-      <a class="cart-control" href="#" aria-label="Cart, 0 items">
+      <a class="cart-control" href="cart.html" aria-label="Cart, 0 items">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M6.8 8.2h10.4l.8 12H6l.8-12Z"></path>
           <path d="M9 9V6a3 3 0 0 1 6 0v3"></path>
         </svg>
-        <span class="cart-control__count">0</span>
+        <span class="cart-control__count" data-cart-count>0</span>
       </a>
     </div>
   </header>
@@ -177,11 +140,11 @@
 
       <div class="books-grid">
         <article class="book">
-          <a class="book__cover book__cover--left" href="#" aria-label="View Bhagavad-gita As It Is">
+          <a class="book__cover book__cover--left" href="product.html" aria-label="View Bhagavad-gita As It Is">
             <img src="assets/books/en-bg.jpeg" alt="Bhagavad-gita As It Is book cover">
           </a>
           <div class="book__details">
-            <h2><a href="#">Bhagavad-gita As It Is</a></h2>
+            <h2><a href="product.html">Bhagavad-gita As It Is</a></h2>
             <p><span>฿450</span><i aria-hidden="true"></i><span>In stock</span></p>
           </div>
         </article>
@@ -647,7 +610,7 @@
           <div class="site-footer__column">
             <h2>Order</h2>
             <ul>
-              <li><a href="#" aria-label="View shopping cart">Cart</a></li>
+              <li><a href="cart.html" aria-label="View shopping cart">Cart</a></li>
             </ul>
           </div>
         </nav>
@@ -677,6 +640,7 @@
   </footer>
 
   <script src="js/catalog.js"></script>
+  <script src="js/cart.js"></script>
   <script src="js/finder.js"></script>
 </body>
 </html>

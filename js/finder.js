@@ -472,6 +472,35 @@
     });
   };
 
+  /* Chips borrow whatever text the active button already shows (ledger, spine,
+     or counter markup all name their option the same way) instead of a
+     hardcoded language/topic branch, so a page can add a new filter group —
+     price, availability — without touching this file. */
+  Finder.prototype.optionLabel = function (name, value) {
+    var group = this.groups[name];
+    var button = null;
+
+    if (group) {
+      Array.prototype.some.call(group.buttons, function (candidate) {
+        if (candidate.getAttribute('data-filter-value') === value) {
+          button = candidate;
+          return true;
+        }
+        return false;
+      });
+    }
+
+    if (button) {
+      var nameEl = button.querySelector('.ledger__opt-name, .spine__name, .counter__opt-name');
+      var text = (nameEl || button).textContent.trim();
+      if (text) return text;
+    }
+
+    if (name === 'language') return languageLabel(value);
+    if (name === 'topic') return topicLabel(value);
+    return value;
+  };
+
   Finder.prototype.hasActiveFilters = function () {
     var self = this;
     var any = Object.keys(this.groups).some(function (name) {
@@ -492,7 +521,7 @@
       chips.push({
         group: name,
         value: value,
-        label: name === 'language' ? languageLabel(value) : topicLabel(value)
+        label: self.optionLabel(name, value)
       });
     });
 

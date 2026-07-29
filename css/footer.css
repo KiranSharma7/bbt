@@ -133,6 +133,32 @@
   line-height: 1.4;
 }
 
+.site-footer__legal {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: clamp(16px, 1.6vw, 24px);
+}
+
+.site-footer__legal .site-footer__copyright {
+  margin: 0;
+}
+
+.site-footer__colophon {
+  margin: 0;
+  color: var(--ink-faint);
+  font-size: 12px;
+  line-height: 1.4;
+  text-align: right;
+}
+
+.site-footer__colophon span {
+  color: var(--ink);
+  font-family: "Noto Serif Thai", serif;
+  font-size: 12px;
+}
+
 .site-footer__palette li:nth-child(1) { background: var(--ladder-navy); }
 .site-footer__palette li:nth-child(2) { background: var(--ladder-navy-mid); }
 .site-footer__palette li:nth-child(3) { background: var(--ladder-red); }
@@ -172,6 +198,16 @@
 
   .site-footer__column:last-child {
     grid-column: 1 / -1;
+  }
+
+  .site-footer__legal {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .site-footer__colophon {
+    text-align: left;
   }
 }
 

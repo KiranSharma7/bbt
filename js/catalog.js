@@ -307,3 +307,25 @@ window.BBT_CATALOG = [
     note: 'Russian edition'
   }
 ];
+
+/* Price band, derived rather than authored per row, so the shop pages can
+   filter by price without a second source of truth. A null price (nothing
+   confirmed yet) gets its own band instead of being forced into a range. */
+window.BBT_PRICE_BANDS = [
+  { value: 'under-300', label: 'Under ฿300' },
+  { value: '300-600', label: '฿300–600' },
+  { value: 'over-600', label: 'Over ฿600' },
+  { value: 'pending', label: 'Price pending' }
+];
+
+window.BBT_CATALOG.forEach(function (book) {
+  if (book.price === null) {
+    book.priceBand = 'pending';
+  } else if (book.price < 300) {
+    book.priceBand = 'under-300';
+  } else if (book.price <= 600) {
+    book.priceBand = '300-600';
+  } else {
+    book.priceBand = 'over-600';
+  }
+});

@@ -1,0 +1,209 @@
+<!--
+THESIS: The books stay objects on the counter while the bill stands beside them.
+OWN-WORLD: Warm ivory paper, hairline rules, tilted covers, Thai-flag accents, book-only shadows.
+STORY: See the books at a readable size, adjust in place, and keep the figure and the next step always in view.
+FIRST VIEWPORT: Large tilted covers stacked down the left, a sticky bill behind a vertical hairline at the right.
+FORM: Approved "Counter" composition, extending the established Bright Reading Room world.
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cart — BBT Thailand</title>
+  <meta name="description" content="The books you have chosen, with quantities and a confirmed subtotal in Thai baht.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/cart-common.css">
+  <link rel="stylesheet" href="css/cart.css">
+  <link rel="stylesheet" href="css/footer.css">
+</head>
+<body>
+  <div class="site-atmosphere" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Bhaktivedanta Book Trust home">
+      <img src="assets/brand/logo.png" alt="The Bhaktivedanta Book Trust">
+    </a>
+
+    <nav class="primary-nav" aria-label="Primary navigation">
+      <a class="primary-nav__featured" href="index.html#featured-title">Thai Books</a>
+      <a href="index.html#wayfinder-title">All Books</a>
+      <a href="index.html#wayfinder-title">Find Your Book</a>
+      <a href="index.html">About BBT</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="search-control" href="index.html#wayfinder-title" aria-label="Search books">
+        <span aria-hidden="true"></span>
+      </a>
+      <a class="cart-control" href="cart.html" aria-label="Cart, 0 items">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6.8 8.2h10.4l.8 12H6l.8-12Z"></path>
+          <path d="M9 9V6a3 3 0 0 1 6 0v3"></path>
+        </svg>
+        <span class="cart-control__count" data-cart-count>0</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="cart-page cart--counter">
+    <nav class="cart-crumb" aria-label="Breadcrumb">
+      <a href="index.html#featured-title">Thai Books</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Cart</span>
+    </nav>
+
+    <!-- The page carries no visible headline by design: the covers open the
+         page instead. The heading is kept for screen readers and for document
+         outline, so the page is still navigable by heading. -->
+    <h1 class="sr-only">Cart</h1>
+
+    <!-- Empty state ------------------------------------------------------- -->
+    <section class="cart-empty" data-cart-empty hidden aria-labelledby="empty-title">
+      <div class="cart-empty__mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24">
+          <path d="M6.8 8.2h10.4l.8 12H6l.8-12Z"></path>
+          <path d="M9 9V6a3 3 0 0 1 6 0v3"></path>
+        </svg>
+      </div>
+      <h2 class="cart-empty__title" id="empty-title">The counter is clear</h2>
+      <p class="cart-empty__lead">
+        Thai editions are listed first in the shop, with the other four
+        languages a click away.
+      </p>
+      <a class="cart-link" href="index.html#featured-title">
+        Browse Thai books <span aria-hidden="true">&rarr;</span>
+      </a>
+    </section>
+
+    <!-- Filled state ------------------------------------------------------ -->
+    <div data-cart-body>
+      <div class="counter">
+        <div class="counter__books">
+          <ol class="cart-lines" data-cart-lines data-cart-cover-path="assets/books/"></ol>
+
+          <div class="counter__continue">
+            <a class="cart-link" href="index.html#featured-title">
+              <span aria-hidden="true">&larr;</span> Keep browsing
+            </a>
+            <button class="cart-link cart-link--quiet" type="button" data-cart-clear>
+              Empty the cart
+            </button>
+          </div>
+        </div>
+
+        <section class="counter__bill" aria-labelledby="bill-title">
+          <h2 class="summary__title" id="bill-title">Order summary</h2>
+
+          <dl class="summary__rows">
+            <div class="summary__row">
+              <dt>Books</dt>
+              <dd data-cart-tally>0 books</dd>
+            </div>
+
+            <div class="summary__row">
+              <dt>Subtotal</dt>
+              <dd data-cart-subtotal>฿0</dd>
+            </div>
+
+            <div class="summary__row">
+              <dt>Delivery</dt>
+              <dd class="is-open">Not yet confirmed</dd>
+            </div>
+
+            <div class="summary__row summary__row--payable">
+              <dt>To pay</dt>
+              <dd data-cart-payable>฿0 + shipping</dd>
+            </div>
+          </dl>
+
+          <p class="summary__caveat">
+            Delivery is worldwide. Rates and carriers are still being arranged,
+            so the shipping part of this figure is not shown yet.
+          </p>
+
+          <a class="cart-action" href="checkout.html">
+            <span>Go to checkout</span>
+            <span class="cart-action__arrow" aria-hidden="true">&rarr;</span>
+          </a>
+
+          <p class="counter__reassurance">
+            <span><i aria-hidden="true">&bull;</i> Physical books only</span>
+            <span><i aria-hidden="true">&bull;</i> Dispatched from Thailand</span>
+            <span><i aria-hidden="true">&bull;</i> Tracked orders</span>
+          </p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div class="site-footer__main">
+        <div class="site-footer__identity">
+          <p class="site-footer__monogram" aria-hidden="true">BBT</p>
+          <p class="site-footer__name">Bhaktivedanta Book Trust</p>
+          <p class="site-footer__description">
+            Independent bookstore<br>
+            specializing in BBT editions.
+          </p>
+        </div>
+
+        <nav class="site-footer__nav" aria-label="Footer navigation">
+          <div class="site-footer__column">
+            <h2>Shop</h2>
+            <ul>
+              <li><a href="index.html#featured-title">Thai Books</a></li>
+              <li><a href="index.html#wayfinder-title">All Books</a></li>
+              <li><a href="index.html#wayfinder-lang">Languages</a></li>
+            </ul>
+          </div>
+
+          <div class="site-footer__column">
+            <h2>Discover</h2>
+            <ul>
+              <li><a href="index.html#bhakti-title">New to Bhakti</a></li>
+              <li><a href="index.html">About BBT</a></li>
+            </ul>
+          </div>
+
+          <div class="site-footer__column">
+            <h2>Order</h2>
+            <ul>
+              <li><a href="cart.html" aria-label="View shopping cart">Cart</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <div class="site-footer__foot">
+        <ol class="site-footer__palette" aria-label="BBT color palette">
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+          <li>4</li>
+          <li>5</li>
+        </ol>
+
+        <div class="site-footer__legal">
+          <p class="site-footer__copyright">
+            &copy; 2026 The Bhaktivedanta Book Trust. All rights reserved.
+          </p>
+          <p class="site-footer__colophon">
+            <span lang="th">จัดพิมพ์และจัดส่งจากประเทศไทย</span>
+            <span aria-hidden="true"> · </span>
+            Published and dispatched from Thailand
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/catalog.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/cart-view.js"></script>
+</body>
+</html>

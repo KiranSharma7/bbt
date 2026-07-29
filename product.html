@@ -1,0 +1,337 @@
+<!--
+THESIS: A physical BBT book is the page's dominant object; the interface refuses marketplace clutter.
+OWN-WORLD: Warm ivory paper, serif type, hairline rules, Thai-flag accents, sharp controls, and book-only shadows.
+STORY: Confirm the edition, switch language, understand availability, and add the confirmed Thai edition to the cart.
+FIRST VIEWPORT: A tilted oversized cover fills the left while title, edition, price, language, quantity, and purchase action stack at right.
+FORM: Approved Editorial Split composition, extending the established Bright Reading Room world.
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bhagavad-gita As It Is — BBT Thailand</title>
+  <meta name="description" content="Explore the Thai edition of Bhagavad-gita As It Is and linked BBT editions in five languages.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;600&family=Noto+Serif+Thai:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/product.css">
+  <link rel="stylesheet" href="css/footer.css">
+</head>
+<body class="product-page">
+  <div class="site-atmosphere" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Bhaktivedanta Book Trust home">
+      <img src="assets/brand/logo.png" alt="The Bhaktivedanta Book Trust">
+    </a>
+
+    <nav class="primary-nav" aria-label="Primary navigation">
+      <a class="primary-nav__featured" href="index.html#featured-title">Thai Books</a>
+      <a href="index.html#wayfinder-title">All Books</a>
+      <a href="index.html#wayfinder-title">Find Your Book</a>
+      <a href="index.html">About BBT</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="search-control" href="index.html#wayfinder-title" aria-label="Search books">
+        <span aria-hidden="true"></span>
+      </a>
+      <a class="cart-control" href="cart.html" aria-label="Cart, 0 items">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6.8 8.2h10.4l.8 12H6l.8-12Z"></path>
+          <path d="M9 9V6a3 3 0 0 1 6 0v3"></path>
+        </svg>
+        <span class="cart-control__count" data-cart-count>0</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="product-main">
+    <nav class="product-breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html#featured-title">Thai Books</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Bhagavad-gita As It Is</span>
+    </nav>
+
+    <section class="product-intro" aria-labelledby="product-title">
+      <div class="product-visual">
+        <figure class="product-book">
+          <img
+            src="assets/books/languages/bhagavad-gita-thai.webp"
+            alt="Thai Bhagavad-gita As It Is concept cover"
+            data-product-cover>
+        </figure>
+
+        <div class="product-ladder" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <div class="product-purchase" id="purchase">
+        <header class="product-heading">
+          <h1 id="product-title">Bhagavad-gita<br>As It Is</h1>
+          <p class="product-author">A.C. Bhaktivedanta Swami Prabhupada</p>
+        </header>
+
+        <div class="product-offer" aria-live="polite">
+          <p class="product-price" data-price>฿990</p>
+          <p class="product-status" data-status>Available</p>
+        </div>
+
+        <section class="edition-ledger" aria-labelledby="ledger-legend">
+          <h2 class="ledger-legend" id="ledger-legend">Edition language</h2>
+
+          <div class="ledger" role="group" aria-labelledby="ledger-legend">
+            <button
+              type="button"
+              class="ledger__row ledger__row--lead is-active"
+              data-language="Thai"
+              data-price="฿990"
+              data-status="Available"
+              data-cover="assets/books/languages/bhagavad-gita-thai.webp"
+              data-cover-alt="Thai Bhagavad-gita As It Is concept cover"
+              aria-pressed="true">
+              <span class="ledger__label">
+                <span class="ledger__name">Thai</span>
+                <span class="ledger__script ledger-native" lang="th">ภาษาไทย</span>
+              </span>
+              <span class="ledger__figures">
+                <span class="ledger__price">฿990</span>
+                <span class="ledger__state">Available</span>
+              </span>
+            </button>
+
+            <button
+              type="button"
+              class="ledger__row"
+              data-language="English"
+              data-price="Price pending"
+              data-status="Edition details to be confirmed"
+              data-cover="assets/books/languages/bhagavad-gita-english.webp"
+              data-cover-alt="English Bhagavad-gita As It Is concept cover"
+              aria-pressed="false">
+              <span class="ledger__label">
+                <span class="ledger__name">English</span>
+                <span class="ledger__script ledger-native" lang="en">English</span>
+              </span>
+              <span class="ledger__figures">
+                <span class="ledger__state">To be confirmed</span>
+              </span>
+            </button>
+
+            <button
+              type="button"
+              class="ledger__row"
+              data-language="Hindi"
+              data-price="Price pending"
+              data-status="Edition details to be confirmed"
+              data-cover="assets/books/languages/bhagavad-gita-hindi.webp"
+              data-cover-alt="Hindi Bhagavad-gita As It Is concept cover"
+              aria-pressed="false">
+              <span class="ledger__label">
+                <span class="ledger__name">Hindi</span>
+                <span class="ledger__script ledger-native" lang="hi">हिन्दी</span>
+              </span>
+              <span class="ledger__figures">
+                <span class="ledger__state">To be confirmed</span>
+              </span>
+            </button>
+
+            <button
+              type="button"
+              class="ledger__row"
+              data-language="Nepali"
+              data-price="Price pending"
+              data-status="Edition details to be confirmed"
+              data-cover="assets/books/languages/bhagavad-gita-nepali.webp"
+              data-cover-alt="Nepali Bhagavad-gita As It Is concept cover"
+              aria-pressed="false">
+              <span class="ledger__label">
+                <span class="ledger__name">Nepali</span>
+                <span class="ledger__script ledger-native" lang="ne">नेपाली</span>
+              </span>
+              <span class="ledger__figures">
+                <span class="ledger__state">To be confirmed</span>
+              </span>
+            </button>
+
+            <button
+              type="button"
+              class="ledger__row"
+              data-language="Russian"
+              data-price="Price pending"
+              data-status="Edition details to be confirmed"
+              data-cover="assets/books/languages/bhagavad-gita-russian.webp"
+              data-cover-alt="Russian Bhagavad-gita As It Is concept cover"
+              aria-pressed="false">
+              <span class="ledger__label">
+                <span class="ledger__name">Russian</span>
+                <span class="ledger__script ledger-native" lang="ru">Русский</span>
+              </span>
+              <span class="ledger__figures">
+                <span class="ledger__state">To be confirmed</span>
+              </span>
+            </button>
+          </div>
+        </section>
+
+        <div class="purchase-actions">
+          <div class="quantity-field">
+            <span id="quantity-label">Quantity</span>
+            <div class="quantity-control" role="group" aria-labelledby="quantity-label">
+              <button type="button" data-quantity-change="-1" aria-label="Decrease quantity">−</button>
+              <output data-quantity aria-live="polite">1</output>
+              <button type="button" data-quantity-change="1" aria-label="Increase quantity">+</button>
+            </div>
+          </div>
+
+          <button class="add-to-cart" type="button" data-add-to-cart>
+            <span data-add-label>Add to cart</span>
+            <span class="add-to-cart__arrow" aria-hidden="true">→</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-information" aria-label="Product information">
+      <div class="product-description">
+        <h2>Description</h2>
+        <p>
+          Bhagavad-gita As It Is presents the conversation between Lord Krishna and
+          Arjuna, with translations and explanations by A.C. Bhaktivedanta Swami
+          Prabhupada. It explores duty, the self, devotion, and the purpose of yoga.
+        </p>
+      </div>
+
+      <div class="product-details">
+        <h2>Book details</h2>
+        <dl>
+          <div><dt>Edition language</dt><dd data-detail-language>Thai</dd></div>
+          <div><dt>Book type</dt><dd>Physical book</dd></div>
+          <div><dt>ISBN</dt><dd>To be confirmed</dd></div>
+          <div><dt>Pages</dt><dd>To be confirmed</dd></div>
+          <div><dt>Binding</dt><dd>To be confirmed</dd></div>
+          <div><dt>Dimensions</dt><dd>To be confirmed</dd></div>
+          <div><dt>Weight</dt><dd>To be confirmed</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="related-books" aria-labelledby="related-title">
+      <header class="related-books__heading">
+        <h2 id="related-title">Related books</h2>
+      </header>
+
+      <div class="related-books__grid">
+        <article class="related-book">
+          <a class="related-book__cover" href="index.html#featured-title" aria-label="View Krishna Book">
+            <img src="assets/books/en-kb.jpeg" alt="Krishna Book English cover shown as a temporary reference">
+          </a>
+          <div class="related-book__copy">
+            <p class="related-book__language">Thai edition</p>
+            <h3><a href="index.html#featured-title">Krishna Book</a></h3>
+            <p class="related-book__author">A.C. Bhaktivedanta Swami Prabhupada</p>
+            <p class="related-book__price">฿490</p>
+          </div>
+        </article>
+
+        <article class="related-book">
+          <a class="related-book__cover" href="index.html#featured-title" aria-label="View Ramayana">
+            <img src="assets/books/en-rkd.jpeg" alt="Ramayana English cover shown as a temporary reference">
+          </a>
+          <div class="related-book__copy">
+            <p class="related-book__language">Thai edition · Pre-order</p>
+            <h3><a href="index.html#featured-title">Ramayana</a></h3>
+            <p class="related-book__author">Retold by Krishna Dharma</p>
+            <p class="related-book__price">฿490</p>
+          </div>
+        </article>
+
+        <article class="related-book">
+          <a class="related-book__cover" href="index.html#featured-title" aria-label="View The Nectar of Instruction">
+            <img src="assets/books/en-noi.jpeg" alt="The Nectar of Instruction English cover shown as a temporary reference">
+          </a>
+          <div class="related-book__copy">
+            <p class="related-book__language">Thai edition</p>
+            <h3><a href="index.html#featured-title">The Nectar of Instruction</a></h3>
+            <p class="related-book__author">A.C. Bhaktivedanta Swami Prabhupada</p>
+            <p class="related-book__price">฿89</p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div class="site-footer__main">
+        <div class="site-footer__identity">
+          <p class="site-footer__monogram" aria-hidden="true">BBT</p>
+          <p class="site-footer__name">Bhaktivedanta Book Trust</p>
+          <p class="site-footer__description">
+            Independent bookstore<br>
+            specializing in BBT editions.
+          </p>
+        </div>
+
+        <nav class="site-footer__nav" aria-label="Footer navigation">
+          <div class="site-footer__column">
+            <h2>Shop</h2>
+            <ul>
+              <li><a href="index.html#featured-title">Thai Books</a></li>
+              <li><a href="index.html#wayfinder-title">All Books</a></li>
+              <li><a href="index.html#wayfinder-lang">Languages</a></li>
+            </ul>
+          </div>
+
+          <div class="site-footer__column">
+            <h2>Discover</h2>
+            <ul>
+              <li><a href="index.html#bhakti-title">New to Bhakti</a></li>
+              <li><a href="index.html">About BBT</a></li>
+            </ul>
+          </div>
+
+          <div class="site-footer__column">
+            <h2>Order</h2>
+            <ul>
+              <li><a href="cart.html" aria-label="View shopping cart">Cart</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <div class="site-footer__foot">
+        <ol class="site-footer__palette" aria-label="BBT color palette">
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+          <li>4</li>
+          <li>5</li>
+        </ol>
+
+        <div class="site-footer__legal">
+          <p class="site-footer__copyright">
+            &copy; 2026 The Bhaktivedanta Book Trust. All rights reserved.
+          </p>
+          <p class="site-footer__colophon">
+            <span lang="th">จัดพิมพ์และจัดส่งจากประเทศไทย</span>
+            <span aria-hidden="true"> · </span>
+            Published and dispatched from Thailand
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/catalog.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/product.js"></script>
+</body>
+</html>

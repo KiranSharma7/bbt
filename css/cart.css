@@ -1,0 +1,188 @@
+/* ---------------------------------------------------------------------------
+   Cart — "The Counter" (approved composition)
+
+   The shop counter: the books laid out down the left at a size where they are
+   still objects rather than thumbnails, and the bill standing to the right,
+   sticky, so the figure and the checkout action never scroll away.
+
+   The summary is separated by a vertical hairline and whitespace, never by a
+   panel fill — the Paper-Only Rule holds. This is the layout a returning
+   devotee moves through fastest on a desktop.
+
+   The page carries no visible headline: the covers open it. The <h1> is
+   sr-only, so heading navigation still works.
+
+   Layout only. The shared foundation — line primitives, quantity control,
+   summary type, empty state — lives in css/cart-common.css.
+--------------------------------------------------------------------------- */
+
+.counter {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 372px);
+  gap: 0 clamp(38px, 5vw, 82px);
+  align-items: start;
+  padding-top: clamp(26px, 3vw, 42px);
+}
+
+/* --- Left: the books ------------------------------------------------------ */
+
+.counter__books {
+  min-width: 0;
+}
+
+.cart--counter .cart-line {
+  display: grid;
+  grid-template-columns: 132px minmax(0, 1fr) auto auto;
+  grid-template-areas:
+    "cover id   id  drop"
+    "cover unit qty sum";
+  gap: clamp(16px, 2vw, 26px) clamp(20px, 2.6vw, 34px);
+  align-items: start;
+  padding: clamp(26px, 3vw, 38px) 0;
+  border-bottom: 1px solid var(--cart-rule);
+}
+
+.cart--counter .cart-line:first-child {
+  border-top: 1px solid var(--cart-rule-strong);
+}
+
+.cart--counter .cart-line__index {
+  display: none;
+}
+
+.cart--counter .cart-line__cover {
+  display: block;
+  grid-area: cover;
+  height: 182px;
+}
+
+.cart--counter .cart-line__id {
+  grid-area: id;
+}
+
+.cart--counter .cart-line__remove {
+  grid-area: drop;
+  align-self: start;
+}
+
+/* The three figures share one baseline row beneath the title block, so the
+   eye reads title first and arithmetic second. */
+.cart--counter .cart-line__unit,
+.cart--counter .cart-line__qty,
+.cart--counter .cart-line__sum {
+  align-self: end;
+}
+
+.cart--counter .cart-line__unit { grid-area: unit; }
+.cart--counter .cart-line__qty  { grid-area: qty; }
+
+.cart--counter .cart-line__sum {
+  grid-area: sum;
+  min-width: 96px;
+  text-align: right;
+}
+
+/* --- Right: the standing bill --------------------------------------------- */
+
+.counter__bill {
+  position: sticky;
+  top: clamp(20px, 3vw, 40px);
+  padding-left: clamp(24px, 3vw, 44px);
+  border-left: 1px solid var(--cart-rule-strong);
+}
+
+.counter__bill .summary__row--payable {
+  padding-top: 20px;
+}
+
+.counter__bill .cart-action {
+  margin-top: clamp(22px, 2.4vw, 30px);
+}
+
+.counter__reassurance {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: clamp(20px, 2.2vw, 28px) 0 0;
+  padding-top: clamp(18px, 2vw, 24px);
+  border-top: 1px solid var(--cart-rule);
+  color: var(--ink-muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.counter__reassurance span {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.counter__reassurance i {
+  color: var(--accent);
+  font-style: normal;
+}
+
+.counter__continue {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(18px, 2.4vw, 34px);
+  align-items: center;
+  justify-content: space-between;
+  padding-top: clamp(24px, 2.8vw, 34px);
+}
+
+/* --- Responsive ----------------------------------------------------------- */
+
+@media (max-width: 1080px) {
+  .counter {
+    grid-template-columns: minmax(0, 1fr) minmax(272px, 320px);
+  }
+
+  .cart--counter .cart-line {
+    grid-template-columns: 112px minmax(0, 1fr) auto auto;
+  }
+
+  .cart--counter .cart-line__cover {
+    height: 156px;
+  }
+}
+
+@media (max-width: 980px) {
+  /* The bill stops standing beside the books and settles under them, keeping
+     its rule as a top edge instead of a left edge. */
+  .counter {
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(30px, 4vw, 44px);
+  }
+
+  .counter__bill {
+    position: static;
+    padding-left: 0;
+    padding-top: clamp(24px, 3vw, 32px);
+    border-left: 0;
+    border-top: 2px solid var(--cart-rule-strong);
+  }
+}
+
+@media (max-width: 580px) {
+  .cart--counter .cart-line {
+    grid-template-columns: 92px minmax(0, 1fr) auto;
+    grid-template-areas:
+      "cover id   drop"
+      "cover unit unit"
+      "qty   qty  sum";
+    gap: 14px 18px;
+  }
+
+  .cart--counter .cart-line__cover {
+    height: 128px;
+  }
+
+  .cart--counter .cart-line__unit {
+    align-self: start;
+  }
+
+  .cart--counter .cart-line__sum {
+    min-width: 0;
+  }
+}

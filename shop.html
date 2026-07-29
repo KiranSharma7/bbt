@@ -1,0 +1,342 @@
+<!--
+THESIS: Language is a shelf seen edge-on, not one more line in a filter list — the choice that matters most gets pulled out where the eye lands first.
+OWN-WORLD: Warm ivory paper, hairline-drawn spines on a shelf rule, a ruled ledger rail for the remaining filters, the homepage's four-column book table unchanged.
+STORY: The visitor recognises the shelf, pulls Thai forward, then narrows by topic, price, and availability on the rail below before reading the table.
+FIRST VIEWPORT: Page title left with the five-spine language rack at eye level to its right; below, a 268px rail of Topic, Price, and Availability beside the four-column book table.
+FORM: Shelf elevation + ledger sidebar — extension of the incumbent world (css/finder-02-ledger-rail.css), no new tokens.
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shop All Books — BBT Thailand</title>
+  <meta name="description" content="Browse every BBT edition. Pull a language off the shelf, then narrow by topic, price, and availability.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/finder-common.css">
+  <link rel="stylesheet" href="css/finder-02-ledger-rail.css">
+  <link rel="stylesheet" href="css/shop.css">
+  <link rel="stylesheet" href="css/footer.css">
+</head>
+<body class="shop-shell">
+  <div class="site-atmosphere" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Bhaktivedanta Book Trust home">
+      <img src="assets/brand/logo.png" alt="The Bhaktivedanta Book Trust">
+    </a>
+
+    <nav class="primary-nav" aria-label="Primary navigation">
+      <a class="primary-nav__featured" href="shop.html" aria-current="page">Shop</a>
+      <a href="index.html#featured-title">Thai Books</a>
+      <a href="index.html#wayfinder-title">Languages</a>
+      <a href="index.html">About BBT</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="search-control" href="#shop-title" aria-label="Search books">
+        <span aria-hidden="true"></span>
+      </a>
+      <a class="cart-control" href="cart.html" aria-label="Cart, 0 items">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6.8 8.2h10.4l.8 12H6l.8-12Z"></path>
+          <path d="M9 9V6a3 3 0 0 1 6 0v3"></path>
+        </svg>
+        <span class="cart-control__count" data-cart-count>0</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="shop-main">
+    <section
+      class="finder finder--shop-shelf"
+      aria-labelledby="shop-title"
+      data-finder
+      data-finder-tilt
+      data-finder-page-size="8"
+      data-finder-cover-path="assets/books/">
+
+      <div class="ledger__top">
+        <header class="finder__head shop-head">
+          <h1 class="finder__title" id="shop-title">
+            <span>Shop</span>
+            <em>All Books</em>
+          </h1>
+          <p class="finder__lead">
+            Five languages stand on the shelf. Pull one out, then narrow
+            the list on the rail below.
+          </p>
+        </header>
+
+        <div class="rack" role="group" aria-labelledby="shop-lang" data-filter-group="language">
+          <h2 class="rack__label sr-only" id="shop-lang">Explore by language</h2>
+
+          <button class="spine spine--thai" type="button" data-filter-value="thai" aria-pressed="true">
+            <span class="spine__name">Thai</span>
+            <span class="spine__count" data-filter-count>0</span>
+          </button>
+          <button class="spine" type="button" data-filter-value="english" aria-pressed="false">
+            <span class="spine__name">English</span>
+            <span class="spine__count" data-filter-count>0</span>
+          </button>
+          <button class="spine" type="button" data-filter-value="nepali" aria-pressed="false">
+            <span class="spine__name">Nepali</span>
+            <span class="spine__count" data-filter-count>0</span>
+          </button>
+          <button class="spine" type="button" data-filter-value="hindi" aria-pressed="false">
+            <span class="spine__name">Hindi</span>
+            <span class="spine__count" data-filter-count>0</span>
+          </button>
+          <button class="spine" type="button" data-filter-value="russian" aria-pressed="false">
+            <span class="spine__name">Russian</span>
+            <span class="spine__count" data-filter-count>0</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="ledger">
+        <aside class="ledger__rail" aria-label="Filters">
+          <div class="ledger__group" role="group" aria-labelledby="shop-topic" data-filter-group="topic">
+            <h2 class="ledger__label" id="shop-topic">Topic</h2>
+            <ul class="ledger__list">
+              <li>
+                <button class="ledger__opt" type="button" data-filter-value="self" aria-pressed="false">
+                  <span class="ledger__opt-name">Self &amp; Consciousness</span>
+                  <span class="ledger__opt-count" data-filter-count>0</span>
+                </button>
+              </li>
+              <li>
+                <button class="ledger__opt" type="button" data-filter-value="yoga" aria-pressed="false">
+                  <span class="ledger__opt-name">Yoga &amp; Meditation</span>
+                  <span class="ledger__opt-count" data-filter-count>0</span>
+                </button>
+              </li>
+              <li>
+                <button class="ledger__opt" type="button" data-filter-value="karma" aria-pressed="false">
+                  <span class="ledger__opt-name">Karma &amp; Reincarnation</span>
+                  <span class="ledger__opt-count" data-filter-count>0</span>
+                </button>
+              </li>
+              <li>
+                <button class="ledger__opt" type="button" data-filter-value="stories" aria-pressed="false">
+                  <span class="ledger__opt-name">Sacred Stories</span>
+                  <span class="ledger__opt-count" data-filter-count>0</span>
+                </button>
+              </li>
+              <li>
+                <button class="ledger__opt" type="button" data-filter-value="wisdom" aria-pressed="false">
+                  <span class="ledger__opt-name">Spiritual Wisdom</span>
+                  <span class="ledger__opt-count" data-filter-count>0</span>
+                </button>
+              </li>
+              <li>
+                <button class="ledger__opt" type="button" data-filter-value="questions" aria-pressed="false">
+                  <span class="ledger__opt-name">Life's Big Questions</span>
+                  <span class="ledger__opt-count" data-filter-count>0</span>
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          <div class="ledger__group" role="group" aria-labelledby="shop-price" data-filter-group="priceBand">
+            <h2 class="ledger__label" id="shop-price">Price</h2>
+            <ul class="ledger__list">
+              <li>
+                <button class="ledger__opt" type="button" data-filter-value="under-300" aria-pressed="false">
+                  <span class="ledger__opt-name">Under ฿300</span>
+                  <span class="ledger__opt-count" data-filter-count>0</span>
+                </button>
+              </li>
+              <li>
+                <button class="ledger__opt" type="button" data-filter-value="300-600" aria-pressed="false">
+                  <span class="ledger__opt-name">฿300&ndash;600</span>
+                  <span class="ledger__opt-count" data-filter-count>0</span>
+                </button>
+              </li>
+              <li>
+                <button class="ledger__opt" type="button" data-filter-value="over-600" aria-pressed="false">
+                  <span class="ledger__opt-name">Over ฿600</span>
+                  <span class="ledger__opt-count" data-filter-count>0</span>
+                </button>
+              </li>
+              <li>
+                <button class="ledger__opt" type="button" data-filter-value="pending" aria-pressed="false">
+                  <span class="ledger__opt-name">Price pending</span>
+                  <span class="ledger__opt-count" data-filter-count>0</span>
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          <div class="ledger__group" role="group" aria-labelledby="shop-avail" data-filter-group="status">
+            <h2 class="ledger__label" id="shop-avail">Availability</h2>
+            <ul class="ledger__list">
+              <li>
+                <button class="ledger__opt" type="button" data-filter-value="available" aria-pressed="false">
+                  <span class="ledger__opt-name">In stock</span>
+                  <span class="ledger__opt-count" data-filter-count>0</span>
+                </button>
+              </li>
+              <li>
+                <button class="ledger__opt" type="button" data-filter-value="preorder" aria-pressed="false">
+                  <span class="ledger__opt-name">Pre-order</span>
+                  <span class="ledger__opt-count" data-filter-count>0</span>
+                </button>
+              </li>
+              <li>
+                <button class="ledger__opt" type="button" data-filter-value="pending" aria-pressed="false">
+                  <span class="ledger__opt-name">Price pending</span>
+                  <span class="ledger__opt-count" data-filter-count>0</span>
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          <div class="ledger__foot" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </aside>
+
+        <div class="ledger__main">
+          <div class="ledger__bar">
+            <p class="finder__tally">
+              <b data-finder-count aria-live="polite">0</b>
+              <span><span data-finder-noun>books</span> in this list</span>
+            </p>
+
+            <label class="ledger__sort">
+              <span>Order by</span>
+              <select data-finder-sort>
+                <option value="default">Thai first</option>
+                <option value="title">Title, A&ndash;Z</option>
+                <option value="price-asc">Price, low to high</option>
+                <option value="price-desc">Price, high to low</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="ledger__applied">
+            <div class="ledger__chips" data-finder-chips hidden></div>
+            <button class="ledger__clear" type="button" data-finder-clear hidden>Clear all</button>
+          </div>
+
+          <div class="books-grid" data-finder-results></div>
+
+          <nav class="pager" aria-label="Result pages" data-finder-pagination hidden>
+            <button class="pager__step" type="button" data-finder-prev>
+              <i aria-hidden="true"></i>
+              <span>Previous</span>
+            </button>
+
+            <div class="pager__numbers" data-finder-pages></div>
+
+            <button class="pager__step pager__step--next" type="button" data-finder-next>
+              <span>Next</span>
+              <i aria-hidden="true"></i>
+            </button>
+
+            <p class="pager__range" data-finder-range aria-live="polite"></p>
+          </nav>
+
+          <div class="finder__empty" data-finder-empty hidden>
+            <p>No titles under that heading.</p>
+            <p>These filters have no books in the catalogue yet. Remove one to widen the list.</p>
+            <button type="button" data-finder-clear data-finder-clear-always>Show every book</button>
+          </div>
+        </div>
+      </div>
+
+      <template data-finder-page-template>
+        <button class="pager__num" type="button">
+          <span data-page-label></span>
+        </button>
+      </template>
+
+      <template data-finder-chip-template>
+        <button class="chip" type="button">
+          <span data-chip-label></span>
+          <i aria-hidden="true">&times;</i>
+        </button>
+      </template>
+
+      <template data-finder-template>
+        <article class="book">
+          <a class="book__cover" href="#" tabindex="-1" aria-hidden="true">
+            <img data-field="cover" alt="">
+          </a>
+          <div class="book__details">
+            <h2><a href="#" data-field="title"></a></h2>
+            <p>
+              <span data-field="price"></span>
+              <i aria-hidden="true"></i>
+              <span data-field="status"></span>
+            </p>
+          </div>
+        </article>
+      </template>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div class="site-footer__main">
+        <div class="site-footer__identity">
+          <p class="site-footer__monogram" aria-hidden="true">BBT</p>
+          <p class="site-footer__name">Bhaktivedanta Book Trust</p>
+          <p class="site-footer__description">
+            Independent bookstore<br>
+            specializing in BBT editions.
+          </p>
+        </div>
+
+        <nav class="site-footer__nav" aria-label="Footer navigation">
+          <div class="site-footer__column">
+            <h2>Shop</h2>
+            <ul>
+              <li><a href="index.html#featured-title">Thai Books</a></li>
+              <li><a href="shop.html">All Books</a></li>
+              <li><a href="index.html#wayfinder-title">Languages</a></li>
+            </ul>
+          </div>
+
+          <div class="site-footer__column">
+            <h2>Discover</h2>
+            <ul>
+              <li><a href="index.html#bhakti-title">New to Bhakti</a></li>
+              <li><a href="index.html">About BBT</a></li>
+            </ul>
+          </div>
+
+          <div class="site-footer__column">
+            <h2>Order</h2>
+            <ul>
+              <li><a href="cart.html" aria-label="View shopping cart">Cart</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <div class="site-footer__foot">
+        <ol class="site-footer__palette" aria-label="BBT color palette">
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+          <li>4</li>
+          <li>5</li>
+        </ol>
+
+        <p class="site-footer__copyright">
+          &copy; 2026 The Bhaktivedanta Book Trust. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/catalog.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/finder.js"></script>
+</body>
+</html>
