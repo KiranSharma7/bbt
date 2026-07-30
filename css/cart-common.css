@@ -17,10 +17,12 @@
 
 /* The site header is absolutely positioned in hero.css so it can float over
    the homepage hero. There is no hero on a cart or checkout page, so it
-   returns to the flow and the page simply starts underneath it. This file only
+   returns to the flow and the page simply starts underneath it. `relative`
+   (not `static`) keeps that same flow behaviour while still giving the
+   mobile menu panel a positioning context to anchor to. This file only
    loads on those pages, so the override cannot reach the homepage. */
 .site-header {
-  position: static;
+  position: relative;
   left: auto;
   width: var(--shell-width);
   margin-inline: auto;
@@ -463,6 +465,24 @@
 
 [hidden] {
   display: none !important;
+}
+
+/* --- Responsive --------------------------------------------------------
+   Below 980px the page is used on tablet and phone touch screens, so the
+   quantity stepper and the remove control grow to a comfortable ~44px tap
+   target. Sizing only — the shapes, colours, and grid areas set above are
+   unchanged. */
+@media (max-width: 980px) {
+  .qty-control {
+    grid-template-columns: repeat(3, 44px);
+    height: 44px;
+  }
+
+  .cart-line__remove {
+    width: 44px;
+    height: 44px;
+    font-size: 22px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -33,11 +33,12 @@ FORM: Shelf elevation + ledger sidebar — extension of the incumbent world (css
       <a class="primary-nav__featured" href="shop.html" aria-current="page">Shop</a>
       <a href="index.html#featured-title">Thai Books</a>
       <a href="index.html#wayfinder-title">Languages</a>
-      <a href="index.html">About BBT</a>
+      <a href="about.html">About BBT</a>
+      <a href="contact.html">Contact</a>
     </nav>
 
     <div class="header-actions">
-      <a class="search-control" href="#shop-title" aria-label="Search books">
+      <a class="search-control" href="#search" aria-label="Search books">
         <span aria-hidden="true"></span>
       </a>
       <a class="cart-control" href="cart.html" aria-label="Cart, 0 items">
@@ -47,7 +48,18 @@ FORM: Shelf elevation + ledger sidebar — extension of the incumbent world (css
         </svg>
         <span class="cart-control__count" data-cart-count>0</span>
       </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <span class="menu-toggle__bar" aria-hidden="true"></span>
+      </button>
     </div>
+
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation" hidden>
+      <a href="shop.html" aria-current="page">Shop</a>
+      <a href="index.html#featured-title">Thai Books</a>
+      <a href="index.html#wayfinder-title">Languages</a>
+      <a href="about.html">About BBT</a>
+      <a href="contact.html">Contact</a>
+    </nav>
   </header>
 
   <main class="shop-main">
@@ -201,6 +213,18 @@ FORM: Shelf elevation + ledger sidebar — extension of the incumbent world (css
         </aside>
 
         <div class="ledger__main">
+          <label class="ledger__search" for="search">
+            <span class="ledger__search-label">Search titles</span>
+            <input
+              class="ledger__search-input"
+              id="search"
+              type="search"
+              name="q"
+              autocomplete="off"
+              placeholder="Bhagavad-gita, Krishna, karma&hellip;"
+              data-finder-search>
+          </label>
+
           <div class="ledger__bar">
             <p class="finder__tally">
               <b data-finder-count aria-live="polite">0</b>
@@ -243,7 +267,7 @@ FORM: Shelf elevation + ledger sidebar — extension of the incumbent world (css
 
           <div class="finder__empty" data-finder-empty hidden>
             <p>No titles under that heading.</p>
-            <p>These filters have no books in the catalogue yet. Remove one to widen the list.</p>
+            <p>Nothing in the catalogue matches every choice above. Remove one to widen the list.</p>
             <button type="button" data-finder-clear data-finder-clear-always>Show every book</button>
           </div>
         </div>
@@ -306,7 +330,7 @@ FORM: Shelf elevation + ledger sidebar — extension of the incumbent world (css
             <h2>Discover</h2>
             <ul>
               <li><a href="index.html#bhakti-title">New to Bhakti</a></li>
-              <li><a href="index.html">About BBT</a></li>
+              <li><a href="about.html">About BBT</a></li>
             </ul>
           </div>
 
@@ -314,6 +338,7 @@ FORM: Shelf elevation + ledger sidebar — extension of the incumbent world (css
             <h2>Order</h2>
             <ul>
               <li><a href="cart.html" aria-label="View shopping cart">Cart</a></li>
+              <li><a href="contact.html">Contact</a></li>
             </ul>
           </div>
         </nav>
@@ -338,5 +363,6 @@ FORM: Shelf elevation + ledger sidebar — extension of the incumbent world (css
   <script src="js/catalog.js"></script>
   <script src="js/cart.js"></script>
   <script src="js/finder.js"></script>
+  <script src="js/mobile-nav.js"></script>
 </body>
 </html>

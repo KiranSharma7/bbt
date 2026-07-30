@@ -32,11 +32,12 @@ FORM: Approved "Counter" composition, extending the established Bright Reading R
       <a class="primary-nav__featured" href="index.html#featured-title">Thai Books</a>
       <a href="index.html#wayfinder-title">All Books</a>
       <a href="index.html#wayfinder-title">Find Your Book</a>
-      <a href="index.html">About BBT</a>
+      <a href="about.html">About BBT</a>
+      <a href="contact.html">Contact</a>
     </nav>
 
     <div class="header-actions">
-      <a class="search-control" href="index.html#wayfinder-title" aria-label="Search books">
+      <a class="search-control" href="shop.html#search" aria-label="Search books">
         <span aria-hidden="true"></span>
       </a>
       <a class="cart-control" href="cart.html" aria-label="Cart, 0 items">
@@ -46,7 +47,18 @@ FORM: Approved "Counter" composition, extending the established Bright Reading R
         </svg>
         <span class="cart-control__count" data-cart-count>0</span>
       </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <span class="menu-toggle__bar" aria-hidden="true"></span>
+      </button>
     </div>
+
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation" hidden>
+      <a href="index.html#featured-title">Thai Books</a>
+      <a href="index.html#wayfinder-title">All Books</a>
+      <a href="index.html#wayfinder-title">Find Your Book</a>
+      <a href="about.html">About BBT</a>
+      <a href="contact.html">Contact</a>
+    </nav>
   </header>
 
   <main class="cart-page cart--counter">
@@ -129,12 +141,6 @@ FORM: Approved "Counter" composition, extending the established Bright Reading R
             <span>Go to checkout</span>
             <span class="cart-action__arrow" aria-hidden="true">&rarr;</span>
           </a>
-
-          <p class="counter__reassurance">
-            <span><i aria-hidden="true">&bull;</i> Physical books only</span>
-            <span><i aria-hidden="true">&bull;</i> Dispatched from Thailand</span>
-            <span><i aria-hidden="true">&bull;</i> Tracked orders</span>
-          </p>
         </section>
       </div>
     </div>
@@ -166,7 +172,7 @@ FORM: Approved "Counter" composition, extending the established Bright Reading R
             <h2>Discover</h2>
             <ul>
               <li><a href="index.html#bhakti-title">New to Bhakti</a></li>
-              <li><a href="index.html">About BBT</a></li>
+              <li><a href="about.html">About BBT</a></li>
             </ul>
           </div>
 
@@ -174,6 +180,7 @@ FORM: Approved "Counter" composition, extending the established Bright Reading R
             <h2>Order</h2>
             <ul>
               <li><a href="cart.html" aria-label="View shopping cart">Cart</a></li>
+              <li><a href="contact.html">Contact</a></li>
             </ul>
           </div>
         </nav>
@@ -205,5 +212,6 @@ FORM: Approved "Counter" composition, extending the established Bright Reading R
   <script src="js/catalog.js"></script>
   <script src="js/cart.js"></script>
   <script src="js/cart-view.js"></script>
+  <script src="js/mobile-nav.js"></script>
 </body>
 </html>

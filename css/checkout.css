@@ -208,6 +208,19 @@
     border-left: 0;
     border-bottom: 2px solid var(--cart-rule-strong);
   }
+
+  /* The Edit control reads fine at its printed text size, but its actual
+     hit area is only ~19px tall — too small to tap reliably. An invisible
+     ::after pads the touch target without changing anything visible. */
+  .step__edit {
+    position: relative;
+  }
+
+  .step__edit::after {
+    position: absolute;
+    content: "";
+    inset: -13px -10px;
+  }
 }
 
 @media (max-width: 580px) {

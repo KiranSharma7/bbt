@@ -1,0 +1,336 @@
+/* ---------------------------------------------------------------------------
+   About BBT — shared foundation for the page.
+
+   Owns the page frame, the reading-column vocabulary, the three typographic
+   figures, the independent-store disclosure, the closing action, and the
+   ladder. How those blocks are arranged on the page is the layout's own
+   decision and lives in about.css.
+
+   This is a Read surface: comprehension first, then a page worth staying in.
+   Every claim on it traces to docs/about-bbt-page-content.md. Nothing here
+   invents a fact, a number, or a promise.
+
+   Inherits css/hero.css. No colour literal appears here — every value
+   resolves to a :root token.
+--------------------------------------------------------------------------- */
+
+.about-page {
+  --a-rule: var(--hairline-soft);
+  --a-rule-strong: var(--rule);
+}
+
+/* The temple linework belongs to the homepage hero. On a long reading page it
+   sits under running copy, so it is washed back further than elsewhere. */
+.about-page .site-atmosphere {
+  background-image: linear-gradient(var(--paper-wash), var(--paper-wash));
+  opacity: .6;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 100;
+  top: 12px;
+  left: 12px;
+  padding: 12px 18px;
+  color: var(--on-accent);
+  background: var(--surface-invert);
+  font-weight: 700;
+  transform: translateY(calc(-100% - 24px));
+  transition: transform .2s ease;
+}
+
+.skip-link:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  transform: translateY(0);
+}
+
+.about-main {
+  position: relative;
+  z-index: 1;
+  width: var(--shell-width);
+  margin-inline: auto;
+  padding-top: 116px;
+}
+
+.about-page .site-footer {
+  border-top: 1px solid var(--a-rule-strong);
+}
+
+/* --- Headings -------------------------------------------------------------- */
+
+.about-main h1,
+.about-main h2 {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 400;
+  letter-spacing: -.04em;
+  text-wrap: balance;
+}
+
+.about-main h1 {
+  font-size: clamp(46px, 5vw, 74px);
+  line-height: .98;
+  letter-spacing: -.02em;
+}
+
+.about-main h2 {
+  font-size: clamp(38px, 3.1vw, 58px);
+  line-height: 1.04;
+}
+
+/* --- Running copy ---------------------------------------------------------- */
+
+/* The one-line sentence that sits tight under a heading and reads as part of
+   it. Larger than body, shorter measure, no muting. */
+.about-lead {
+  max-width: 40ch;
+  margin: 0;
+  font-size: clamp(17px, 1.25vw, 21px);
+  line-height: 1.45;
+}
+
+/* Long-form prose. 62ch keeps the measure inside the reading-room range at
+   every width; 1.7 is the site's body line-height. */
+.about-body p {
+  max-width: 62ch;
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: clamp(16px, 1.25vw, 18px);
+  line-height: 1.7;
+}
+
+.about-body p + p {
+  margin-top: 1.15em;
+}
+
+/* One emphasised sentence per section at most. Full-strength ink, not bold —
+   weight is reserved for the Label role. */
+.about-body strong,
+.about-emphasis {
+  color: var(--ink);
+  font-weight: 400;
+}
+
+.about-label {
+  display: block;
+  color: var(--ink-faint);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+/* --- The three figures -----------------------------------------------------
+   1972 / 87 / 80+. Typographic figures, not stat cards: a display numeral, a
+   Label beneath it, and a hairline between neighbours. No box, no fill, no
+   icon. The numeral is set at a size where it reads as a graphic element,
+   which is the system's Numeral-As-Image rule. */
+
+.figures {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.figures > li {
+  padding: clamp(20px, 2.2vw, 30px) clamp(16px, 2vw, 28px);
+}
+
+.figures > li + li {
+  border-left: 1px solid var(--a-rule);
+}
+
+.figures > li:first-child {
+  padding-left: 0;
+}
+
+.figure__value {
+  display: block;
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: clamp(46px, 5vw, 74px);
+  font-weight: 400;
+  letter-spacing: -.03em;
+  line-height: .9;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.figure__label {
+  display: block;
+  margin-top: clamp(12px, 1.3vw, 17px);
+  color: var(--ink-faint);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+/* --- The disclosure --------------------------------------------------------
+   Section 5 of the content brief: what this store is, and is not. The brief is
+   explicit that it must never be a footnote or small print, so it is set at
+   full body scale with an accent hairline above it — the one place on the page
+   where Thai Red marks structure rather than an interaction.
+
+   The Paper-Only Rule holds: no tinted panel, no filled box. A rule and a
+   heading carry the weight. */
+
+.disclosure {
+  border-top: 2px solid var(--accent);
+  padding-top: clamp(24px, 2.6vw, 34px);
+}
+
+.disclosure__body p {
+  max-width: 58ch;
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(16px, 1.25vw, 18px);
+  line-height: 1.65;
+}
+
+.disclosure__body p + p {
+  margin-top: 1.1em;
+  color: var(--ink-muted);
+}
+
+/* The first sentence is the whole point of the section. It is lifted by face
+   and colour rather than by a new type step: display serif at the Dek size,
+   full-strength ink, short measure. */
+.disclosure__body .disclosure__statement {
+  max-width: 26ch;
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: clamp(17px, 1.25vw, 21px);
+  line-height: 1.34;
+  letter-spacing: -.02em;
+}
+
+/* --- Closing action --------------------------------------------------------
+   One button, the site's two-cell primary. No newsletter, no second action. */
+
+.about-close {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: clamp(20px, 3vw, 48px);
+  padding: clamp(48px, 5.5vw, 92px) 0 clamp(56px, 6vw, 100px);
+  border-top: 1px solid var(--a-rule-strong);
+}
+
+.about-close h2 {
+  max-width: 14ch;
+}
+
+.about-cta {
+  display: grid;
+  grid-template-columns: auto 52px;
+  align-items: stretch;
+  width: max-content;
+  max-width: 100%;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  background: var(--surface-wash);
+}
+
+.about-cta > span:first-child {
+  display: flex;
+  align-items: center;
+  min-height: 54px;
+  padding-inline: 26px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .06em;
+}
+
+.about-cta > span:last-child {
+  display: grid;
+  place-items: center;
+  color: var(--on-accent);
+  background: var(--surface-invert);
+  font-size: 14px;
+  transition: background .2s ease;
+}
+
+.about-cta:hover > span:last-child,
+.about-cta:focus-visible > span:last-child {
+  background: var(--accent);
+}
+
+.about-cta:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 3px;
+}
+
+/* --- The ladder ------------------------------------------------------------
+   The five-step brand ladder, used whole and in order, exactly once per page.
+   Decoration with brand meaning, never a control. */
+
+.about-ladder {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  pointer-events: none;
+}
+
+.about-ladder > li {
+  height: 39px;
+}
+
+.about-ladder > li:nth-child(1) { width: 42px;  background: var(--ladder-rose); }
+.about-ladder > li:nth-child(2) { width: 86px;  background: var(--ladder-red-mid); }
+.about-ladder > li:nth-child(3) { width: 130px; background: var(--ladder-red); }
+.about-ladder > li:nth-child(4) { width: 178px; background: var(--ladder-navy-mid); }
+.about-ladder > li:nth-child(5) { width: 224px; background: var(--ladder-navy); }
+
+/* --- Responsive frame ------------------------------------------------------ */
+
+@media (max-width: 980px) {
+  .about-main {
+    width: min(100% - 48px, 720px);
+  }
+}
+
+@media (max-width: 580px) {
+  .about-main {
+    width: min(100% - 40px, 680px);
+  }
+
+  /* Decoration shrinks before information does. */
+  .about-ladder > li { height: 27px; }
+  .about-ladder > li:nth-child(1) { width: 36px; }
+  .about-ladder > li:nth-child(2) { width: 74px; }
+  .about-ladder > li:nth-child(3) { width: 112px; }
+  .about-ladder > li:nth-child(4) { width: 154px; }
+  .about-ladder > li:nth-child(5) { width: 196px; }
+
+  .figures {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .figures > li {
+    padding: clamp(16px, 4vw, 22px) 0;
+  }
+
+  .figures > li + li {
+    border-left: 0;
+    border-top: 1px solid var(--a-rule);
+  }
+
+  .about-cta {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skip-link,
+  .about-cta > span:last-child {
+    transition: none;
+  }
+}

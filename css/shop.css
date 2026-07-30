@@ -63,12 +63,12 @@
 
 @media (max-width: 980px) {
   .shop-main {
-    padding-top: 96px;
+    padding-top: 116px;
   }
 }
 
 @media (max-width: 580px) {
   .shop-main {
-    padding-top: 88px;
+    padding-top: 116px;
   }
 }

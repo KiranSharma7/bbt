@@ -18,6 +18,8 @@
      [data-filter-count]                     live count, written by the engine
 
    input[data-finder-search]         optional free-text search
+     give it an id and the header's <a href="#that-id"> focuses it on arrival;
+     ?q=... in the URL pre-fills it, so a search can be linked and shared
    select[data-finder-sort]          optional sort: default|price-asc|price-desc|title
    [data-finder-results]             where cards are written
    template[data-finder-template]    card markup, hooks marked [data-field]
@@ -78,6 +80,15 @@
     return LANGUAGES.length;
   }
 
+  /* A book you can actually buy outranks one whose price is still unconfirmed.
+     Today this changes nothing — every Thai row is sellable and every non-Thai
+     row is "pending", so language order already produced this result. It is
+     written out so the ordering stays honest once the English, Nepali, Hindi
+     and Russian rows get real prices and stop being pending. */
+  function sellableRank(book) {
+    return book.status === 'pending' ? 1 : 0;
+  }
+
   function Finder(root) {
     this.root = root;
     this.coverPath = root.getAttribute('data-finder-cover-path') || '../assets/books/';
@@ -109,12 +120,74 @@
     this.rangeEl = root.querySelector('[data-finder-range]');
 
     this.groups = {};
-    this.state = { search: '', sort: 'default' };
+    /* `search` is lowercased for matching; `searchLabel` keeps what the reader
+       actually typed, so the removable chip reads back "Gita" not "gita". */
+    this.state = { search: '', searchLabel: '', sort: 'default' };
 
     this.collectGroups();
     this.bind();
+    this.adoptQuery();
     this.render();
+    this.watchHash();
   }
+
+  /* The header search control is a link to #search, on this page and from the
+     other five. A bare anchor scrolls the input into view but leaves the cursor
+     elsewhere, so the reader has to click again before typing. Focusing closes
+     that gap. The browser has already scrolled by the time this runs, hence
+     preventScroll: focusing must not jump the page a second time. */
+  Finder.prototype.watchHash = function () {
+    var self = this;
+    if (!this.searchEl || !this.searchEl.id) return;
+
+    function focusIfTargeted() {
+      if (window.location.hash !== '#' + self.searchEl.id) return;
+      try {
+        self.searchEl.focus({ preventScroll: true });
+      } catch (err) {
+        self.searchEl.focus();
+      }
+    }
+
+    focusIfTargeted();
+    window.addEventListener('hashchange', focusIfTargeted);
+
+    /* Clicking the control while already at #search fires no hashchange, so the
+       second click would do nothing without this. */
+    var links = document.querySelectorAll('a[href="#' + this.searchEl.id + '"]');
+    Array.prototype.forEach.call(links, function (link) {
+      link.addEventListener('click', function () {
+        window.setTimeout(focusIfTargeted, 0);
+      });
+    });
+  };
+
+  /* Lets a search be linked and shared: shop.html?q=gita opens with the term
+     already applied. The header search control relies on this, and it means a
+     reader can bookmark or send a result list. Reading the group filters from
+     the URL as well is deliberately left out — the pressed buttons in the
+     markup are the source of truth for those, and two sources would drift. */
+  Finder.prototype.adoptQuery = function () {
+    if (!this.searchEl) return;
+
+    var match = /[?&]q=([^&]*)/.exec(window.location.search);
+    if (!match) return;
+
+    var term = '';
+    try {
+      term = decodeURIComponent(match[1].replace(/\+/g, ' '));
+    } catch (err) {
+      /* A malformed escape in a hand-edited URL must not blank the page. */
+      return;
+    }
+
+    term = term.trim();
+    if (!term) return;
+
+    this.searchEl.value = term;
+    this.state.searchLabel = term;
+    this.state.search = term.toLowerCase();
+  };
 
   Finder.prototype.collectGroups = function () {
     var self = this;
@@ -154,7 +227,9 @@
 
     if (this.searchEl) {
       this.searchEl.addEventListener('input', function () {
-        self.state.search = self.searchEl.value.trim().toLowerCase();
+        var raw = self.searchEl.value.trim();
+        self.state.searchLabel = raw;
+        self.state.search = raw.toLowerCase();
         self.update();
       });
       /* Enter in a lone search field would submit and reload the page. */
@@ -229,6 +304,7 @@
     var self = this;
     Object.keys(this.groups).forEach(function (name) { self.state[name] = 'all'; });
     this.state.search = '';
+    this.state.searchLabel = '';
     if (this.searchEl) this.searchEl.value = '';
     this.update();
   };
@@ -270,6 +346,12 @@
         if (b.price === null) return -1;
         return sort === 'price-asc' ? a.price - b.price : b.price - a.price;
       }
+
+      /* Sellable books lead. An explicit A–Z or price sort is left alone above:
+         a reader who asks for alphabetical order should get alphabetical order,
+         not alphabetical-within-tiers. */
+      var sellable = sellableRank(a) - sellableRank(b);
+      if (sellable !== 0) return sellable;
 
       var rank = defaultRank(a) - defaultRank(b);
       if (rank !== 0) return rank;
@@ -526,7 +608,11 @@
     });
 
     if (this.state.search) {
-      chips.push({ group: 'search', value: '', label: '“' + this.state.search + '”' });
+      chips.push({
+        group: 'search',
+        value: '',
+        label: '“' + (this.state.searchLabel || this.state.search) + '”'
+      });
     }
 
     this.chipsEl.textContent = '';
@@ -541,6 +627,7 @@
         event.preventDefault();
         if (chip.group === 'search') {
           self.state.search = '';
+          self.state.searchLabel = '';
           if (self.searchEl) self.searchEl.value = '';
         } else {
           self.state[chip.group] = 'all';

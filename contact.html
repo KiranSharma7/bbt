@@ -1,0 +1,376 @@
+<!--
+THESIS: Contact staged as the shop's card-catalogue drawer — five ruled cards standing in a tray, one pulled out and written on. It refuses the "hero heading over a single boxed form" default every store ships.
+OWN-WORLD: Warm ivory paper, hairline-ruled catalogue cards tilted 2 degrees like the book covers elsewhere, drawn rod slots, Playfair route names, and one Thai Red card standing straight in a tilted row.
+STORY: The reader reads five cards, pulls the one that matches, watches it straighten and come forward as the writing card, fills the ruled lines, and finds the direct channels on the guide card beside it.
+FIRST VIEWPORT: Header over one plain instruction — "Pick a card, then write your question on it" — and nothing else, then the full tray of five tilted cards, so the choice that starts the task is on screen before any scrolling.
+FORM: The Card Catalogue — candidate 6 of my ordered list, staged as a tray plus a pulled card. Seed key ab31dbf3.
+
+NOT REAL YET: the email and phone on the guide card are placeholders. See the
+note at the top of the contact script in the js folder.
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact the shop — BBT Books from Thailand</title>
+  <meta
+    name="description"
+    content="Ask about an order, a Thai edition, or delivery outside Thailand. Every enquiry is routed to the person who can answer it.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@400;500&family=Playfair+Display:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/contact-common.css">
+  <link rel="stylesheet" href="css/contact.css">
+  <link rel="stylesheet" href="css/footer.css">
+</head>
+<body class="contact-page contact-page--catalog">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div class="site-atmosphere" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="BBT bookstore home">
+      <img src="assets/brand/logo.png" alt="The Bhaktivedanta Book Trust">
+    </a>
+
+    <nav class="primary-nav" aria-label="Primary navigation">
+      <a href="shop.html">Shop</a>
+      <a class="primary-nav__featured" href="shop.html#shop-lang">Thai Books</a>
+      <a href="about.html">About BBT</a>
+      <a href="contact.html" aria-current="page">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="search-control" href="shop.html#search" aria-label="Search books">
+        <span aria-hidden="true"></span>
+      </a>
+      <a class="cart-control" href="cart.html" aria-label="Cart, 0 items">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6.8 8.2h10.4l.8 12H6l.8-12Z"></path>
+          <path d="M9 9V6a3 3 0 0 1 6 0v3"></path>
+        </svg>
+        <span class="cart-control__count" data-cart-count>0</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <span class="menu-toggle__bar" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation" hidden>
+      <a href="shop.html">Shop</a>
+      <a href="shop.html#shop-lang">Thai Books</a>
+      <a href="about.html">About BBT</a>
+      <a href="contact.html" aria-current="page">Contact</a>
+    </nav>
+  </header>
+
+  <main class="contact-main" id="main-content" tabindex="-1">
+
+    <!-- Opening ---------------------------------------------------------- -->
+    <section class="tray-open" aria-labelledby="contact-title">
+      <h1 id="contact-title">Pick a card, then write your question on it</h1>
+    </section>
+
+    <form class="catalog" data-contact-form novalidate>
+
+      <!-- The tray ------------------------------------------------------- -->
+      <fieldset class="tray" data-route-group>
+        <!-- Named for screen readers only. On screen the h1 above already
+             says what this row of cards is for, so a second label would just
+             repeat it. -->
+        <legend class="tray__legend">What your question is about</legend>
+
+        <p class="cfield__error tray__error" id="err-route"
+           data-error-for="route" role="alert" hidden></p>
+
+        <div class="tray__row">
+          <label class="ccard">
+            <input type="radio" name="route" value="order" data-route-input>
+            <span class="ccard__face">
+              <span class="ccard__code" aria-hidden="true">ORD</span>
+              <span class="ccard__name">An order I placed</span>
+              <span class="ccard__desc">
+                Where it is, a wrong or damaged book, a change of address.
+              </span>
+              <span class="ccard__slot" aria-hidden="true"></span>
+            </span>
+          </label>
+
+          <label class="ccard">
+            <input type="radio" name="route" value="book" data-route-input>
+            <span class="ccard__face">
+              <span class="ccard__code" aria-hidden="true">BKS</span>
+              <span class="ccard__name">A book or edition</span>
+              <span class="ccard__desc">
+                Whether a title exists in Thai, which volume is next, what a
+                set contains.
+              </span>
+              <span class="ccard__slot" aria-hidden="true"></span>
+            </span>
+          </label>
+
+          <label class="ccard">
+            <input type="radio" name="route" value="delivery" data-route-input>
+            <span class="ccard__face">
+              <span class="ccard__code" aria-hidden="true">DEL</span>
+              <span class="ccard__name">Delivery abroad</span>
+              <span class="ccard__desc">
+                Books are posted from Thailand. Ask where they can reach you.
+              </span>
+              <span class="ccard__slot" aria-hidden="true"></span>
+            </span>
+          </label>
+
+          <label class="ccard">
+            <input type="radio" name="route" value="wholesale" data-route-input>
+            <span class="ccard__face">
+              <span class="ccard__code" aria-hidden="true">BLK</span>
+              <span class="ccard__name">Bulk or temple order</span>
+              <span class="ccard__desc">
+                Many copies of one title, or a standing order.
+              </span>
+              <span class="ccard__slot" aria-hidden="true"></span>
+            </span>
+          </label>
+
+          <label class="ccard">
+            <input type="radio" name="route" value="other" data-route-input>
+            <span class="ccard__face">
+              <span class="ccard__code" aria-hidden="true">GEN</span>
+              <span class="ccard__name">Something else</span>
+              <span class="ccard__desc">
+                Including anything about this website itself.
+              </span>
+              <span class="ccard__slot" aria-hidden="true"></span>
+            </span>
+          </label>
+        </div>
+      </fieldset>
+
+      <!-- The pulled card ------------------------------------------------ -->
+      <div class="catalog__desk">
+        <div class="pulled">
+          <div class="pulled__head">
+            <h2 class="pulled__title">
+              Card pulled: <span data-route-echo>nothing yet</span>
+            </h2>
+            <p class="pulled__aside" data-route-aside="order" hidden>
+              Orders placed on this site are not stored anywhere yet — checkout
+              is still a front-end mock. Quote any reference you do have.
+            </p>
+            <p class="pulled__aside" data-route-aside="book" hidden>
+              The title field lists the shop's whole catalogue, Thai editions
+              first. Only the Thai rows carry confirmed prices.
+            </p>
+            <p class="pulled__aside" data-route-aside="delivery" hidden>
+              Carriers, zones, rates, and times are not settled yet, so no
+              arrival date is quoted anywhere on this site.
+            </p>
+            <p class="pulled__aside" data-route-aside="wholesale" hidden>
+              Wholesale is not offered yet — this shop sells to individual
+              readers for now. The request is recorded once a channel exists.
+            </p>
+            <p class="pulled__aside" data-route-aside="other" hidden>
+              Anything the four cards above do not cover.
+            </p>
+          </div>
+
+          <div class="pulled__lines">
+            <label class="cfield" for="c-name">
+              <span class="cfield__label">Name <i aria-hidden="true">*</i></span>
+              <input type="text" id="c-name" name="name" autocomplete="name">
+              <span class="cfield__error" id="err-name" data-error-for="name" hidden></span>
+            </label>
+
+            <label class="cfield" for="c-email">
+              <span class="cfield__label">Email <i aria-hidden="true">*</i></span>
+              <input type="email" id="c-email" name="email" autocomplete="email"
+                     placeholder="you@example.com">
+              <span class="cfield__error" id="err-email" data-error-for="email" hidden></span>
+            </label>
+
+            <!-- Route-dependent fields. js/contact.js disables what is hidden. -->
+            <div data-route-field="order" hidden>
+              <label class="cfield" for="c-order">
+                <span class="cfield__label">Order reference</span>
+                <input type="text" id="c-order" name="order" placeholder="If you have one">
+                <span class="cfield__note">Leave blank if you never received one.</span>
+              </label>
+            </div>
+
+            <div data-route-field="book" hidden>
+              <label class="cfield" for="c-book">
+                <span class="cfield__label">Which book</span>
+                <input type="text" id="c-book" name="book" list="book-titles"
+                       placeholder="Start typing a title" autocomplete="off">
+                <datalist id="book-titles" data-book-list></datalist>
+                <span class="cfield__note">
+                  Thai editions listed first. Type freely if the title is not there.
+                </span>
+              </label>
+            </div>
+
+            <div data-route-field="delivery" hidden>
+              <label class="cfield" for="c-country">
+                <span class="cfield__label">Delivering to</span>
+                <input type="text" id="c-country" name="country"
+                       autocomplete="country-name" placeholder="Country or region">
+              </label>
+            </div>
+
+            <div data-route-field="wholesale" hidden>
+              <label class="cfield" for="c-quantity">
+                <span class="cfield__label">How many copies</span>
+                <input type="text" id="c-quantity" name="quantity"
+                       placeholder="An estimate is fine">
+              </label>
+            </div>
+
+            <label class="cfield cfield--message" for="c-message">
+              <span class="cfield__label">Your question <i aria-hidden="true">*</i></span>
+              <textarea id="c-message" name="message"
+                        placeholder="One or two lines is enough."></textarea>
+              <span class="cfield__count" data-message-count aria-live="polite"></span>
+              <span class="cfield__error" id="err-message" data-error-for="message" hidden></span>
+            </label>
+
+            <label class="c-consent">
+              <input type="checkbox" name="consent">
+              <span class="c-consent__text">
+                Use my email to reply to this question only.
+              </span>
+            </label>
+          </div>
+
+          <button class="c-submit" type="submit">
+            <span>File this card</span>
+            <span aria-hidden="true">&rarr;</span>
+          </button>
+
+          <div class="c-sent" data-contact-notice role="status" hidden></div>
+        </div>
+
+        <!-- The guide card ---------------------------------------------- -->
+        <aside class="guide" aria-labelledby="guide-title">
+          <h2 class="guide__title" id="guide-title">Reaching a person</h2>
+
+          <!-- PLACEHOLDER CHANNELS — REPLACE BEFORE LAUNCH.
+               The address and number below are stand-ins, and the same two
+               values are set at the top of js/contact.js, which turns them
+               into working mailto: and tel: links. -->
+          <ul class="channels">
+            <li>
+              <span class="channel__name">Email</span>
+              <span class="channel__value" data-channel="email">
+                <a class="channel__link" href="mailto:hello@example.com">hello@example.com</a>
+              </span>
+            </li>
+            <li>
+              <span class="channel__name">Phone</span>
+              <span class="channel__value" data-channel="phone">
+                <a class="channel__link" href="tel:+6620000000">+66 2 000 0000</a>
+              </span>
+            </li>
+            <li>
+              <span class="channel__name">Dispatch origin</span>
+              <span class="channel__value">
+                Thailand
+                <span class="channel__note">
+                  Every order is packed and posted from here, worldwide.
+                </span>
+              </span>
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </form>
+
+    <!-- Close ------------------------------------------------------------ -->
+    <section class="tray-close">
+      <div class="tray-close__text">
+        <p>Nothing to ask yet?</p>
+        <a class="tray-close__link" href="shop.html#shop-lang">
+          <span>Browse the Thai books</span>
+          <span aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+
+      <ol class="tray-ladder" aria-hidden="true">
+        <li></li><li></li><li></li><li></li><li></li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div class="site-footer__main">
+        <div class="site-footer__identity">
+          <p class="site-footer__monogram" aria-hidden="true">BBT</p>
+          <p class="site-footer__name">Independent bookstore</p>
+          <p class="site-footer__description">
+            BBT printed editions from Thailand,<br>
+            shipped to readers worldwide.
+          </p>
+        </div>
+
+        <nav class="site-footer__nav" aria-label="Footer navigation">
+          <div class="site-footer__column">
+            <h2>Shop</h2>
+            <ul>
+              <li><a href="shop.html#shop-lang">Thai Books</a></li>
+              <li><a href="shop.html">All Books</a></li>
+              <li><a href="shop.html#shop-lang">Languages</a></li>
+            </ul>
+          </div>
+
+          <div class="site-footer__column">
+            <h2>Discover</h2>
+            <ul>
+              <li><a href="index.html#bhakti-title">New to Bhakti</a></li>
+              <li><a href="about.html">About BBT</a></li>
+            </ul>
+          </div>
+
+          <div class="site-footer__column">
+            <h2>Order</h2>
+            <ul>
+              <li><a href="cart.html" aria-label="View shopping cart">Cart</a></li>
+              <li><a href="contact.html" aria-current="page">Contact</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <div class="site-footer__foot">
+        <ol class="site-footer__palette" aria-label="BBT color palette">
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+          <li>4</li>
+          <li>5</li>
+        </ol>
+
+        <div class="site-footer__legal">
+          <p class="site-footer__copyright">
+            BBT titles, cover art, and text &copy; The Bhaktivedanta Book Trust
+            International, Inc. Used with permission.
+          </p>
+          <p class="site-footer__colophon">
+            <span lang="th">จัดพิมพ์และจัดส่งจากประเทศไทย</span>
+            <span aria-hidden="true"> · </span>
+            Published and dispatched from Thailand
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/catalog.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/mobile-nav.js"></script>
+  <script src="js/contact.js"></script>
+</body>
+</html>

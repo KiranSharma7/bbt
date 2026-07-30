@@ -1,0 +1,231 @@
+/* ---------------------------------------------------------------------------
+   About BBT — "The Passage"
+
+   The page follows one dated line. An opening band carries the title and the
+   imprint sentence; below it a continuous 1px spine runs down the page with a
+   station hanging off it at each date — 1965, 1972, since, today. A small Thai
+   Red tick sits on the spine at every station.
+
+   It reads as something that happened rather than something that exists, and
+   it puts the shop's own statement at the end of the line rather than in a
+   corner. Its trade is that a dated line implies sequence, so the sections
+   cannot be reordered freely.
+
+   Inherits css/hero.css and css/about-common.css. No colour literal appears
+   here — every value resolves to a :root token.
+--------------------------------------------------------------------------- */
+
+.about-page--passage {
+  --year-col: 148px;
+  --spine-gap: clamp(28px, 3.6vw, 60px);
+}
+
+/* --- Opening band ---------------------------------------------------------
+   The title at full display scale on the left; the imprint sentence sits
+   behind one vertical rule at the right, aligned to the title's last baseline
+   so the two read as a single printed block. */
+
+.passage-open {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 34%);
+  align-items: end;
+  gap: clamp(30px, 4vw, 72px);
+  padding: clamp(56px, 6.4vw, 104px) 0 clamp(44px, 5vw, 80px);
+}
+
+.about-main .passage-open h1 {
+  line-height: .96;
+}
+
+.passage-open__imprint {
+  padding-left: clamp(20px, 2.4vw, 34px);
+  border-left: 1px solid var(--a-rule-strong);
+}
+
+.passage-open .about-lead {
+  max-width: 34ch;
+  color: var(--ink-muted);
+}
+
+/* --- The spine -------------------------------------------------------------
+   One hairline down the page. Each station draws its own segment, and the
+   segments meet because stations carry padding rather than margins. */
+
+.station {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--year-col) minmax(0, 1fr);
+  padding: clamp(48px, 5.5vw, 92px) 0 clamp(44px, 5vw, 80px);
+}
+
+.station::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--year-col);
+  width: 1px;
+  content: "";
+  background: var(--a-rule-strong);
+}
+
+/* The date, right-aligned against the spine, with a Thai Red tick straddling
+   the line at its own baseline. The tick is the only colour in the column. */
+.station__year {
+  position: relative;
+  margin: 0;
+  padding-right: clamp(20px, 2.2vw, 34px);
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: clamp(18px, 1.28vw, 23px);
+  line-height: 1.15;
+  letter-spacing: -.02em;
+  text-align: right;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.station__year::after {
+  position: absolute;
+  top: .34em;
+  right: -4px;
+  width: 9px;
+  height: 9px;
+  content: "";
+  background: var(--accent);
+}
+
+.station__body {
+  padding-left: var(--spine-gap);
+}
+
+/* More space above a heading than below it. */
+.station__body h2 + .about-body {
+  margin-top: clamp(22px, 2.4vw, 32px);
+}
+
+/* --- Station: the founder -------------------------------------------------
+   The one human moment on the page. It opens the line, so it is given the
+   largest reading size and the most air. */
+
+.station:first-child {
+  padding-top: clamp(40px, 4.4vw, 68px);
+  padding-bottom: clamp(56px, 6.2vw, 100px);
+}
+
+.station:first-child .about-body p {
+  max-width: 58ch;
+  font-size: clamp(17px, 1.25vw, 21px);
+  line-height: 1.6;
+}
+
+/* --- Station: the trust ---------------------------------------------------
+   The three figures sit inside the station, under a hairline, so they read as
+   evidence for the paragraph above rather than as a separate feature strip. */
+
+.station .figures {
+  margin-top: clamp(30px, 3.4vw, 48px);
+  padding-top: clamp(18px, 2vw, 26px);
+  border-top: 1px solid var(--a-rule);
+}
+
+/* --- Station: books that build --------------------------------------------
+   One paragraph, then the page's single use of the ladder — whole and in
+   order. A statement about the publisher, not a donation appeal, so there is
+   no action here. */
+
+.station--build .about-body p {
+  max-width: 54ch;
+}
+
+.station--build .about-ladder {
+  margin-top: clamp(28px, 3vw, 42px);
+}
+
+/* --- Station: this store ---------------------------------------------------
+   The last stop on the line, and the only one that is not about the Trust.
+   Same station structure as every section above it, so it can never be read
+   as a footnote. The spine stops here because the line has arrived. */
+
+.station--store {
+  padding-bottom: clamp(56px, 6vw, 96px);
+}
+
+.station--store::before {
+  bottom: auto;
+  height: clamp(48px, 5.5vw, 92px);
+}
+
+.station--store .station__year::after {
+  top: .28em;
+  right: -6px;
+  width: 13px;
+  height: 13px;
+}
+
+.station--store .disclosure {
+  margin-top: clamp(24px, 2.6vw, 34px);
+}
+
+/* --- Responsive ------------------------------------------------------------
+   The spine survives to the smallest width — it is the page's structure, not
+   its decoration. What folds is the year column, which moves above its own
+   heading and keeps the same reading order. */
+
+@media (max-width: 1100px) {
+  .about-page--passage {
+    --year-col: 112px;
+  }
+}
+
+@media (max-width: 900px) {
+  .passage-open {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    padding-bottom: clamp(32px, 5vw, 48px);
+  }
+
+  /* The vertical rule becomes a horizontal one: same separation, no column. */
+  .passage-open__imprint {
+    padding-left: 0;
+    padding-top: clamp(20px, 3vw, 28px);
+    border-left: 0;
+    border-top: 1px solid var(--a-rule-strong);
+  }
+
+  .passage-open .about-lead {
+    max-width: 52ch;
+  }
+
+  .about-page--passage {
+    --year-col: 0px;
+    --spine-gap: clamp(20px, 4vw, 30px);
+  }
+
+  .station {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .station__year {
+    padding: 0 0 clamp(12px, 2vw, 18px) var(--spine-gap);
+    text-align: left;
+  }
+
+  /* The spine now sits on the shell's own left edge, so the tick moves to the
+     inside of the line rather than straddling it — straddling would push it
+     outside the shell and be clipped. */
+  .station__year::after {
+    top: .42em;
+    right: auto;
+    left: 0;
+  }
+
+  .station--store .station__year::after {
+    right: auto;
+    left: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .about-main .passage-open h1 br {
+    display: none;
+  }
+}
